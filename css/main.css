@@ -1,0 +1,25 @@
+/*  Setup
+    ===
+*/
+
+    body{ background: #c2babb; }
+
+
+
+/*  Helper Classes
+    ===
+
+    Floats
+    ---
+*/
+
+    .left{ float: left; }
+    .right{ float: right; }
+    .clear:before,
+    .clear:after {
+        content: " ";
+        display: table;
+    }
+    .clear:after{
+        clear: both;
+    }
