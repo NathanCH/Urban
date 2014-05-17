@@ -1,0 +1,34 @@
+/*  Typograhy
+    ===
+
+    Setup
+    ---
+*/
+
+    body{
+        font-family: "Open Sans";
+        font-size: 14px;
+    }
+
+/*  Headings
+    ---
+*/
+
+    h1{
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 44px;
+        color: white;
+    }
+
+    h2{
+        font-size: 28px;
+        line-height: 32px;
+        color: black;
+    }
+
+    h3{
+        font-size: 20px;
+        line-height: 24px;
+        color: #EECCA9;
+    }

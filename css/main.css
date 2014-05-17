@@ -2,24 +2,88 @@
     ===
 */
 
-    body{ background: #c2babb; }
+    body{ background: #856b5f url('../images/splash.jpg') center / cover; }
 
 
 
-/*  Helper Classes
+/*  Layout
     ===
 
-    Floats
+    Container Setup
     ---
 */
 
-    .left{ float: left; }
-    .right{ float: right; }
-    .clear:before,
-    .clear:after {
-        content: " ";
-        display: table;
+    .container{}
+
+    .container-centered{
+        position: absolute;
+        display: block;
+        top: 30%;
+        left: 50%;
     }
-    .clear:after{
-        clear: both;
+
+    @media only screen and (max-width: 480px) {
+        .container-centered{
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+
+        #splash .container-centered{
+            margin-left: -220px;
+        }
+
+        @media only screen and (max-width: 480px) {
+            #splash .container-centered{
+                margin-left: 0;
+            }
+        }
+
+/*  Page Specific Containers
+    ---
+
+    <body id="page">
+        <div class="container">
+            ...
+        </div>
+    </body>
+*/
+
+    #splash .container{
+        width: 440px
+    }
+
+    @media only screen and (max-width: 480px) {
+        #splash .container{
+            width: 100%;
+        }
+    }
+
+    #splash .copyright{
+        color: white;
+        line-height: 75px;
+    }
+
+/*  Box
+    ---
+
+    <div class="box box-white">
+        ...
+    </div>
+*/
+
+    .box{
+        background: white;
+    }
+
+    .box-header{
+        background: #856b60;
+        padding: 35px 20px;
+    }
+
+    .box-footer{
+        background: #fbfbfb;
+        padding: 35px 20px;
     }
