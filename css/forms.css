@@ -59,15 +59,34 @@
         height: 90px;
         display: block;
         border: 1px;
-        padding-left: 50px;
+        padding-left: 80px;
+        border-bottom: 1px dashed #eaeaea;
+        z-index: 0;
+        font-size: 16px;
+        color: #846b5f;
+    }
+
+/*  Input Icons
+    ---
+
+    <div class="input-container">
+        <i class="fa fa-envelope"></i>
+        <input type="email" />
+    </div>
+*/
+
+    .input-container i{
+        position: relative;
+        z-index: 100;
+        line-height: 90px;
+        margin-left:  36px;
+        color: #8d7468;
     }
 
 /*  Checkboxes
     ---
 
-    <span class="input-checkbox">
-
-    </span>
+    <span class="input-checkbox"></span>
 */
 
     .input-checkbox{

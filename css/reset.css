@@ -31,3 +31,18 @@ body {
 ol, ul {
     list-style: none;
 }
+/* Placeholders */
+::-webkit-input-placeholder{ /* WebKit browsers */
+    color:    #cecece;
+}
+:-moz-placeholder{ /* Mozilla Firefox 4 to 18 */
+    color:    #cecece;
+    opacity:  1;
+}
+::-moz-placeholder{ /* Mozilla Firefox 19+ */
+    color:    #cecece;
+    opacity:  1;
+}
+:-ms-input-placeholder{ /* Internet Explorer 10+ */
+    color:    #cecece;
+}
