@@ -15,7 +15,7 @@ require_once 'core/init.php';
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
         <link href='http://fonts.googleapis.com/css?family=Open Sans:700,400,400italic' rel='stylesheet' type='text/css' />
         <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
-        <script src="js/oak.js"></script>
+        <script src="js/functions.js"></script>
     </head>
     <body id="splash">
         <div class="container container-centered">
@@ -23,7 +23,7 @@ require_once 'core/init.php';
                 <header class="box-header row">
                     <div class="large-12 column center">
                         <h1>Urban</h1>
-                        <h3>adventure ready</h3>
+                        <h3>please login below</h3>
                     </div>
                 </header>
                 <div class="row">
@@ -31,22 +31,20 @@ require_once 'core/init.php';
                         <!-- Email Input -->
                         <div class="input-container">
                             <i class="fa fa-envelope"></i>
-                            <input type="email" name="email" placeholder="Email" />
+                            <input type="text" name="email" placeholder="Email" autocomplete="off" />
                         </div>
                         <!-- Password Input -->
                         <div class="input-container">
                             <i class="fa fa-lock"></i>
-                            <input type="password" name="password" placeholder="********" />
+                            <input type="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
                         </div>
                     </form>
                 </div>
                 <footer class="box-footer row row-inline-input">
                     <div class="small-12 medium-8 large-8 columns">
-                        <input type="hidden" name="remember_login" />
-                        <label>
-                            <span class="input-checkbox">
-
-                            </span>
+                        <input type="hidden" name="remember_login" data-input="remember_login" value="0" />
+                        <label class="input-checkbox-label">
+                            <span class="input-checkbox" data-input="remember_login"></span>
                             Remember Me?
                         </label>
                     </div>
