@@ -27,4 +27,12 @@
                         break;
                 }
             }
+
+        /**
+         *  Escape and sanitize $_POST data.
+         *  @param $data   string
+         */
+            public static function escape($data) {
+                return htmlentities($data, ENT_QUOTES, 'UTF-8');
+            }
     }

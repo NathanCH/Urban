@@ -11,7 +11,6 @@
          *  @param $controller  string
          *  @param $action      string  (optional)
          */
-
             public static function redirect($controller, $action = null) {
                 $path = URL . $controller;
 

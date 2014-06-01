@@ -26,6 +26,7 @@
  */
     require 'application/classes/route.php';
     require 'application/classes/input.php';
+    require 'application/classes/validate.php';
 
 
 /**
