@@ -15,6 +15,11 @@
  */
 
 /**
+ *  Require Composer generated autoloader.
+ */
+    require 'vendor/autoload.php';
+
+/**
  *  Load configutarion file.
  */
     require 'application/config/config.php';

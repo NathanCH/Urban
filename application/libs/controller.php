@@ -49,4 +49,19 @@ class Controller
         // return new model (and pass the database connection to the model)
         return new $model_name($this->db);
     }
+
+    /**
+     * Render view files.
+     * @param $view         the page to render.
+     * @param $data_array   data to be passed to the view.
+     */
+    public function render($view, $data_array = array())
+    {
+        // Load Twig templating engine.
+        $twig_loader = new Twig_Loader_Filesystem(PATH_VIEWS);
+        $twig = new Twig_Environment($twig_loader);
+
+        // Render view file.
+        echo $twig->render($view . PATH_VIEW_FILE_TYPE, $data_array);
+    }
 }

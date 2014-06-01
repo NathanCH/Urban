@@ -5,6 +5,13 @@
 
     $(function(){
 
+        /**
+         *  <input type="hidden" name="my-checkbox" data-input="unique_name" value="0" />
+         *  <label class="input-checkbox-label">
+         *      <span class="input-checkbox" data-input="unique_name"></span>
+         *      Remember Me?
+         *  </label>
+         */
         function toggleCheckBox(){
             // Toggle hidden input value.
             var dataLabel = $(this).children('span').attr("data-input");

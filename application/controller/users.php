@@ -12,10 +12,8 @@
          *  @todo validation rules
          */
             public function login() {
-
                 // If post data exists.
                 if(Input::exists()) {
-
                     // The form input to validate and the validation rules.
                     $items = array(
                         'email' => array(
@@ -32,11 +30,26 @@
                     // Check the post data against the validation rules.
                     $validation = $validate->check($_POST, $items);
 
-                    // Display errors.
-                    var_dump($validation->errors());
+                    // Check if validation has passed.
+                    if($validation->passed()) {
+                        echo 'passed';
+                    }
 
-                    //Route::redirect('home');
+                    // Render validation errors.
+                    else{
+                        foreach($validation->errors() as $error) {
+                            echo $error . '<br />';
+                        }
+                    }
+
                 }
+
+                // Route::redirect('home');
+
+                // Render view files.
+                $this->render('_templates/header');
+                $this->render('public/login');
+                $this->render('_templates/footer');
 
             }
     }

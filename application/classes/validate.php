@@ -26,7 +26,7 @@
 
                 // Seperate each item and its rules.
                 foreach ($items as $item => $rules) {
-                    // Seperate each rule and its answer.
+                    // Seperate each rule and its answers.
                     foreach($rules as $rule => $answer){
                         // echo "{$item} is {$rule} must be {$answer} <br />";
 
@@ -56,8 +56,15 @@
          *  Method to hold any validation errors.
          *  @todo create method that adds errors to _errors.
          */
-            public function errors(){
+            public function errors() {
                 return $this->_errors;
+            }
+
+        /**
+         *  Method to check if validation passed.
+         */
+            public function passed() {
+                return $this->_passed;
             }
 
     }

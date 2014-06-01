@@ -25,3 +25,9 @@
  */
     define('APP_NAME', 'Urban');
     define('APP_VER' , '0.10');
+
+/**
+ *  View Path
+ */
+    define('PATH_VIEWS', 'application/views/');
+    define('PATH_VIEW_FILE_TYPE' , '.php');
