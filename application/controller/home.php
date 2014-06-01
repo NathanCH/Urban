@@ -6,15 +6,9 @@
  *  Sets display for the landing page of the application.
  */
 
-    class Home extends Controller
-    {
-        /**
-         *  index()
-         *
-         *  @todo Render login page.
-         */
+    class Home extends Controller {
 
-            public function index() {
+            public function login() {
 
                 // load views. within the views we can echo out $songs and $amount_of_songs easily
                 require 'application/views/_templates/header.php';

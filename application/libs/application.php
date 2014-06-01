@@ -59,7 +59,7 @@ class Application
             // invalid URL, so simply show home/index
             require './application/controller/home.php';
             $home = new Home();
-            $home->index();
+            $home->login();
         }
     }
 

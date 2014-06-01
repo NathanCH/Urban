@@ -15,15 +15,26 @@
  */
 
 /**
- *  Load application configuration and classes.
+ *  Load configutarion file.
  */
-
     require 'application/config/config.php';
+
+
+/**
+ *  Load classes.
+ *  @todo replace with autoloader.
+ */
+    require 'application/classes/input.php';
+
+
+/**
+ *  Load application.
+ */
     require 'application/libs/application.php';
     require 'application/libs/controller.php';
+
 
 /**
  *  Start the application.
  */
-
     $app = new Application();
