@@ -24,6 +24,7 @@
  *  Load classes.
  *  @todo replace with autoloader.
  */
+    require 'application/classes/route.php';
     require 'application/classes/input.php';
 
 

@@ -10,7 +10,7 @@
 
         /**
          *  Check if post data exists.
-         *  @param $method string form submission method.
+         *  @param $method   string
          */
             public static function exists($method = 'post') {
                 switch ($method) {

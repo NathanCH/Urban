@@ -1,16 +1,16 @@
 <?php
 
 /**
- *  Home Controller
+ *  Home Page Controller
  *
  *  Sets display for the landing page of the application.
  */
 
     class Home extends Controller {
 
-            public function login() {
+            public function index() {
 
-                // load views. within the views we can echo out $songs and $amount_of_songs easily
+                // View files.
                 require 'application/views/_templates/header.php';
                 require 'application/views/public/login.php';
                 require 'application/views/_templates/footer.php';

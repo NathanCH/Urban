@@ -11,6 +11,8 @@
             // If post data exists.
             if(Input::exists()) {
                 var_dump($_POST);
+
+                Route::redirect('home');
             }
 
         }
