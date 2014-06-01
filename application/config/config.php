@@ -9,7 +9,7 @@
 /**
  *  Project URL.
  */
-    define('URL', 'http://localhost/2014/php-mvc-master/');
+    define('URL', 'http://localhost/2014/urban/');
 
 /**
  *  Database Configuration.

@@ -11,7 +11,7 @@
         /**
          *  index()
          *
-         *   @todo Render login page.
+         *  @todo Render login page.
          */
 
             public function index() {
@@ -21,5 +21,4 @@
                 require 'application/views/public/login.php';
                 require 'application/views/_templates/footer.php';
             }
-
     }

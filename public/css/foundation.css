@@ -1,62 +1,29 @@
-html, body {
-  height: 100%;
+/* Utility Classes*/
+.left{
+  float: left !important;
 }
-
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
-html,
-body {
-  font-size: 100%; }
-
-img {
-  max-width: 100%;
-  height: auto; }
-
-img {
-  -ms-interpolation-mode: bicubic; }
-
-.left {
-  float: left !important; }
-
-.right {
-  float: right !important; }
-
-.clearfix {
-  *zoom: 1; }
-  .clearfix:before, .clearfix:after {
+.right{
+  float: right !important;
+}
+.clearfix{
+  *zoom: 1;
+}
+  .clearfix:before,
+  .clearfix:after{
     content: " ";
-    display: table; }
-  .clearfix:after {
-    clear: both; }
-
-.hide {
-  display: none; }
-
+    display: table;
+  }
+  .clearfix:after{
+    clear: both;
+  }
+.hide{
+  display: none;
+}
 .center{
   text-align: center;
 }
 
-img {
-  display: inline-block;
-  vertical-align: middle; }
-
-textarea {
-  height: auto;
-  min-height: 50px; }
-
-select {
-  width: 100%; }
-
-form{
-  display: block;
-  position: relative;
-}
-
+/* Foundation Grid */
 .row {
   width: 100%;
   margin-left: auto;

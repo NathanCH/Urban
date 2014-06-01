@@ -20,10 +20,14 @@ menu, nav, section {
     font: inherit;
     vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
+}
+html, body {
+  height: 100%;
 }
 body {
     line-height: 1;
@@ -31,6 +35,7 @@ body {
 ol, ul {
     list-style: none;
 }
+
 /* Placeholders */
 ::-webkit-input-placeholder{ /* WebKit browsers */
     color:    #cecece;
@@ -45,4 +50,35 @@ ol, ul {
 }
 :-ms-input-placeholder{ /* Internet Explorer 10+ */
     color:    #cecece;
+}
+
+/* Box Model */
+*,
+*:before,
+*:after{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Baseline for responsive images */
+img{
+  max-width: 100%;
+  height: auto;
+  -ms-interpolation-mode: bicubic;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Baseline for responsive forms */
+textarea{
+  height: auto;
+  min-height: 50px;
+}
+select{
+  width: 100%;
+}
+form{
+  display: block;
+  position: relative;
 }

@@ -1,25 +1,42 @@
-/*  Setup
+/*  Public Pages
     ===
+
+    Styles for public facing pages.
 */
 
     body{ background: #856b5f url('../img/splash.jpg') center / cover; }
 
+    @media only screen and (max-width: 480px) {
+        body{
+            background: #fbfbfb;
+        }
+    }
 
 
-/*  Layout
+
+/*  Splash Page
     ===
 
     Container Setup
     ---
 */
 
-    .container{}
+    .container{
+        width: 400px
+    }
+
+    @media only screen and (max-width: 480px) {
+        .container{
+            width: 100%;
+        }
+    }
 
     .container-centered{
         position: absolute;
         display: block;
-        top: 30%;
+        top: 20%;
         left: 50%;
+        margin-left: -200px;
     }
 
     @media only screen and (max-width: 480px) {
@@ -28,43 +45,21 @@
             bottom: 0;
             left: 0;
             right: 0;
+            margin-left: 0
         }
     }
 
-        #splash .container-centered{
-            margin-left: -220px;
-        }
-
-        @media only screen and (max-width: 480px) {
-            #splash .container-centered{
-                margin-left: 0;
-            }
-        }
-
-/*  Page Specific Containers
-    ---
-
-    <body id="page">
-        <div class="container">
-            ...
-        </div>
-    </body>
-*/
-
-    #splash .container{
-        width: 440px
-    }
-
-    @media only screen and (max-width: 480px) {
-        #splash .container{
-            width: 100%;
-        }
-    }
-
-    #splash .copyright{
+    .copyright{
         color: white;
         line-height: 75px;
     }
+
+    @media only screen and (max-width: 480px) {
+       .copyright{
+            color: #555;
+        }
+    }
+
 
 /*  Box
     ---

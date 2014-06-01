@@ -1,4 +1,4 @@
-<body id="splash">
+<body id="public">
     <div class="container container-centered">
         <div class="box">
             <header class="box-header row">
