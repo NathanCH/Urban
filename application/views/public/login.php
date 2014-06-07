@@ -1,7 +1,7 @@
 <body id="public">
     <div class="container container-centered">
         <div class="box">
-            <form action="{{ constant('URL') }}users/login/" method="POST">
+            <form action="<?= URL; ?>users/login/" method="POST">
                 <header class="box-header row">
                     <div class="large-12 column center">
                         <h1>Urban</h1>

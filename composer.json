@@ -13,7 +13,7 @@
         {
             "name": "Panique",
             "homepage": "http://careers.stackoverflow.com/panique",
-            "role": "Developer"
+            "role": "Provided MVC Structure"
         }
     ],
     "support": {
@@ -21,7 +21,6 @@
         "source": "https://github.com/NathanCH/urban/"
     },
     "require": {
-        "php": ">=5.3.0",
-        "twig/twig": "1.*"
+        "php": ">=5.3.0"
     }
 }

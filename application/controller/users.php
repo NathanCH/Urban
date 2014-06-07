@@ -12,6 +12,9 @@
          *  @todo validation rules
          */
             public function login() {
+
+                $view = array();
+
                 // If post data exists.
                 if(Input::exists()) {
                     // The form input to validate and the validation rules.
@@ -23,6 +26,8 @@
                             'required' => true
                         )
                     );
+
+                    $errors = array();
 
                     // Create validation object.
                     $validate = new Validate();
@@ -37,18 +42,20 @@
 
                     // Render validation errors.
                     else{
-                        foreach($validation->errors() as $error) {
-                            echo $error . '<br />';
+                        foreach($validation->errors() as $item => $message) {
+                            // Send validation errors to view.
+                            $data['errors'][] = array('message' => $message, 'item' => $item);
                         }
                     }
 
                 }
 
+
                 // Route::redirect('home');
 
                 // Render view files.
                 $this->render('_templates/header');
-                $this->render('public/login');
+                $this->render('public/login', $data);
                 $this->render('_templates/footer');
 
             }

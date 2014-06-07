@@ -51,17 +51,25 @@ class Controller
     }
 
     /**
-     * Render view files.
-     * @param $view         the page to render.
-     * @param $data_array   data to be passed to the view.
+     *  Render view files.
+     *  @param $view         the page to render.
+     *  @param $data_array   data to be passed to the view.
      */
-    public function render($view, $data_array = array())
-    {
-        // Load Twig templating engine.
-        $twig_loader = new Twig_Loader_Filesystem(PATH_VIEWS);
-        $twig = new Twig_Environment($twig_loader);
+        public function render($view, $data = array()) {
 
-        // Render view file.
-        echo $twig->render($view . PATH_VIEW_FILE_TYPE, $data_array);
-    }
+            extract($data);
+
+            // Start buffer.
+            ob_start();
+
+            // Build full path to view file.
+            $path = PATH_VIEWS . $view . PATH_VIEW_FILE_TYPE;
+
+            include $path;
+
+            // Render view file.
+            $render_view = ob_get_clean();
+
+            echo $render_view;
+        }
 }

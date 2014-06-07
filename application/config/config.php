@@ -24,7 +24,7 @@
  *  Application Info.
  */
     define('APP_NAME', 'Urban');
-    define('APP_VER' , '0.10');
+    define('APP_VER' , '0.1');
 
 /**
  *  View Path

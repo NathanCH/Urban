@@ -29,9 +29,9 @@
  *  Load classes.
  *  @todo replace with autoloader.
  */
-    require 'application/classes/route.php';
-    require 'application/classes/input.php';
-    require 'application/classes/validate.php';
+    require 'application/helpers/route.php';
+    require 'application/helpers/input.php';
+    require 'application/helpers/validate.php';
 
 
 /**
