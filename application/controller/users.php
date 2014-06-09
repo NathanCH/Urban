@@ -2,18 +2,19 @@
 
 /**
  *  Users Controller
+ *
+ *  @author nathancharrois@gmail.com
  */
 
     class Users extends Controller {
 
         /**
          *  Action to handle login
-         *  @todo show errors
-         *  @todo validation rules
          */
             public function login() {
 
                 $view = array();
+                $data = array();
 
                 // If post data exists.
                 if(Input::exists()) {
@@ -37,7 +38,8 @@
 
                     // Check if validation has passed.
                     if($validation->passed()) {
-                        echo 'passed';
+                        // Process login.
+                        Route::redirect('home');
                     }
 
                     // Render validation errors.
@@ -50,8 +52,6 @@
 
                 }
 
-
-                // Route::redirect('home');
 
                 // Render view files.
                 $this->render('_templates/header');

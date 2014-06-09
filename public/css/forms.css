@@ -75,7 +75,7 @@
     </div>
 */
 
-    .input-container i{
+    .input-container .fa{
         position: relative;
         z-index: 100;
         line-height: 90px;
@@ -129,4 +129,16 @@
 
     .row-inline-input label{
         line-height: 50px;
+    }
+
+
+/*  Validation
+    ===
+
+    errors
+    ---
+*/
+
+    .error .fa{
+        color: #F66051;
     }

@@ -6,6 +6,7 @@
         <title><?= APP_NAME; ?> - <?= APP_VER; ?></title>
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>public/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>public/css/foundation.css" />
+        <link rel="stylesheet" type="text/css" href="<?= URL; ?>public/css/main.css" />
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>public/css/typography.css" />
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>public/css/forms.css" />
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>public/css/public.css" />

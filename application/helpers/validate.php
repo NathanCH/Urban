@@ -1,13 +1,16 @@
 <?php
 
 /**
- * Validate Class
+ *  Validate Class
+ *
+ *  @author nathancharrois@gmail.com
  */
 
     class Validate {
 
         /**
          *  Reset private variables when class is initiated.
+         *
          *  @todo create null $_db and __construct a database connection.
          */
             private $_passed = false,
@@ -16,6 +19,7 @@
 
         /**
          *  Method to check input against validation rules.
+         *
          *  @param $data    array   $_POST or $_GET to validate.
          *  @param $items   array   The each item and its rules.
          *  @todo  create min and max character rule check.
@@ -54,6 +58,7 @@
 
         /**
          *  Method to hold any validation errors.
+         *
          *  @todo create method that adds errors to _errors.
          */
             public function errors() {
@@ -61,7 +66,8 @@
             }
 
         /**
-         * Method to add errors to associative array.
+         * Method to add errors to an associative array.
+         *
          * @param $item    the field/input name.
          * @param $output  message to show user.
          */

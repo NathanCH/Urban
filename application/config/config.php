@@ -27,7 +27,7 @@
     define('APP_VER' , '0.1');
 
 /**
- *  View Path
+ *  View Path.
  */
     define('PATH_VIEWS', 'application/views/');
     define('PATH_VIEW_FILE_TYPE' , '.php');

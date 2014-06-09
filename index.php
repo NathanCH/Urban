@@ -27,8 +27,10 @@
 
 /**
  *  Load classes.
+ *
  *  @todo replace with autoloader.
  */
+    require 'application/helpers/DB.php';
     require 'application/helpers/route.php';
     require 'application/helpers/input.php';
     require 'application/helpers/validate.php';

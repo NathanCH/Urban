@@ -2,6 +2,8 @@
 
 /**
  *  Route Class
+ *
+ *  @author nathancharrois@gmail.com
  */
 
     class Route {

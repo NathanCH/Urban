@@ -1,3 +1,18 @@
+<?php
+/**
+ *  login.php
+ *
+ *  @author nathancharrois@gmail.com
+ *  @param array  $data['errors']    result of validation.
+ */
+
+    $showError = false;
+
+    if(isset($data['errors'])){
+        $showError = 'true';
+    }
+?>
+
 <body id="public">
     <div class="container container-centered">
         <div class="box">
@@ -9,6 +24,16 @@
                     </div>
                 </header>
                 <div class="row">
+                    <?php
+                    if($showError) {
+                    ?>
+                    <!-- Validation -->
+                    <div class="notice notice-error">
+                        <p class="center">Account not found.</p>
+                    </div>
+                    <?php
+                    }
+                    ?>
                     <!-- Email Input -->
                     <div class="input-container">
                         <i class="fa fa-envelope"></i>

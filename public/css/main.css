@@ -1,0 +1,24 @@
+/*  Main stylesheet for general styles.
+    ===
+
+    Site Colours
+    ---
+*/
+
+    .orange      { color: #F66051; }
+    .brown       { color: #856B60; }
+    .light-brown { color: #EECCA9; }
+
+/*  Notices
+    ---
+*/
+
+    .notice{
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .notice-error{
+        background: #f66051;
+        color: white;
+    }

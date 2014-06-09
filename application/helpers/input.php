@@ -3,6 +3,7 @@
 /**
  *  Input Class
  *
+ *  @author nathancharrois@gmail.com
  *  @todo validate a token to prevent cross site form submission.
  */
 
