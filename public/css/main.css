@@ -1,24 +1,52 @@
-/*  Main stylesheet for general styles.
+/*  Main Stylesheet
     ===
-
-    Site Colours
-    ---
 */
 
-    .orange      { color: #F66051; }
-    .brown       { color: #856B60; }
-    .light-brown { color: #EECCA9; }
-
-/*  Notices
-    ---
-*/
-
-    .notice{
-        margin: 15px;
-        padding: 15px;
+    body{
+        background: linear-gradient(to bottom, #F1F1F1 0%, #FFFFFF 80%);
+        display: table;
+        height: 100%;
+        width: 100%;
     }
 
-    .notice-error{
-        background: #f66051;
-        color: white;
+/*  Login Page
+    ===
+
+    Container Setup
+    ---
+*/
+
+    .container{
+        width: 400px;
+        height: auto;
+    }
+
+    @media only screen and (max-width: 480px) {
+        .container{
+            width: 100%;
+        }
+    }
+
+    .container-centered{
+        position: relative;
+        display: block;
+        margin: 175px auto 75px;
+    }
+
+    @media only screen and (max-width: 480px) {
+        .container-centered{
+            margin: 20px 0 0;
+            padding: 40px;
+        }
+    }
+
+
+/*  Copyright
+    ---
+*/
+
+    .copyright{
+        padding-bottom: 50px;
+        color: #999;
+        text-align: center;
     }

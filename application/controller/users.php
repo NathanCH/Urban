@@ -55,7 +55,7 @@
 
                 // Render view files.
                 $this->render('_templates/header');
-                $this->render('public/login', $data);
+                $this->render('users/login', $data);
                 $this->render('_templates/footer');
 
             }

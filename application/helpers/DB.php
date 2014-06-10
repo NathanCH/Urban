@@ -93,10 +93,17 @@
             }
 
         /**
-         *  Access results.
+         *  Access query results.
          */
             public function results(){
                 return $this->_results;
+            }
+
+        /**
+         *  Access row count.
+         */
+            public function count(){
+                return $this->_count;
             }
 
     }
