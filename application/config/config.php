@@ -23,7 +23,7 @@
 /**
  *  Application Info.
  */
-    define('APP_NAME', 'Urban');
+    define('APP_NAME', 'Urbn');
     define('APP_VER' , '0.1');
 
 /**
