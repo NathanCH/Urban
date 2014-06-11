@@ -14,7 +14,15 @@
          *  @todo create null $_db and __construct a database connection.
          */
             private $_passed = false,
-                    $_errors = array();
+                    $_errors = array(),
+                    $_db = null;
+
+        /**
+         *  Create instance of database.
+         */
+            public function __construct() {
+                $this->_db = DB::getInstance();
+            }
 
 
         /**
@@ -43,6 +51,37 @@
                         if($rule === 'required' && $answer && empty($value)) {
                             $output = "{$item} is required!";
                             $this->_addError($item, $output);
+                        }
+
+                        // If the field isn't empty, complete validation.
+                        else if(!empty($value)) {
+                            switch ($rule) {
+                                case 'min':
+                                    if(strlen($value) < $answer) {
+                                        $output = "{$item} must be a minimum of {$answer} characters.";
+                                        $this->_addError($item, $output);
+                                    }
+                                break;
+                                case 'max':
+                                    if(strlen($value) > $answer) {
+                                        $output = "{$item} must be a maximum of {$answer} characters.";
+                                        $this->_addError($item, $output);
+                                    }
+                                break;
+                                case 'matches':
+                                    if($value != $data[$answer]) {
+                                        $output = "passwords do not match.";
+                                        $this->_addError($item, $output);
+                                    }
+                                break;
+                                case 'unique':
+                                    $check = $this->_db->query("SELECT * FROM users WHERE email = '{$value}'");
+                                    if($check->count()) {
+                                        $output = "{$item} already exists.";
+                                        $this->_addError($item, $output);
+                                    }
+                                break;
+                            }
                         }
 
                     }

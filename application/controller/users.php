@@ -9,26 +9,46 @@
     class Users extends Controller {
 
         /**
-         *  Action to handle login
+         *  Handle user login.
+         *
+         *  @todo process login.
          */
             public function login() {
 
-                $view = array();
+                // Render view files.
+                $this->render('_templates/header');
+                $this->render('users/login');
+                $this->render('_templates/footer');
+
+            }
+
+        /**
+         *  Handle account creation.
+         */
+
+            public function register() {
+
                 $data = array();
 
-                // If post data exists.
+                // If registration data has been submitted.
                 if(Input::exists()) {
-                    // The form input to validate and the validation rules.
+                    // The form inputs to validate and the validation rules.
                     $items = array(
                         'email' => array(
-                            'required' => true
+                            'required' => true,
+                            'min' => 7,
+                            'max' => 64,
+                            'unique' => 'users'
                         ),
                         'password' => array(
-                            'required' => true
+                            'required' => true,
+                            'min' => 6
+                        ),
+                        'confirm-password' => array(
+                            'required' => true,
+                            'matches' => 'password'
                         )
                     );
-
-                    $errors = array();
 
                     // Create validation object.
                     $validate = new Validate();
@@ -38,25 +58,19 @@
 
                     // Check if validation has passed.
                     if($validation->passed()) {
-                        // Process login.
-                        Route::redirect('home');
+
                     }
 
                     // Render validation errors.
                     else{
-                        foreach($validation->errors() as $item => $message) {
-                            // Send validation errors to view.
-                            $data['errors'][] = array('message' => $message, 'item' => $item);
-                        }
+                        $data = array('errors' => $validation->errors());
                     }
 
                 }
 
-
                 // Render view files.
                 $this->render('_templates/header');
-                $this->render('users/login', $data);
+                $this->render('users/register', $data);
                 $this->render('_templates/footer');
-
             }
     }

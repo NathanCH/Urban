@@ -5,7 +5,7 @@
  *  @author nathancharrois@gmail.com
  *  @param array  $data['errors']    result of validation.
  *
- *  @todo create validation styles.
+ *  @todo actually validate user login.
  */
 ?>
 
@@ -24,9 +24,19 @@
             <div class="input-container">
                 <label>Password</label>
                 <input type="password" name="password" />
+                <?php
+                // Check for error (temp).
+                if(isset($data['errors'])) {
+                ?>
+                <div class="input-message error">
+                    <span class="fa fa-exclamation-circle"></span>
+                </div>
+                <?php
+                }
+                ?>
             </div>
             <div class="row row-inline-input">
-                <div class="small-12 medium-6 large-6 columns">
+                <div class="small-12 medium-7 large-7 columns">
                     <div class="checkbox-container">
                         <input type="hidden" name="remember_login" data-input="remember_login" value="0" />
                         <label class="input-checkbox-label">
@@ -35,7 +45,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="small-12 medium-6 large-6 columns">
+                <div class="small-12 medium-5 large-5 columns">
                     <button id="submit" class="large-12 fill button button-primary">
                         Login
                     </button>

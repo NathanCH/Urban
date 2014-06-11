@@ -50,6 +50,7 @@
 
     .input-container{
         margin: 0 0 30px 0;
+        position: relative;
     }
 
         .input-container input{
@@ -70,7 +71,9 @@
 /*  Checkboxes
     ---
 
-    <span class="input-checkbox"></span>
+    <div class="checkbox-container">
+        <span class="input-checkbox"></span>
+    </div>
 */
 
     .checkbox-container{
@@ -100,4 +103,32 @@
     .input-checkbox.active{
         background: #f66051;
         box-shadow: 0 0 0 2px #FFFFFF inset;
+    }
+
+/*  Input Messages
+    ---
+
+    <div class="input-message error">
+        <span class="fa fa-exclamation-circle"></span>
+    </div>
+*/
+
+    .input-message{
+        position: absolute;
+        right: -35px;
+        top: 50%;
+        margin-top: 2px;
+        cursor: pointer;
+        color: #5A5A5A;
+    }
+
+        .input-message span{
+            font-size: 18px;
+        }
+
+/*  Input Messages (types)
+    ---
+*/
+    .input-message.error{
+        color: #c82c2c;
     }

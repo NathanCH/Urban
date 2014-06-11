@@ -3,8 +3,7 @@
 */
 
     body{
-        background: linear-gradient(to bottom, #F1F1F1 0%, #FFFFFF 80%);
-        display: table;
+        background: #FFF linear-gradient(to bottom, #F1F1F1 0%, #FFFFFF 80%) no-repeat;
         height: 100%;
         width: 100%;
     }
@@ -30,7 +29,7 @@
     .container-centered{
         position: relative;
         display: block;
-        margin: 175px auto 75px;
+        margin: 175px auto 100px;
     }
 
     @media only screen and (max-width: 480px) {
@@ -41,12 +40,34 @@
     }
 
 
-/*  Copyright
+/*  Footer
     ---
 */
 
+    footer{ text-align: center; }
+
     .copyright{
-        padding-bottom: 50px;
+        padding-bottom: 20px;
         color: #999;
-        text-align: center;
+    }
+
+    .github{
+        text-indent: -9999px;
+        display: block;
+        background: url('../img/github.png') no-repeat;
+        width: 32px;
+        height: 32px;
+        margin: 0 auto;
+        opacity: .2;
+    }
+
+
+/*  Message
+    ---
+*/
+
+    .message.error{
+        border: 2px solid #CCC;
+        padding: 10px;
+        margin-bottom: 20px;
     }
