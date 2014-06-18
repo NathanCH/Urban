@@ -1,11 +1,17 @@
 <?php
 
 /**
- *  Urban
- *  The description of urban is unclear.
+ *  Urbn.io
+ *  The urban enthusiasts.
  *
  *  @author nathancharrois@gmail.com
  *  @link http://www.cetan.ca
+ *
+ *  OOP principles largely based on
+ *  PHP OOP Login/Register System (tutorial series)
+ *
+ *  @author phpacademy
+ *  @link https://www.youtube.com/watch?v=c_hNNAdyfQk
  *
  *  MVC Skeleton Pattern by
  *
@@ -15,18 +21,12 @@
  */
 
 /**
- *  Require Composer generated autoloader.
- */
-    require 'vendor/autoload.php';
-
-/**
  *  Load configutarion file.
  */
     require 'application/config/config.php';
 
-
 /**
- *  Load classes.
+ *  Load helpers.
  *
  *  @todo replace with autoloader.
  */
@@ -35,13 +35,11 @@
     require 'application/helpers/input.php';
     require 'application/helpers/validate.php';
 
-
 /**
  *  Load application.
  */
     require 'application/libs/application.php';
     require 'application/libs/controller.php';
-
 
 /**
  *  Start the application.

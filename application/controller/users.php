@@ -24,6 +24,7 @@
 
         /**
          *  Handle account creation.
+         *
          */
 
             public function register() {
@@ -58,7 +59,9 @@
 
                     // Check if validation has passed.
                     if($validation->passed()) {
-
+                        // Add user to database through model action.
+                        $users_model = $this->loadModel('UsersModel');
+                        $users_model->add_user($_POST['email'], $_POST['password']);
                     }
 
                     // Render validation errors.

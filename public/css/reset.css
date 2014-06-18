@@ -80,3 +80,22 @@ form{
   display: block;
   position: relative;
 }
+
+/* Basic Utilities */
+.left  { float: left !important; }
+.right { float: right !important; }
+.hide   { display: none; }
+.center { text-align: center; }
+.debug  { background-color: #eadbd0;}
+
+/* Foundation Clearfix Class */
+.clearfix{ *zoom: 1; }
+  .clearfix:before,
+  .clearfix:after{
+    content: " ";
+    display: table;
+  }
+  .clearfix:after{
+    clear: both;
+  }
+

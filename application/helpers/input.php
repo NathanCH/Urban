@@ -30,10 +30,18 @@
             }
 
         /**
-         *  Escape and sanitize $_POST data.
+         *  Escape data from database.
          *  @param $data   string
          */
             public static function escape($data) {
                 return htmlentities($data, ENT_QUOTES, 'UTF-8');
+            }
+
+        /**
+         *  Sanitize $_POST data.
+         *  @param $data   string
+         */
+            public static function sanitize($data) {
+                return mysql_real_escape_string($data);
             }
     }

@@ -10,8 +10,6 @@
 
         /**
          *  Reset private variables when class is initiated.
-         *
-         *  @todo create null $_db and __construct a database connection.
          */
             private $_passed = false,
                     $_errors = array(),
@@ -29,10 +27,11 @@
          *  Method to check input against validation rules.
          *
          *  @param $data    array   $_POST or $_GET to validate.
-         *  @param $items   array   The each item and its rules.
-         *  @todo  create min and max character rule check.
-         *  @todo  create email matching rule check.
-         *  @todo  create if email is unique in DB.
+         *  @param $items   array   Each item and its rules.
+         *  @param $rules   array   All the rules associated with an item.
+         *  @param $value   $_POST  user form input
+         *
+         *  @todo  create regex for email and phone numbers.
          */
             public function check($data, $items = array()) {
 
@@ -49,8 +48,7 @@
 
                         // Check that required fields are not empty.
                         if($rule === 'required' && $answer && empty($value)) {
-                            $output = "{$item} is required!";
-                            $this->_addError($item, $output);
+                            $this->_addError($item, $rule);
                         }
 
                         // If the field isn't empty, complete validation.
@@ -58,27 +56,24 @@
                             switch ($rule) {
                                 case 'min':
                                     if(strlen($value) < $answer) {
-                                        $output = "{$item} must be a minimum of {$answer} characters.";
-                                        $this->_addError($item, $output);
+                                        // Add the field and the error to error array.
+                                        $this->_addError($item, $rule);
                                     }
                                 break;
                                 case 'max':
                                     if(strlen($value) > $answer) {
-                                        $output = "{$item} must be a maximum of {$answer} characters.";
-                                        $this->_addError($item, $output);
+                                        $this->_addError($item, $rule);
                                     }
                                 break;
                                 case 'matches':
                                     if($value != $data[$answer]) {
-                                        $output = "passwords do not match.";
-                                        $this->_addError($item, $output);
+                                        $this->_addError($item, $rule);
                                     }
                                 break;
                                 case 'unique':
-                                    $check = $this->_db->query("SELECT * FROM users WHERE email = '{$value}'");
+                                    $check = $this->_db->query("SELECT * FROM users WHERE {$item} = '{$value}'");
                                     if($check->count()) {
-                                        $output = "{$item} already exists.";
-                                        $this->_addError($item, $output);
+                                        $this->_addError($item, $rule);
                                     }
                                 break;
                             }
@@ -107,11 +102,11 @@
         /**
          * Method to add errors to an associative array.
          *
-         * @param $item    the field/input name.
-         * @param $output  message to show user.
+         * @param $item         the field/input name.
+         * @param $error_type   the type of error (ie. required).
          */
-            private function _addError($item, $output) {
-                return $this->_errors[$item] = $output;
+            private function _addError($item, $error_type) {
+                return $this->_errors[$item] = $error_type;
             }
 
         /**

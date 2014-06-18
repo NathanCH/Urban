@@ -9,6 +9,8 @@
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-9245624-4', 'urbn.io');
+        ga('require', 'linkid', 'linkid.js');
+        ga('require', 'displayfeatures')
         ga('send', 'pageview');
         </script>
     </body>

@@ -1,29 +1,8 @@
-/* Utility Classes*/
-.left{
-  float: left !important;
-}
-.right{
-  float: right !important;
-}
-.clearfix{
-  *zoom: 1;
-}
-  .clearfix:before,
-  .clearfix:after{
-    content: " ";
-    display: table;
-  }
-  .clearfix:after{
-    clear: both;
-  }
-.hide{
-  display: none;
-}
-.center{
-  text-align: center;
-}
+/*  Foundation Grid
 
-/* Foundation Grid */
+    source: http://foundation.zurb.com/docs/components/grid.html
+    lisence: MIT
+ */
 .row {
   width: 100%;
   margin-left: auto;

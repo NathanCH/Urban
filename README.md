@@ -1,4 +1,4 @@
-Urbn.io
+urbn.io
 ==============
 
-The description of urbn.io is unclear.
+For the urban enthusiast.
