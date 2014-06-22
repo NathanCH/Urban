@@ -12,18 +12,23 @@
             <h1>Create Account</h1>
         </header>
         <div class="row">
-            <!-- Process errors -->
+            <!-- Display errors -->
             <?php
             // Display errors.
             if(isset($data['errors'])) {
             ?>
-            <ul class="message error">
-                <?php
-                foreach($data['errors'] as $item => $message) {
-                    echo '<li>'. $message . '</li>';
-                }
-                ?>
-            </ul>
+            <div class="message error">
+                <p>
+                    Please correct the following errors.
+                </p>
+                <ul>
+                    <?php
+                    foreach($data['errors'] as $item => $message) {
+                        echo "<li>{$item} is {$message}.</li>";
+                    }
+                    ?>
+                </ul>
+            </div>
             <?php
             }
             ?>
@@ -42,7 +47,7 @@
                 <label>Confirm Password</label>
                 <input type="password" name="confirm-password" />
             </div>
-            <div class="row row-inline-input">
+            <div class="row">
                 <div class="small-12 medium-6 large-6 columns right">
                     <button id="submit" class="large-12 fill button button-primary">
                         Create Account

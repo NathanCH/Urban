@@ -1,9 +1,7 @@
 <?php
 
 /**
- *  Validate Class
- *
- *  @author nathancharrois@gmail.com
+ *  Validate Helper
  */
 
     class Validate {

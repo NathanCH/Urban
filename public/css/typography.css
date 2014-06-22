@@ -23,3 +23,18 @@
         margin-bottom: 50px;
         border-bottom: #dcdcdc 1px solid;
     }
+
+    h2, h3, h4, h5, h6{}
+
+/*  Paragraphs
+    ---
+*/
+
+    p{
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+
+        p:last-child{
+            margin-bottom: 0px;
+        }

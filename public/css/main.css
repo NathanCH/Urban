@@ -60,14 +60,3 @@
         margin: 0 auto;
         opacity: .2;
     }
-
-
-/*  Message
-    ---
-*/
-
-    .message.error{
-        border: 2px solid #CCC;
-        padding: 10px;
-        margin-bottom: 20px;
-    }

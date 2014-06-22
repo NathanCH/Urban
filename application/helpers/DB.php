@@ -1,9 +1,7 @@
 <?php
 
 /**
- *  Database Class.
- *
- *  @author nathancharrois@gmail.com
+ *  Database Helper.
  */
 
     class DB {

@@ -34,6 +34,7 @@
     require 'application/helpers/route.php';
     require 'application/helpers/input.php';
     require 'application/helpers/validate.php';
+    require 'application/helpers/session.php';
 
 /**
  *  Load application.

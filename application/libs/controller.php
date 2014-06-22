@@ -11,6 +11,7 @@ class Controller
      * loadModel("SongModel") would include models/songmodel.php and create the object in the controller, like this:
      * $songs_model = $this->loadModel('SongsModel');
      * Note that the model class name is written in "CamelCase", the model's filename is the same in lowercase letters
+     *
      * @param string $model_name The name of the model
      * @return object model
      */
@@ -23,6 +24,7 @@ class Controller
 
     /**
      *  Render view files.
+     *
      *  @param $view         the page to render.
      *  @param $data_array   data to be passed to the view.
      */

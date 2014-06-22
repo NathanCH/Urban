@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  Route Class
+ *  Route Helper
  *
  *  @author nathancharrois@gmail.com
  */

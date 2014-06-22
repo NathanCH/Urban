@@ -5,7 +5,7 @@
  *  @author nathancharrois@gmail.com
  *  @param array  $data['errors']    result of validation.
  *
- *  @todo actually validate user login.
+ *  @todo create front-end validation.
  */
 ?>
 
@@ -15,6 +15,19 @@
             <h1>Login</h1>
         </header>
         <div class="row">
+            <!-- Display flash -->
+            <?php
+            // Display errors.
+            if(Session::exists('success')) {
+            ?>
+            <ul class="message success">
+                <p>
+                    <?php echo Session::flash('success'); ?>
+                </p>
+            </ul>
+            <?php
+            }
+            ?>
             <!-- Email Input -->
             <div class="input-container">
                 <label>Email</label>
@@ -24,18 +37,8 @@
             <div class="input-container">
                 <label>Password</label>
                 <input type="password" name="password" />
-                <?php
-                // Check for error (temp).
-                if(isset($data['errors'])) {
-                ?>
-                <div class="input-message error">
-                    <span class="fa fa-exclamation-circle"></span>
-                </div>
-                <?php
-                }
-                ?>
             </div>
-            <div class="row row-inline-input">
+            <div class="row">
                 <div class="small-12 medium-7 large-7 columns">
                     <div class="checkbox-container">
                         <input type="hidden" name="remember_login" data-input="remember_login" value="0" />

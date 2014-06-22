@@ -1,3 +1,13 @@
+/*  Form Structure
+    ===
+
+    Adjust .row vertical gutter.
+*/
+
+    form > .row > *            { margin-bottom: 30px; }     /* Add margin for child .row inside a form element */
+    form > .row > *:last-child { margin-bottom: 0; }        /* Remove margin for final child. */
+    form > .row > *:only-child { margin-bottom: 50px; }     /* If it is a single item, increase margin. */
+
 /*  Forms
     ===
 
@@ -49,7 +59,6 @@
     }
 
     .input-container{
-        margin: 0 0 30px 0;
         position: relative;
     }
 
@@ -105,15 +114,47 @@
         box-shadow: 0 0 0 2px #FFFFFF inset;
     }
 
-/*  Input Messages
-    ---
+/*  Validation
+    ===
 
-    <div class="input-message error">
-        <span class="fa fa-exclamation-circle"></span>
+    Message
+    ---
+*/
+
+    .message{
+        display: block;
+        border-radius: 3px;
+        padding: 15px;
+    }
+
+/*  Message Type
+    ---
+*/
+    .message.error{
+        color: #d1938c;
+        background-color: #fef4f3;
+        border: 1px solid #fbbeb7;
+    }
+
+    .message.success{
+        color: #97bf74;
+        background-color: #f1fff0;
+        border: 1px solid #c0e2a4;
+    }
+
+
+/*  Input Message Icon
+    ---
+    Display an icon to the right of an input.
+
+    <div class="input-container">
+        <div class="input-append-icon error">
+            <span class="fa fa-exclamation-circle"></span>
+        </div>
     </div>
 */
 
-    .input-message{
+    .input-append-icon{
         position: absolute;
         right: -35px;
         top: 50%;
@@ -122,13 +163,6 @@
         color: #5A5A5A;
     }
 
-        .input-message span{
+        .input-append-icon span{
             font-size: 18px;
         }
-
-/*  Input Messages (types)
-    ---
-*/
-    .input-message.error{
-        color: #c82c2c;
-    }
