@@ -35,6 +35,7 @@
     require 'application/helpers/input.php';
     require 'application/helpers/validate.php';
     require 'application/helpers/session.php';
+    require 'application/helpers/hash.php';
 
 /**
  *  Load application.

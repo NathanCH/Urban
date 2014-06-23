@@ -12,14 +12,16 @@ class Controller
      * $songs_model = $this->loadModel('SongsModel');
      * Note that the model class name is written in "CamelCase", the model's filename is the same in lowercase letters
      *
-     * @param string $model_name The name of the model
-     * @return object model
+     * @param   string $model_name      The name of the model
+     * @param   string $param           Pass the model information.
+     * @return  object model
      */
-    public function loadModel($model_name)
+    public function loadModel($model_name, $param = null)
     {
+
         require 'application/models/' . strtolower($model_name) . '.php';
 
-        return new $model_name();
+        return new $model_name($param);
     }
 
     /**

@@ -13,20 +13,19 @@
         /**
          *  Create instance of database.
          */
-            function __construct() {
+            function __construct($params) {
                 $this->_db = DB::getInstance();
             }
 
         /**
          *  Add user to database.
          *
-         *  @param $email       $_POST
-         *  @param $password    $_POST
-         *
-         *  @todo create proper santatize function.
+         *  @param array  $fields   the fields to add.
          */
-            public function add_user($email, $password) {
-                $email     = Input::sanitize($email);
-                $password  = Input::sanitize($password);
+            public function register_user($fields = array()) {
+                // Insert user into database, else throw an error.
+                if(!$this->_db->insert('users', $fields)) {
+                    throw new Exception('There was a problem creating this account.');
+                }
             }
     }

@@ -4,7 +4,6 @@
  *  Senssion Helper
  *
  *  @todo create method to create/delete/get sessions.
- *  @todo create method to check if session exxists.
  */
 
     class Session {
@@ -30,12 +29,11 @@
             public static function flash($name, $content = '') {
                 // If the session already exists.
                 if(Session::exists($name)) {
-                    // Return data and clear the flash.
-                    // Get session name.
+                    // Assign this session to variable.
                     $session = $_SESSION[$name];
                     // Clear the session.
                     unset($_SESSION[$name]);
-                    // Return the session.
+                    // Return the session as a string.
                     return $session;
                 }
 

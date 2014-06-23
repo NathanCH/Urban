@@ -26,6 +26,7 @@ class Application
 
         // Start session.
         session_start();
+
         // create array with URL parts in $url
         $this->splitUrl();
 

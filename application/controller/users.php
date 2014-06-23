@@ -36,7 +36,6 @@
 
         /**
          *  Handle account creation.
-         *
          */
 
             public function register() {
@@ -71,15 +70,34 @@
 
                     // Check if validation has passed.
                     if($validation->passed()) {
-                        // Add user to database through model action.
-                        // TODO: complete create user.
 
-                        // $users_model = $this->loadModel('UsersModel');
-                        // $users_model->add_user($_POST['email'], $_POST['password']);
+                        // Load UsersModel.
+                        $users_model = $this->loadModel('UsersModel');
 
-                        // Flash message.
-                        Session::flash('success', 'You have registered! Login below.');
-                        Route::redirect('users', 'login');
+                        // Try to create user.
+                        try {
+
+                            $salt       = Hash::salt(32);
+                            $password   = Hash::make($_POST['password'], $salt);
+                            $created    = date('Y-m-d H:i:s');
+
+                            // Register the user.
+                            $users_model->register_user(array(
+                                'email'     => $_POST['email'],
+                                'password'  => $password,
+                                'salt'      => $salt,
+                                'group'     => 'user',
+                                'created'   => $created
+                            ));
+
+                            // Flash message.
+                            Session::flash('success', 'You have registered! Login below.');
+                            Route::redirect('users', 'login');
+                        }
+
+                        catch(Exception $e) {
+                            die($e->getMessage());
+                        }
                     }
 
                     // Render validation errors.

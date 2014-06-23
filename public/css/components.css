@@ -1,0 +1,35 @@
+/*  Components
+    ===
+
+    Message
+    ---
+
+    <div class="message">
+        <p>Your message.</p?
+    </div>
+*/
+
+    .message{
+        display: block;
+        border-radius: 3px;
+        padding: 15px;
+    }
+
+/*  Message Type
+    ---
+
+    <div class="message error">
+        ...
+    </div>
+*/
+    .message.error{
+        color: #d1938c;
+        background-color: #fef4f3;
+        border: 1px solid #fbbeb7;
+    }
+
+    .message.success{
+        color: #97bf74;
+        background-color: #f1fff0;
+        border: 1px solid #c0e2a4;
+    }

@@ -29,7 +29,7 @@
     .container-centered{
         position: relative;
         display: block;
-        margin: 175px auto 100px;
+        margin: 150px auto 100px;
     }
 
     @media only screen and (max-width: 480px) {

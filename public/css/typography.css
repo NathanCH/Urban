@@ -31,10 +31,18 @@
 */
 
     p{
-        line-height: 1.2;
+        line-height: 1.3em;
         margin-bottom: 10px;
     }
 
         p:last-child{
             margin-bottom: 0px;
         }
+
+/*  List Types
+    ---
+*/
+    ul,
+    ol{
+        line-height: 1.3em;
+    }
