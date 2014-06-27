@@ -17,7 +17,7 @@
             public function index() {
                 // For now, render blank page.
                 $this->render('_templates/header');
-                $this->render('_templates/blank');
+                $this->render('pages/blank');
                 $this->render('_templates/footer');
             }
 
@@ -28,9 +28,50 @@
          */
             public function login() {
 
+                $data = array();
+
+                // If login details have been submitted.
+                if(Input::exists()) {
+                    // The form inputs to validate and the validation rules.
+                    $items = array(
+                        'email' => array(
+                            'required' => true
+                        ),
+                        'password' => array(
+                            'required' => true
+                        )
+                    );
+
+                    // Create validation object.
+                    $validate = new Validate();
+
+                    // Check the post data against the validation rules.
+                    $validation = $validate->check($_POST, $items);
+
+                    // Check if validation has passed.
+                    if($validation->passed()){
+                        // Load UsersModel.
+                        $users_model = $this->loadModel('UsersModel');
+
+                        if($users_model->login($_POST['email'], $_POST['password'])) {
+
+                        }
+
+                        // If login is unsuccesful.
+                        else{
+                            $data = array('errors' => array('login-failed' => "This email and password combination don't exist."));
+                        }
+                    }
+
+                    // Render validation errors.
+                    else{
+                        $data = array('errors' => $validation->errors());
+                    }
+                }
+
                 // Render view files.
                 $this->render('_templates/header');
-                $this->render('users/login');
+                $this->render('users/login', $data);
                 $this->render('_templates/footer');
             }
 

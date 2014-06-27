@@ -9,9 +9,19 @@
     class Session {
 
         /**
+         *  Put data into a session.
+         *
+         *  @param  string    $name   name of the session.
+         *  @param  value     $value  content of the session.
+         */
+            public static function put($name, $value) {
+                return $_SESSION[$name] = $value;
+            }
+
+        /**
          *  Check if a session exists.
          *
-         *  @param  string    $name   name of the session
+         *  @param  string    $name   name of the session.
          *  @return boolean           if the session exists.
          */
 

@@ -27,16 +27,34 @@
             </ul>
             <?php
             }
+
+            // Display errors.
+            if(isset($data['errors'])) {
+            ?>
+            <div class="message error">
+                <p>
+                    Please correct the following errors.
+                </p>
+                <ul>
+                    <?php
+                    foreach($data['errors'] as $item => $message) {
+                        echo "<li>{$item} is {$message}.</li>";
+                    }
+                    ?>
+                </ul>
+            </div>
+            <?php
+            }
             ?>
             <!-- Email Input -->
             <div class="input-container">
-                <label>Email</label>
-                <input type="text" name="email" autocomplete="off" />
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" />
             </div>
             <!-- Password Input -->
             <div class="input-container">
-                <label>Password</label>
-                <input type="password" name="password" />
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
             </div>
             <div class="row">
                 <div class="small-12 medium-7 large-7 columns">

@@ -34,18 +34,18 @@
             ?>
             <!-- Email Input -->
             <div class="input-container">
-                <label>Email</label>
-                <input type="text" name="email" />
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" />
             </div>
             <!-- Password Input -->
             <div class="input-container">
-                <label>Password</label>
-                <input type="password" name="password" />
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
             </div>
             <!-- Confirm Password Input -->
             <div class="input-container">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm-password" />
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" name="confirm-password" id="confirm-password" />
             </div>
             <div class="row">
                 <div class="small-12 medium-6 large-6 columns right">

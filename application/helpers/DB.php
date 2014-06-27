@@ -2,6 +2,8 @@
 
 /**
  *  Database Helper.
+ *
+ *  @todo write get() method.
  */
 
     class DB {
@@ -98,9 +100,8 @@
          *
          *  $user = DB::getInstance()->insert('users', array(
          *      'username' => 'Nathan',
-         *      'password' => 'dogday'
+         *      'password' => 'password'
          *  ));
-
          */
             public function insert($table, $fields = array()) {
                 // If there is data in $fields.
@@ -144,6 +145,13 @@
          */
             public function results() {
                 return $this->_results;
+            }
+
+        /**
+         *  Get the first result.
+         */
+            public function first() {
+                return $this->results()[0];
             }
 
         /**
