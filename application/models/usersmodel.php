@@ -9,13 +9,49 @@
          *  @var private $_db   instance of database.
          */
             private $_db = null,
-                    $_data;
+                    $_data,
+                    $_sessionName,
+                    $_isLoggedIn = false;
 
         /**
          *  Create instance of database.
+         *
+         *  @param string   $user   retreive a specific user's data.
          */
-            function __construct($params) {
+            function __construct($user = null) {
+                // Get an instance of the database.
                 $this->_db = DB::getInstance();
+
+                // Set the session.
+                $this->_sessionName = 'user';
+
+                // Make sure this isn't for a specific user.
+                if(!$user) {
+                    // And this user is logged in.
+                    if(Session::exists($this->_sessionName)) {
+                        // Get the user's id.
+                        $user = Session::get($this->_sessionName);
+
+                        // Check if the user exists.
+                        if($this->find($user)) {
+                            // Set them as logged in.
+                            $this->_isLoggedIn = true;
+                        }
+
+                        // Process Logout.
+                        else{
+                            $this->_isLoggedIn = false;
+                            $this->logout();
+                        }
+
+                    }
+                }
+
+                // If the user has been defined.
+                else{
+                    // Get a user's data.
+                    $this->find($user);
+                }
             }
 
         /**
@@ -59,7 +95,6 @@
                 }
             }
 
-
         /**
          *  Login User.
          *
@@ -77,7 +112,7 @@
                     // Create new hash and check if it matches their password.
                     if($this->data()->password === Hash::make($password, $this->data()->salt)) {
                         // Create a session with this user's id.
-                        Session::put('user', $this->data()->id);
+                        Session::put($this->_sessionName, $this->data()->id);
 
                         return true;
                     }
@@ -87,9 +122,24 @@
             }
 
         /**
+         *  Logout user.
+         */
+            public function logout(){
+                Session::delete($this->_sessionName);
+            }
+
+
+        /**
          *  Get the user's data.
          */
-            private function data() {
+            public function data() {
                 return $this->_data;
+            }
+
+        /**
+         *  Check if the current user is logged in.
+         */
+            public function isLoggedIn() {
+                return $this->_isLoggedIn;
             }
     }

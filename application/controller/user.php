@@ -6,14 +6,13 @@
  *  @author nathancharrois@gmail.com
  */
 
-    class Users extends Controller {
+    class User extends Controller {
 
         /**
          *  Index page.
          *
          *  @todo figure out what to do here.
          */
-
             public function index() {
                 // For now, render blank page.
                 $this->render('_templates/header');
@@ -24,7 +23,8 @@
         /**
          *  Handle user login.
          *
-         *  @todo process login.
+         *  @todo process 'if already logged in'. Give option to login as another user.
+         *  @todo integrate Google Sign in.
          */
             public function login() {
 
@@ -53,8 +53,10 @@
                         // Load UsersModel.
                         $users_model = $this->loadModel('UsersModel');
 
+                        // Login the user.
                         if($users_model->login($_POST['email'], $_POST['password'])) {
-
+                            // Redirect to
+                            Route::redirect('user', 'edit');
                         }
 
                         // If login is unsuccesful.
@@ -71,14 +73,29 @@
 
                 // Render view files.
                 $this->render('_templates/header');
-                $this->render('users/login', $data);
+                $this->render('user/login', $data);
                 $this->render('_templates/footer');
+            }
+
+        /**
+         *  Log the user out.
+         */
+            public function logout() {
+
+                // Load UsersModel.
+                $users_model = $this->loadModel('UsersModel');
+
+                // Log the user out.
+                $users_model->logout();
+
+                // Set session and redirect.
+                Session::flash('success', 'Logged out!');
+                Route::redirect('user', 'login');
             }
 
         /**
          *  Handle account creation.
          */
-
             public function register() {
 
                 $data = array();
@@ -133,7 +150,7 @@
 
                             // Flash message.
                             Session::flash('success', 'You have registered! Login below.');
-                            Route::redirect('users', 'login');
+                            Route::redirect('user', 'login');
                         }
 
                         catch(Exception $e) {
@@ -150,7 +167,35 @@
 
                 // Render view files.
                 $this->render('_templates/header');
-                $this->render('users/register', $data);
+                $this->render('user/register', $data);
                 $this->render('_templates/footer');
             }
+
+        /**
+         *  Edit user.
+         *
+         *  @todo I may turn this into user/profile and have inline editing.
+         */
+            public function edit($id = null) {
+
+                $data = array();
+
+                $users_model = $this->loadModel('UsersModel');
+
+                // If the current user is logged in.
+                if($users_model->isLoggedIn()) {
+                    echo 'Welcome ' . Input::escape($users_model->data()->email) . ' - <a href="'. URL .'user/logout">Logout</a>';
+                }
+
+                else{
+                    echo 'Please <a href="'. URL .'user/login">Login</a> or <a href="'. URL .'user/register">Register</a> ';
+                }
+
+                //Render the view files.
+                $this->render('_templates/header');
+                $this->render('user/edit', $data);
+                $this->render('_templates/footer');
+            }
+
+
     }

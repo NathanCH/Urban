@@ -61,9 +61,9 @@ class Application
             }
         } else {
             // invalid URL, so simply show home/index
-            require './application/controller/users.php';
-            $users = new Users();
-            $users->register();
+            require './application/controller/user.php';
+            $user = new User();
+            $user->login();
         }
     }
 
