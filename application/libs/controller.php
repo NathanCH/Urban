@@ -17,7 +17,7 @@ class Controller
      *  @return  object model
      */
         public function loadModel($model_name, $param = null) {
-            require 'application/models/' . strtolower($model_name) . '.php';
+            require_once 'application/models/' . strtolower($model_name) . '.php';
             return new $model_name($param);
         }
 

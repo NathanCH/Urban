@@ -11,7 +11,9 @@
 
     <div class="container-small container-centered">
         <header class="row">
-            <h1>Login</h1>
+            <div class="small-12 medium-12 large-12 columns">
+                    <h1>Login</h1>
+            </div>
         </header>
         <form action="<?= URL; ?>users/login/" method="POST">
             <fieldset>
@@ -20,11 +22,13 @@
                 if(Session::exists('success')) {
                 ?>
                 <div class="row">
-                    <ul class="message success">
-                        <p>
-                            <?php echo Session::flash('success'); ?>
-                        </p>
-                    </ul>
+                    <div class="small-12 medium-12 large-12 columns">
+                        <ul class="message success">
+                            <p>
+                                <?php echo Session::flash('success'); ?>
+                            </p>
+                        </ul>
+                    </div>
                 </div>
                 <?php
                 }
@@ -33,17 +37,19 @@
                 if(isset($data['errors'])) {
                 ?>
                 <div class="row">
-                    <div class="message error">
-                        <p>
-                            Please correct the following errors.
-                        </p>
-                        <ul>
-                            <?php
-                            foreach($data['errors'] as $item => $message) {
-                                echo "<li>{$item} is {$message}.</li>";
-                            }
-                            ?>
-                        </ul>
+                    <div class="small-12 medium-12 large-12 columns">
+                        <div class="message error">
+                            <p>
+                                Please correct the following errors.
+                            </p>
+                            <ul>
+                                <?php
+                                foreach($data['errors'] as $item => $message) {
+                                    echo "<li>{$item} is {$message}.</li>";
+                                }
+                                ?>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <?php
@@ -51,16 +57,20 @@
                 ?>
                 <!-- Input Container -->
                 <div class="row">
-                    <div class="input-container">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" />
+                    <div class="small-12 medium-12 large-12 columns">
+                        <div class="input-container">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" />
+                        </div>
                     </div>
                 </div>
                  <!-- Input Container -->
                 <div class="row">
-                    <div class="input-container">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" />
+                    <div class="small-12 medium-12 large-12 columns">
+                        <div class="input-container">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" />
+                        </div>
                     </div>
                 </div>
                 <div class="row">

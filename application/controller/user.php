@@ -53,8 +53,11 @@
                         // Load UsersModel.
                         $users_model = $this->loadModel('UsersModel');
 
+                        // Check if they want to be remembered.
+                        $remember = ($_POST['remember_login'] === '1') ? true : false;
+
                         // Login the user.
-                        if($users_model->login($_POST['email'], $_POST['password'])) {
+                        if($users_model->login($_POST['email'], $_POST['password'], $remember)) {
                             // Redirect to
                             Route::redirect('user', 'edit');
                         }

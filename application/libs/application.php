@@ -30,6 +30,23 @@ class Application
         // create array with URL parts in $url
         $this->splitUrl();
 
+        // Check if cookie exists but no session.
+        if( Cookie::exists(COOKIE_NAME) && !Session::exists(SESSION_NAME)) {
+
+            // Get cookie name.
+            $hash = Cookie::get(COOKIE_NAME);
+
+            // See if the cookie is valid.
+            $hashCheck = DB::getInstance()->query("SELECT * FROM users_session WHERE hash = ?", array($hash));
+
+            // If cookie matches with an existing session.
+            if($hashCheck->count()) {
+                require 'application/models/usersmodel.php';
+                $users_model = new UsersModel($hashCheck->first()->user_id);
+                $users_model->login();
+            }
+        }
+
         // check for controller: does such a controller exist ?
         if (file_exists('./application/controller/' . $this->url_controller . '.php')) {
 

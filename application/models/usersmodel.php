@@ -11,10 +11,11 @@
             private $_db = null,
                     $_data,
                     $_sessionName,
+                    $_cookieName,
                     $_isLoggedIn = false;
 
         /**
-         *  Create instance of database.
+         *  Create instance of database and check if the logged in user exists.
          *
          *  @param string   $user   retreive a specific user's data.
          */
@@ -22,8 +23,11 @@
                 // Get an instance of the database.
                 $this->_db = DB::getInstance();
 
-                // Set the session.
-                $this->_sessionName = 'user';
+                // Set the session name.
+                $this->_sessionName = SESSION_NAME;
+
+                // Set the cooke name.
+                $this->_cookieName = COOKIE_NAME;
 
                 // Make sure this isn't for a specific user.
                 if(!$user) {
@@ -103,19 +107,54 @@
          *
          *  @todo  abstract the session name 'user' into a global config file.
          */
-            public function login($username = null, $password = null) {
-                // Check that fields are passed.
-                $user = $this->find($username);
+            public function login($username = null, $password = null, $remember = false) {
 
-                // If we found a user.
-                if($user) {
-                    // Create new hash and check if it matches their password.
-                    if($this->data()->password === Hash::make($password, $this->data()->salt)) {
-                        // Create a session with this user's id.
-                        Session::put($this->_sessionName, $this->data()->id);
 
-                        return true;
+                // When username or password haven't been defined, but the current user exists.
+                if(!$username && !$password && $this->exists()) {
+                    // Create a session for this user.
+                    Session::put($this->_sessionName, $this->data()->id);
+                }
+
+                else{
+                    // Check that fields are passed.
+                    $user = $this->find($username);
+
+                    // If we found a user.
+                    if($user) {
+                        // Create new hash and check if it matches their password.
+                        if($this->data()->password === Hash::make($password, $this->data()->salt)) {
+                            // Create a session with this user's id.
+                            Session::put($this->_sessionName, $this->data()->id);
+
+                            // Also create cookies to remember user.
+                            if($remember){
+                                // Generate a hash and check that it doesn't exist.
+                                $hash = Hash::unique();
+                                $hashCheck = $this->_db->query("SELECT * FROM users_session WHERE user_id = ?", array($this->data()->id));
+
+                                // If the hash doesn't exist.
+                                if(!$hashCheck->count()) {
+
+                                    // Insert one into DB.
+                                    $this->_db->insert('users_session', array(
+                                        'user_id' => $this->data()->id,
+                                        'hash' => $hash
+                                    ));
+                                }
+
+                                else {
+                                    $hash = $hashCheck->first()->hash;
+                                }
+
+                                // Create the cookie.
+                                Cookie::create($this->_cookieName, $hash, COOKIE_EXPIRY);
+                            }
+
+                            return true;
+                        }
                     }
+
                 }
 
                 return false;
@@ -125,7 +164,14 @@
          *  Logout user.
          */
             public function logout(){
+                // Remove active session from DB.
+                $this->_db->query("DELETE FROM users_session WHERE user_id = ?", array($this->data()->id));
+
+                // Delete session.
                 Session::delete($this->_sessionName);
+
+                // Delete cookie.
+                Cookie::delete($this->_cookieName);
             }
 
 
@@ -141,5 +187,12 @@
          */
             public function isLoggedIn() {
                 return $this->_isLoggedIn;
+            }
+
+        /**
+         *  Check if user exists.
+         */
+            public function exists() {
+                return (!empty($this->_data)) ? true : false;
             }
     }

@@ -21,6 +21,13 @@
     define('DB_PASS', '');
 
 /**
+ *  Cookie and Sessions.
+ */
+    define('SESSION_NAME', 'user');
+    define('COOKIE_NAME', 'hash');
+    define('COOKIE_EXPIRY', 604800);
+
+/**
  *  Application Info.
  */
     define('APP_NAME', 'Urbn');

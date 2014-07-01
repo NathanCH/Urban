@@ -241,11 +241,15 @@
         border-radius: 4px;
         border: 2px dashed #DDD;
         text-align: center;
-        line-height: 76px;
         cursor: pointer;
     }
 
-        .file_upload i{ color: #DDD; font-size: 18px; }
+        .file_upload i{
+            color: #DDD;
+            font-size: 18px;
+            line-height: 70px;
+        }
+
         .file_upload.active{ border-color: #f66051;}
 
 /*  Textarea Editor

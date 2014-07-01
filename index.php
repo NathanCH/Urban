@@ -36,6 +36,7 @@
     require 'application/helpers/validate.php';
     require 'application/helpers/session.php';
     require 'application/helpers/hash.php';
+    require 'application/helpers/cookie.php';
 
 /**
  *  Load application.

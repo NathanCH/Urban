@@ -105,7 +105,7 @@
                     <div class="input-container">
                         <div class="small-12 medium-12 large-12 columns">
                             <div class="textarea-editor">
-                                <div class="textarea-editor-body">
+                                <div class="textarea-editor-body" contenteditable="true">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra metus eros, at molestie nisl tincidunt at. Phasellus ac facilisis leo.</p>
                                 </div>
                                 <div class="textarea-editor-tools">
@@ -138,8 +138,3 @@
             </fieldset>
         </form>
     </div>
-    <script>
-        $('.textarea-editor-body').click(function(){
-            this.contentEditable = true;
-        });
-    </script>
