@@ -8,43 +8,83 @@
         width: 100%;
     }
 
-/*  Login Page
+/*  Site Structure
     ===
 
     Container Setup
     ---
 */
 
-    .container{
+    .site-container{
         max-width: 1024px;
         height: auto;
     }
 
-    .container-small{
+    .site-container-small{
         width: 400px;
         height: auto;
     }
 
     @media only screen and (max-width: 1024px) {
-        div[class^="container"]{
+        div[class^="site-container"]{
             width: 100%;
+            padding: 0 40px 40px 40px;
         }
     }
 
-    .container-centered{
+    .site-container-centered{
         position: relative;
         display: block;
-        margin: 150px auto 75px;
+        margin: 0 auto;
     }
 
-    @media only screen and (max-width: 1024px) {
-        .container-centered{
-            margin: 20px 0 0;
-            padding: 40px;
+
+/*  Site Header
+    ===
+
+    todo    move to dedicated layouts sheet.
+*/
+    .site-header{
+        width: 100%;
+        height: 100px;
+        margin-bottom: 75px;
+        background-color: white;
+        box-shadow: -1px 0px 2px 0px rgba(0,0,0,.13);
+    }
+
+        .site-logo-container.row{
+            margin-top: 15px;
         }
+
+        .site-logo-container .logo-icon{
+            line-height: 50px;
+            margin: 20px 10px 0 0;
+
+            /* Override responsive images */
+            width: auto;
+            max-width: none;
+        }
+
+    /* Site Navigation */
+    .site-navigation{
+        margin-top: 32px;
     }
 
+        .site-navigation .site-navigation-item{
+            display: inline-block;
+            margin: 0 0 0 10px;
+        }
 
+        .site-navigation .site-navigation-item a{
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+            color: #5A5A5A;
+        }
+
+            .site-navigation .site-navigation-item a:hover{
+                color: #333;
+            }
 /*  Footer
     ---
 */
@@ -52,7 +92,7 @@
     footer{ text-align: center; }
 
     .copyright{
-        margin-bottom: 20px;
+        margin: 20px 0;
         color: #999;
     }
 

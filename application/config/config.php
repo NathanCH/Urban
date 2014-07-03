@@ -34,6 +34,12 @@
     define('APP_VER' , '0.1');
 
 /**
+ *  Layout Path.
+ */
+    define('LAYOUT_VIEWS', 'application/layouts/');
+    define('LAYOUT_VIEW_FILE_TYPE' , '.php');
+
+/**
  *  View Path.
  */
     define('PATH_VIEWS', 'application/views/');

@@ -112,7 +112,7 @@
 
                 // When username or password haven't been defined, but the current user exists.
                 if(!$username && !$password && $this->exists()) {
-                    // Create a session for this user.
+                    // Create a session for a user that has a valid cookie.
                     Session::put($this->_sessionName, $this->data()->id);
                 }
 
@@ -124,6 +124,7 @@
                     if($user) {
                         // Create new hash and check if it matches their password.
                         if($this->data()->password === Hash::make($password, $this->data()->salt)) {
+
                             // Create a session with this user's id.
                             Session::put($this->_sessionName, $this->data()->id);
 

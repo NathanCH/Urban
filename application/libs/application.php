@@ -31,7 +31,7 @@ class Application
         $this->splitUrl();
 
         // Check if cookie exists but no session.
-        if( Cookie::exists(COOKIE_NAME) && !Session::exists(SESSION_NAME)) {
+        if(Cookie::exists(COOKIE_NAME) && !Session::exists(SESSION_NAME)) {
 
             // Get cookie name.
             $hash = Cookie::get(COOKIE_NAME);
@@ -41,6 +41,7 @@ class Application
 
             // If cookie matches with an existing session.
             if($hashCheck->count()) {
+                // Login user (create a session).
                 require 'application/models/usersmodel.php';
                 $users_model = new UsersModel($hashCheck->first()->user_id);
                 $users_model->login();

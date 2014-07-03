@@ -14,10 +14,9 @@
          *  @todo figure out what to do here.
          */
             public function index() {
-                // For now, render blank page.
-                $this->render('_templates/header');
-                $this->render('pages/blank');
-                $this->render('_templates/footer');
+
+                // Render layout and view files.
+                $this->render('static/index', 'pages/blank');
             }
 
         /**
@@ -74,10 +73,8 @@
                     }
                 }
 
-                // Render view files.
-                $this->render('_templates/header');
-                $this->render('user/login', $data);
-                $this->render('_templates/footer');
+                // Render layout and view files.
+                $this->render('static/index', 'user/login', $data);
             }
 
         /**
@@ -168,36 +165,33 @@
 
                 }
 
-                // Render view files.
-                $this->render('_templates/header');
-                $this->render('user/register', $data);
-                $this->render('_templates/footer');
+                // Render layout and view files.
+                $this->render('static/index', 'user/register', $data);
             }
 
         /**
          *  Edit user.
          *
          *  @todo I may turn this into user/profile and have inline editing.
+         *  @todo Check that the user is logged in.
          */
             public function edit($id = null) {
 
                 $data = array();
 
-                $users_model = $this->loadModel('UsersModel');
+                // $users_model = $this->loadModel('UsersModel');
 
-                // If the current user is logged in.
-                if($users_model->isLoggedIn()) {
-                    echo 'Welcome ' . Input::escape($users_model->data()->email) . ' - <a href="'. URL .'user/logout">Logout</a>';
-                }
+                // // If the current user is logged in.
+                // if($users_model->isLoggedIn()) {
+                //     echo 'Welcome ' . Input::escape($users_model->data()->email) . ' - <a href="'. URL .'user/logout">Logout</a>';
+                // }
 
-                else{
-                    echo 'Please <a href="'. URL .'user/login">Login</a> or <a href="'. URL .'user/register">Register</a> ';
-                }
+                // else{
+                //     echo 'Please <a href="'. URL .'user/login">Login</a> or <a href="'. URL .'user/register">Register</a> ';
+                // }
 
-                //Render the view files.
-                $this->render('_templates/header');
-                $this->render('user/edit', $data);
-                $this->render('_templates/footer');
+                // Render layout and view files.
+                $this->render('static/index', 'user/edit', $data);
             }
 
 

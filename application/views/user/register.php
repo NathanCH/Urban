@@ -6,13 +6,13 @@
  */
 ?>
 
-<div class="container-small container-centered">
+<div class="site-container-small site-container-centered">
     <header class="row">
         <div class="small-12 medium-12 large-12 columns">
             <h1>Create Account</h1>
         </div>
     </header>
-    <form action="<?= URL; ?>users/register/" method="POST">
+    <form action="<?= URL; ?>user/register/" method="POST">
         <fieldset>
             <?php
             // Display errors.

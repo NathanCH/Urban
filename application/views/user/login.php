@@ -9,13 +9,13 @@
  */
 ?>
 
-    <div class="container-small container-centered">
+    <div class="site-container-small site-container-centered">
         <header class="row">
             <div class="small-12 medium-12 large-12 columns">
                     <h1>Login</h1>
             </div>
         </header>
-        <form action="<?= URL; ?>users/login/" method="POST">
+        <form action="<?= URL; ?>user/login/" method="POST">
             <fieldset>
                 <?php
                 // Display flash.

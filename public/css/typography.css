@@ -55,3 +55,24 @@
     ol{
         line-height: 1.3em;
     }
+
+/*  Branding Text
+    ---
+*/
+    .logo-text{
+        font-size: 26px;
+        font-weight: 400;
+        font-family: "Roboto", Arial, sans-serif;
+        letter-spacing: 1px;
+        display: block;
+        line-height: 42px;
+    }
+
+        .logo-text a{
+            color: #515151;
+            text-decoration: none;
+        }
+
+    .slogan{
+        color: #AAA;
+    }

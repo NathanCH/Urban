@@ -4,10 +4,6 @@
     Adjust .row vertical gutter.
 */
 
-    /*form > .row > *            { margin-bottom: 30px; }     Add margin for child .row inside a form element */
-    /*form > .row > *:last-child { margin-bottom: 0; }        Remove margin for final child. */
-    /*form > .row > *:only-child { margin-bottom: 50px; }     If it is a single item, increase margin. */
-
     fieldset > .row { margin-bottom: 30px; }
     fieldset > .row:last-child { margin-bottom: 0; }
     fieldset > .row:last-child { margin-bottom: 30px; }

@@ -7,7 +7,7 @@
  */
 ?>
 
-    <div class="container container-centered">
+    <div class="site-container site-container-centered">
         <header class="row">
             <div class="columns">
                 <h1>Edit Profile</h1>
@@ -106,7 +106,7 @@
                         <div class="small-12 medium-12 large-12 columns">
                             <div class="textarea-editor">
                                 <div class="textarea-editor-body" contenteditable="true">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra metus eros, at molestie nisl tincidunt at. Phasellus ac facilisis leo.</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum @NathanCH pharetra metus eros, at molestie nisl tincidunt at. Phasellus ac facilisis leo.</p>
                                 </div>
                                 <div class="textarea-editor-tools">
                                     <ul class="tools clearfix">

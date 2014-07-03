@@ -97,6 +97,14 @@ form{
 .mbm{ margin-bottom: 12px; }
 .mbs{ margin-bottom: 5px; }
 
+.mrl{ margin-right: 20px; }
+.mrm{ margin-right: 12px; }
+.mrs{ margin-right: 5px; }
+
+.mll{ margin-left: 20px; }
+.mlm{ margin-left: 12px; }
+.mls{ margin-left: 5px; }
+
 /* Foundation Clearfix Class */
 .clearfix{ *zoom: 1; }
   .clearfix:before,
