@@ -1,9 +1,9 @@
 <?php
+namespace Urbnio\Helper;
 
 /**
  *  Cookie Helper
  */
-
     class Cookie {
 
         /**

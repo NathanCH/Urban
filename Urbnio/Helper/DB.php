@@ -1,4 +1,5 @@
 <?php
+namespace Urbnio\Helper;
 
 /**
  *  Database Helper.
@@ -30,11 +31,11 @@
             public function __construct() {
                 // Assign database connection to _pdo.
                 try{
-                    $this->_pdo = new PDO('mysql:host='.DB_HOST.';dbname='. DB_NAME, DB_USER, DB_PASS);
+                    $this->_pdo = new \PDO('mysql:host='.DB_HOST.';dbname='. DB_NAME, DB_USER, DB_PASS);
                 }
 
                 // Show error.
-                catch(PDOException $e) {
+                catch(\PDOException $e) {
                     die($e->getMessage());
                 }
             }
@@ -58,7 +59,8 @@
          *  @param string   $sql        the query to be executed.
          *  @param array    $params     ...
          */
-            public function query($sql, $params = array()) {
+            public function query($sql, array $params = array()) {
+
                 // Reset erros when query is run.
                 $this->_error = false;
 
@@ -79,7 +81,7 @@
 
                     // Execute $_query and store results.
                     if($this->_query->execute()) {
-                        $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                        $this->_results = $this->_query->fetchAll(\PDO::FETCH_OBJ);
                         $this->_count = $this->_query->rowCount();
                     }
 

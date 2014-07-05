@@ -1,4 +1,5 @@
 <?php
+namespace Urbnio\Helper;
 
 /**
  *  Validate Helper
@@ -40,9 +41,6 @@
 
                         // Get $_POST text and trim white space.
                         $value = trim($data[$item]);
-
-                        // Sanatize $_POST data.
-                        $value = Input::escape($value);
 
                         // Check that required fields are not empty.
                         if($rule === 'required' && $answer && empty($value)) {

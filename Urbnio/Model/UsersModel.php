@@ -1,4 +1,11 @@
 <?php
+namespace Urbnio\Model;
+
+use Urbnio\Helper\DB;
+use Urbnio\Helper\Session;
+use Urbnio\Helper\Hash;
+use Urbnio\Helper\Cookie;
+use \Exception as Exception;
 
 /**
  *  Users Model
@@ -18,6 +25,7 @@
          *  Create instance of database and check if the logged in user exists.
          *
          *  @param string   $user   retreive a specific user's data.
+         *  @todo  create logic to delete expired sessions.
          */
             function __construct($user = null) {
                 // Get an instance of the database.
@@ -123,15 +131,16 @@
                     // If we found a user.
                     if($user) {
                         // Create new hash and check if it matches their password.
-                        if($this->data()->password === Hash::make($password, $this->data()->salt)) {
+                        if(Hash::is_correct_password($password, $this->data()->password)) {
 
                             // Create a session with this user's id.
                             Session::put($this->_sessionName, $this->data()->id);
 
                             // Also create cookies to remember user.
                             if($remember){
+
                                 // Generate a hash and check that it doesn't exist.
-                                $hash = Hash::unique();
+                                $hash = Hash::make_session_hash();
                                 $hashCheck = $this->_db->query("SELECT * FROM users_session WHERE user_id = ?", array($this->data()->id));
 
                                 // If the hash doesn't exist.
@@ -165,14 +174,20 @@
          *  Logout user.
          */
             public function logout(){
-                // Remove active session from DB.
-                $this->_db->query("DELETE FROM users_session WHERE user_id = ?", array($this->data()->id));
 
-                // Delete session.
-                Session::delete($this->_sessionName);
+                // If the user is logged in.
+                if($this->_isLoggedIn){
 
-                // Delete cookie.
-                Cookie::delete($this->_cookieName);
+                    // Remove active session from DB.
+                    $this->_db->query("DELETE FROM users_session WHERE user_id = ?", array($this->data()->id));
+
+                    // Delete session.
+                    Session::delete($this->_sessionName);
+
+                    // Delete cookie.
+                    Cookie::delete($this->_cookieName);
+                }
+
             }
 
 

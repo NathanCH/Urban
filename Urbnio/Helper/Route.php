@@ -1,4 +1,5 @@
 <?php
+namespace Urbnio\Helper;
 
 /**
  *  Route Helper
@@ -10,6 +11,7 @@
 
         /**
          *  Method to handle redirection.
+         *
          *  @param $controller  string
          *  @param $action      string  (optional)
          */

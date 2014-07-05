@@ -1,12 +1,20 @@
 <?php
+namespace Urbnio\Controller;
+
+use Urbnio\Helper\Input;
+use Urbnio\Helper\Validate;
+use Urbnio\Helper\Session;
+use Urbnio\Helper\Route;
+use Urbnio\Helper\Hash;
+use Urbnio\Lib\Controller;
+
 
 /**
  *  Users Controller
  *
  *  @author nathancharrois@gmail.com
  */
-
-    class User extends Controller {
+    class User extends Controller{
 
         /**
          *  Index page.
@@ -42,7 +50,7 @@
                     );
 
                     // Create validation object.
-                    $validate = new Validate();
+                    $validate = new Validate;
 
                     // Check the post data against the validation rules.
                     $validation = $validate->check($_POST, $items);
@@ -57,7 +65,9 @@
 
                         // Login the user.
                         if($users_model->login($_POST['email'], $_POST['password'], $remember)) {
-                            // Redirect to
+
+                            // Set flash.
+                            Session::flash('success', 'Logged in!.');
                             Route::redirect('user', 'edit');
                         }
 
@@ -73,7 +83,7 @@
                     }
                 }
 
-                // Render layout and view files.
+               // Render layout and view files.
                 $this->render('static/index', 'user/login', $data);
             }
 
@@ -121,7 +131,7 @@
                     );
 
                     // Create validation object.
-                    $validate = new Validate();
+                    $validate = new Validate;
 
                     // Check the post data against the validation rules.
                     $validation = $validate->check($_POST, $items);
@@ -135,15 +145,13 @@
                         // Try to create user.
                         try {
 
-                            $salt       = Hash::salt(32);
-                            $password   = Hash::make($_POST['password'], $salt);
+                            $password   = Hash::encrypt_password($_POST['password']);
                             $created    = date('Y-m-d H:i:s');
 
                             // Register the user.
                             $users_model->register_user(array(
                                 'email'     => $_POST['email'],
                                 'password'  => $password,
-                                'salt'      => $salt,
                                 'group'     => 'user',
                                 'created'   => $created
                             ));

@@ -1,7 +1,13 @@
 <?php
+namespace Urbnio\Lib;
 
-class Application
-{
+use Urbnio\Helper\Cookie;
+use Urbnio\Helper\Input;
+use Urbnio\Helper\Session;
+use Urbnio\Helper\DB;
+
+class Application {
+
     /** @var null The controller */
     private $url_controller = null;
 
@@ -30,31 +36,14 @@ class Application
         // create array with URL parts in $url
         $this->splitUrl();
 
-        // Check if cookie exists but no session.
-        if(Cookie::exists(COOKIE_NAME) && !Session::exists(SESSION_NAME)) {
-
-            // Get cookie name.
-            $hash = Cookie::get(COOKIE_NAME);
-
-            // See if the cookie is valid.
-            $hashCheck = DB::getInstance()->query("SELECT * FROM users_session WHERE hash = ?", array($hash));
-
-            // If cookie matches with an existing session.
-            if($hashCheck->count()) {
-                // Login user (create a session).
-                require 'application/models/usersmodel.php';
-                $users_model = new UsersModel($hashCheck->first()->user_id);
-                $users_model->login();
-            }
-        }
-
         // check for controller: does such a controller exist ?
-        if (file_exists('./application/controller/' . $this->url_controller . '.php')) {
+        if (file_exists('./Urbnio/Controller/' . $this->url_controller . '.php')) {
 
-            // if so, then load this file and create this controller
-            // example: if controller would be "car", then this line would translate into: $this->car = new car();
-            require './application/controller/' . $this->url_controller . '.php';
-            $this->url_controller = new $this->url_controller();
+            // Append controller action to class location.
+            $controller_action = $this->url_controller;
+            $class_location = '\\Urbnio\\Controller\\' . $controller_action;
+
+            $this->url_controller = new $class_location;
 
             // check for method: does such a method exist in the controller ?
             if (method_exists($this->url_controller, $this->url_action)) {
@@ -78,9 +67,8 @@ class Application
                 $this->url_controller->index();
             }
         } else {
-            // invalid URL, so simply show home/index
-            require './application/controller/user.php';
-            $user = new User();
+
+            $user = new \Urbnio\Controller\User();
             $user->login();
         }
     }

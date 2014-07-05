@@ -15,6 +15,22 @@
         </header>
         <form action="<?= URL; ?>users/login/" method="POST">
             <fieldset>
+                 <?php
+                // Display flash.
+                if(Urbnio\Helper\Session::exists('success')) {
+                ?>
+                <div class="row">
+                    <div class="small-12 medium-12 large-12 columns">
+                        <ul class="message success">
+                            <p>
+                                <?php echo Urbnio\Helper\Session::flash('success'); ?>
+                            </p>
+                        </ul>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
                 <div class="row">
                     <div class="columns">
                         <h3>Location</h3>

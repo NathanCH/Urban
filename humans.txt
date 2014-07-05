@@ -1,0 +1,16 @@
+# Main
+
+    Author: nathancharrois@gmail.com
+    Role: Lead Developer and Designer
+    Site: http://cetan.ca
+
+# Thanks
+
+    PHP Academy Tutorial Series
+    Site: https://youtube.com/watch?v=c_hNNAdyfQk)
+
+    Skeleton MVC Pattern by panique
+    https://github.com/panique/php-mvc/
+
+    Dion Moult
+    Site: http://thinkmoult.com/

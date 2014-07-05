@@ -1,4 +1,5 @@
 <?php
+namespace Urbnio\Helper;
 
 /**
  *  Input Class
@@ -29,11 +30,4 @@
                 }
             }
 
-        /**
-         *  Escape data from database.
-         *  @param $data   string
-         */
-            public static function escape($data) {
-                return htmlentities($data, ENT_QUOTES, 'UTF-8');
-            }
     }

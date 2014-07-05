@@ -12,20 +12,20 @@
     <div class="site-container-small site-container-centered">
         <header class="row">
             <div class="small-12 medium-12 large-12 columns">
-                    <h1>Login</h1>
+                <h1>Login</h1>
             </div>
         </header>
         <form action="<?= URL; ?>user/login/" method="POST">
             <fieldset>
                 <?php
                 // Display flash.
-                if(Session::exists('success')) {
+                if(Urbnio\Helper\Session::exists('success') && !$_POST) {
                 ?>
                 <div class="row">
                     <div class="small-12 medium-12 large-12 columns">
                         <ul class="message success">
                             <p>
-                                <?php echo Session::flash('success'); ?>
+                                <?php echo Urbnio\Helper\Session::flash('success'); ?>
                             </p>
                         </ul>
                     </div>
