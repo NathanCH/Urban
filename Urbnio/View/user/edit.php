@@ -13,24 +13,8 @@
                 <h1>Edit Profile</h1>
             </div>
         </header>
-        <form action="<?= URL; ?>users/login/" method="POST">
+        <form action="<?= URL; ?>user/edit" method="POST">
             <fieldset>
-                 <?php
-                // Display flash.
-                if(Urbnio\Helper\Session::exists('success')) {
-                ?>
-                <div class="row">
-                    <div class="small-12 medium-12 large-12 columns">
-                        <ul class="message success">
-                            <p>
-                                <?php echo Urbnio\Helper\Session::flash('success'); ?>
-                            </p>
-                        </ul>
-                    </div>
-                </div>
-                <?php
-                }
-                ?>
                 <div class="row">
                     <div class="columns">
                         <h3>Location</h3>
@@ -122,7 +106,11 @@
                         <div class="small-12 medium-12 large-12 columns">
                             <div class="textarea-editor">
                                 <div class="textarea-editor-body" contenteditable="true">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum @NathanCH pharetra metus eros, at molestie nisl tincidunt at. Phasellus ac facilisis leo.</p>
+                                    <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Vestibulum @NathanCH pharetra metus eros, at molestie nisl
+                                    tincidunt at. Phasellus ac facilisis leo.
+                                    </p>
                                 </div>
                                 <div class="textarea-editor-tools">
                                     <ul class="tools clearfix">

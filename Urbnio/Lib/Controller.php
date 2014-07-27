@@ -92,4 +92,28 @@ namespace Urbnio\Lib;
                 return $html;
             }
 
+            /**
+             *  Render Element.
+             *
+             *  @param  string   $name  the name of the element file.
+             *  @param  array    $data  element options and/or data.
+             */
+                public function element($name, $data = array()) {
+
+                    extract($data);
+
+                    // Start buffer.
+                    ob_start();
+
+                    // Build full path to element.
+                    $path = ELEMENT_PATH . $name . ELEMENT_FILE_EXT;
+
+                    include $path;
+
+                    // Render the element file.
+                    $html = ob_get_clean();
+
+                    return $html;
+                }
+
     }

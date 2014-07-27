@@ -1,7 +1,20 @@
 /*  Components
     ===
 
-    Message
+    Notifications
+    ---
+
+    <div class="notifications">
+        // Echo element.
+    </div>
+*/
+    .notifications{
+        position: absolute;
+        right: 74px;
+        top: 120px;
+    }
+
+/*  Message
     ---
 
     <div class="message">
@@ -10,9 +23,21 @@
 */
 
     .message{
-        display: block;
-        border-radius: 3px;
         padding: 15px;
+        background: white;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .10);
+        min-width: 200px;
+        cursor: pointer;
+    }
+
+    .message:hover{
+        box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, .12);
+    }
+
+    .message:active{
+        background: #ffffff;
+        background: linear-gradient(150deg,  #ffffff 0%,#f9f9f9 100%);
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .12);
     }
 
 /*  Message Type
@@ -23,13 +48,9 @@
     </div>
 */
     .message.error{
-        color: #d1938c;
-        background-color: #fef4f3;
         border: 1px solid #fbbeb7;
     }
 
-    .message.success{
+    .message.success i{
         color: #97bf74;
-        background-color: #f1fff0;
-        border: 1px solid #c0e2a4;
     }

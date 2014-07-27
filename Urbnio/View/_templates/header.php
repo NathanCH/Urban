@@ -48,5 +48,12 @@
                         </nav>
                     </div>
                 </div>
+                <div class="notifications">
+                <?php
+                // Display flash message.
+                echo $this->element('flash');
+                ?>
             </div>
+            </div>
+        </div>
         </header>

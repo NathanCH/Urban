@@ -33,7 +33,7 @@
 
 
         /**
-         *  Toggle Select
+         *  Toggle Select (Combo Box)
          *
          *  <div class="select-container">
          *      <select name="location" id="location">
@@ -48,6 +48,7 @@
          *  </div>
          */
             function toggleSelect(){
+
                 // Get the select's string.
                 var string = $(this).find(":selected").text();
 
@@ -56,8 +57,32 @@
             }
 
             $(document).ready(function(){
-                $('.select-container select').change(toggleSelect)
-                                             .trigger('change');
+                $('.select-container select').change(toggleSelect).trigger('change');
+            });
+
+        /**
+         *  Close Dialogue.
+         *
+         *  <div data-event="close">Close Me!</div>
+         */
+            $(document).ready(function(){
+
+                // Fadeout after 2.5 seconds.
+                setTimeout(function(){
+                    $('[data-event*="fade"]').fadeOut(1000);
+                }, 2500);
+
+                $('[data-event*="close"]').click(function(e){
+                    // Change the cursor type.
+                    $(this).css('cursor', 'auto');
+                    // Fadeout and hide element.
+                    $(this).animate({
+                        'opacity' : 0,
+                    }, 500, function(){
+                        $(this).hide();
+                    });
+                });
+
             });
 
     })

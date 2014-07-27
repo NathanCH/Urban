@@ -18,21 +18,6 @@
         <form action="<?= URL; ?>user/login/" method="POST">
             <fieldset>
                 <?php
-                // Display flash.
-                if(Urbnio\Helper\Session::exists('success') && !$_POST) {
-                ?>
-                <div class="row">
-                    <div class="small-12 medium-12 large-12 columns">
-                        <ul class="message success">
-                            <p>
-                                <?php echo Urbnio\Helper\Session::flash('success'); ?>
-                            </p>
-                        </ul>
-                    </div>
-                </div>
-                <?php
-                }
-
                 // Display errors.
                 if(isset($data['errors'])) {
                 ?>
