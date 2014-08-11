@@ -98,7 +98,7 @@ namespace Urbnio\Helper;
          *  Insert Method.
          *
          *  @param string   $table      the table we want to insert data into.
-         *  @param array    $fields     array of data.
+         *  @param array    $fields     the fields to update.
          *
          *  $user = DB::getInstance()->insert('users', array(
          *      'username' => 'Nathan',
@@ -137,6 +137,43 @@ namespace Urbnio\Helper;
                     if(!$this->query($sql, $fields)->error()) {
                         return true;
                     }
+                }
+
+                return false;
+            }
+
+        /**
+         *  Update method.
+         *
+         *  @param string   $table      the table we want to update data in.
+         *  @param integer  $id         the id to update.
+         *  @param array    $fields     the fields to update.
+         *
+         *  $user = DB::getInstance()->update('users', 6, array(
+         *      'name' => 'Richard'
+         *  ));
+         */
+            public function update($table, $id, $fields = array()) {
+
+                $set = '';
+                $x = 1;
+
+                // Build contents for mysql set values.
+                foreach ($fields as $name => $value) {
+                    $set .= "{$name} =?";
+                    // If its the last one..
+                    if($x < count($fields)) {
+                        $set .= ', ';
+                    }
+                    $x ++;
+                }
+
+                // Build query.
+                $sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";
+
+                // Run the query.
+                if(!$this->query($sql, $fields)->error()){
+                    return true;
                 }
 
                 return false;

@@ -6,7 +6,9 @@ use Urbnio\Helper\Validate;
 use Urbnio\Helper\Session;
 use Urbnio\Helper\Route;
 use Urbnio\Helper\Hash;
+use Urbnio\Helper\Response;
 use Urbnio\Lib\Controller;
+use \Exception as Exception;
 
 
 /**
@@ -112,6 +114,7 @@ use Urbnio\Lib\Controller;
 
                 // If registration data has been submitted.
                 if(Input::exists()) {
+
                     // The form inputs to validate and the validation rules.
                     $items = array(
                         'email' => array(
@@ -168,7 +171,7 @@ use Urbnio\Lib\Controller;
 
                     // Render validation errors.
                     else{
-                        $data = array('errors' => $validation->errors());
+                        $data['errors'] = $validation->errors();
                     }
 
                 }
@@ -187,16 +190,87 @@ use Urbnio\Lib\Controller;
 
                 $data = array();
 
-                // $users_model = $this->loadModel('UsersModel');
+                $users_model = $this->loadModel('UsersModel');
 
-                // // If the current user is logged in.
-                // if($users_model->isLoggedIn()) {
-                //     echo 'Welcome ' . Input::escape($users_model->data()->email) . ' - <a href="'. URL .'user/logout">Logout</a>';
-                // }
+                // If the current user is not logged in.
+                if(!$users_model->isLoggedIn()) {
 
-                // else{
-                //     echo 'Please <a href="'. URL .'user/login">Login</a> or <a href="'. URL .'user/register">Register</a> ';
-                // }
+                    // Redirect to login page.
+                    Route::redirect('user/login');
+                }
+
+                else{
+                    // Get user information.
+                    $user_data = $users_model->data();
+
+                    // Escape and prepare for view.
+                    $data['input']['email']     = Response::escape($user_data->email);
+                    $data['input']['name']      = Response::escape($user_data->name);
+                    $data['input']['about']     = Response::escape($user_data->about);
+                    $data['input']['location']  = Response::escape($user_data->location);
+
+                    // If profile has been edited.
+                    if(Input::exists()) {
+
+                        // The form inputs to validate and the validation rules.
+                        $items = array(
+                            'name' => array(
+                                'required' => false,
+                                'min' => 2,
+                                'max' => 64
+                            ),
+                            'email' => array(
+                                'required' => true,
+                                'min' => 7,
+                                'max' => 64
+                            ),
+                            'about' => array(
+                                'required' => false,
+                                'max' => 10000
+                            )
+                        );
+
+                        // Create validation object.
+                        $validate = new Validate;
+
+                        // Check the post data against the validation rules.
+                        $validation = $validate->check($_POST, $items);
+
+                        // Check if vllidation has passed.
+                        if($validation->passed()) {
+
+                            // Try to edit profile.
+                            try {
+
+                                // Update the user.
+                                $users_model->update_user(array(
+                                    'email' => $_POST['email'],
+                                    'name' => $_POST['name'],
+                                    'about' => $_POST['about'],
+                                    'location' => $_POST['location']
+                                ));
+
+                                // Flash message.
+                                Session::flash('success', 'Your profile has been updated.');
+
+                                // Redirect.
+                                Route::redirect('user', 'edit');
+
+                            }
+
+                            catch(Exception $e) {
+                                die($e->getMessage());
+                            }
+                        }
+
+                        // Render validation errors.
+                        else{
+                            $data['errors'] = $validation->errors();
+                        }
+
+                    }
+
+                }
 
                 // Render layout and view files.
                 $this->render('static/index', 'user/edit', $data);

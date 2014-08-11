@@ -4,6 +4,7 @@
  *
  *  @author nathancharrois@gmail.com
  *  @param  array   $data['errors']     result of validation.
+ *  @param  array   $data['input']      the user's profile information.
  */
 ?>
 
@@ -14,7 +15,30 @@
             </div>
         </header>
         <form action="<?= URL; ?>user/edit" method="POST">
-            <fieldset>
+                <fieldset>
+                <?php
+                // Display errors.
+                if(isset($data['errors'])) {
+                ?>
+                <div class="row">
+                    <div class="small-12 medium-12 large-12 columns">
+                        <div class="message error">
+                            <p>
+                                Please correct the following errors.
+                            </p>
+                            <ul>
+                                <?php
+                                foreach($data['errors'] as $item => $message) {
+                                    echo "<li>{$item} is {$message}.</li>";
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
                 <div class="row">
                     <div class="columns">
                         <h3>Location</h3>
@@ -28,9 +52,9 @@
                         <div class="small-12 medium-8 large-6 columns end">
                             <div class="select-container">
                                 <select name="location" id="location">
-                                    <option>Vancouver</option>
-                                    <option>Seattle</option>
-                                    <option>Portland</option>
+                                    <option value="Vancouver" <?php echo ($data['input']['location'] == 'Vancouver' ? 'selected' : 'd'); ?>>Vancouver</option>
+                                    <option value="Seattle" <?php echo ($data['input']['location'] == 'Seattle' ? 'selected' : 'd'); ?>>Seattle</option>
+                                    <option value="Portland" <?php echo ($data['input']['location'] == 'Portland' ? 'selected' : 'g'); ?>>Portland</option>
                                 </select>
                                 <div class="select-text"></div>
                                 <div class="select-caret">
@@ -68,7 +92,7 @@
                             <label for="name">Name:</label>
                         </div>
                         <div class="small-12 medium-8 large-6 columns end">
-                            <input type="text" name="name" id="name" />
+                            <input type="text" name="name" id="name" value="<?php echo $data['input']['name']; ?>" />
                         </div>
                     </div>
                 </div>
@@ -78,7 +102,7 @@
                             <label for="email">Email:</label>
                         </div>
                         <div class="small-12 medium-8 large-6 columns end">
-                            <input type="text" name="email" id="email" />
+                            <input type="text" name="email" id="email" value="<?php echo $data['input']['email']; ?>" />
                             <div class="row">
                                 <div class="small-12 medium-12 large-12 columns">
                                     <div class="checkbox-container mtl">
@@ -105,13 +129,7 @@
                     <div class="input-container">
                         <div class="small-12 medium-12 large-12 columns">
                             <div class="textarea-editor">
-                                <div class="textarea-editor-body" contenteditable="true">
-                                    <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Vestibulum @NathanCH pharetra metus eros, at molestie nisl
-                                    tincidunt at. Phasellus ac facilisis leo.
-                                    </p>
-                                </div>
+                                <textarea class="textarea-editor-body" name="about" rows="5"><?php echo $data['input']['about']; ?></textarea>
                                 <div class="textarea-editor-tools">
                                     <ul class="tools clearfix">
                                         <li class="tool active">

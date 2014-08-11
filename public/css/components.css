@@ -11,14 +11,24 @@
     .notifications{
         position: absolute;
         right: 74px;
-        top: 120px;
+        top: -60px;
     }
+
+        @media only screen and (max-width: 480px) {
+
+            .notifications{
+                position: relative;
+                margin-bottom: 20px;
+                right: 0;
+                top: 0;
+            }
+        }
 
 /*  Message
     ---
 
     <div class="message">
-        <p>Your message.</p?
+        <p>Your message.</p>
     </div>
 */
 
@@ -53,4 +63,8 @@
 
     .message.success i{
         color: #97bf74;
+    }
+
+    .message.notice i{
+        color: #e8c99c;
     }

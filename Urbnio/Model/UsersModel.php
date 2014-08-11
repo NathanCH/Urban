@@ -74,7 +74,25 @@ use \Exception as Exception;
             public function register_user($fields = array()) {
                 // Insert user into database, else throw an error.
                 if(!$this->_db->insert('users', $fields)) {
-                    throw new Exception('There was a problem creating this account.');
+                    throw new Exception('There was a problem creating this user.');
+                }
+            }
+
+        /**
+         *  Update user data.
+         *
+         *  @param array   $fields  the fields to updated.
+         */
+            public function update_user($fields = array(), $id = null) {
+
+                // If no user id is specified, get this user's id.
+                if(!$id && $this->isLoggedIn()) {
+                    $id = $this->data()->id;
+                }
+
+                // Update user in the database, else throw an error.
+                if(!$this->_db->update('users', $id, $fields)) {
+                    throw new Exception('There was a problem updating this user.');
                 }
             }
 

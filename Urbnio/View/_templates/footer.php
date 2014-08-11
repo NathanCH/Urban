@@ -1,6 +1,7 @@
         <footer>
             <div class="copyright">urbn.io &copy; 2014</div>
             <a href="http://github.com/NathanCH/urban" class="github">View source.</a>
+            <?php echo "Mem: ".memory_get_usage()." bytes \n"; ?>
         </footer>
         <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

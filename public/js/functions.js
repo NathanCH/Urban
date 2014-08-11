@@ -67,11 +67,6 @@
          */
             $(document).ready(function(){
 
-                // Fadeout after 2.5 seconds.
-                setTimeout(function(){
-                    $('[data-event*="fade"]').fadeOut(1000);
-                }, 2500);
-
                 $('[data-event*="close"]').click(function(e){
                     // Change the cursor type.
                     $(this).css('cursor', 'auto');
@@ -83,6 +78,18 @@
                     });
                 });
 
+            });
+
+        /**
+         *  Delay Fade Element.
+         *
+         *  <div data-event"fade" />
+         */
+            $(document).ready(function(){
+                // Fadeout after 2 seconds.
+                setTimeout(function(){
+                    $('[data-event*="fade"]').fadeOut(750);
+                }, 2000);
             });
 
     })

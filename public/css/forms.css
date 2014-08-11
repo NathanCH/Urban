@@ -281,6 +281,7 @@
         box-shadow: 0 1px 1px rgba(0,0,0,.2) inset;
         font-size: 14px;
         font-weight: 400;
+        font-family: inherit;
         padding: 10px 9px 11px;
         color: #666;
         display: block;

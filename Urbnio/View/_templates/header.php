@@ -48,12 +48,13 @@
                         </nav>
                     </div>
                 </div>
-                <div class="notifications">
+            </div>
+        </header>
+        <div class="site-container site-container-centered">
+            <div class="notifications">
                 <?php
                 // Display flash message.
                 echo $this->element('flash');
                 ?>
             </div>
-            </div>
         </div>
-        </header>
