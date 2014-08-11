@@ -106,7 +106,7 @@ use \Exception as Exception;
             }
 
         /**
-         *  Handle account creation.
+         *  Account creation.
          */
             public function register() {
 
@@ -182,9 +182,6 @@ use \Exception as Exception;
 
         /**
          *  Edit user.
-         *
-         *  @todo I may turn this into user/profile and have inline editing.
-         *  @todo Check that the user is logged in.
          */
             public function edit($id = null) {
 

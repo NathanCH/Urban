@@ -2,7 +2,6 @@
  * nathancharrois@gmail.com
  */
 
-
     $(function(){
 
         /**
@@ -90,6 +89,20 @@
                 setTimeout(function(){
                     $('[data-event*="fade"]').fadeOut(750);
                 }, 2000);
+            });
+
+
+        /**
+         *  Toggle Container visibility.
+         *
+         *  <div class="hide" data-event="toggle">Toggle A</div>
+         *  <div class="show" data-event="toggle">Toggle B</div>
+         *  <button data-event="toggle-button">You can apply 'toggle-button' to two buttons!</button>
+         */
+            $(document).ready(function(){
+                $('[data-event*="toggle-button"]').click(function(){
+                    $('[data-event*="toggle"]').toggle();
+                });
             });
 
     })

@@ -14,6 +14,7 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css' />
         <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
         <script src="<?= URL; ?>public/js/functions.js"></script>
+        <script src="<?= URL; ?>public/js/extensions.js"></script>
     </head>
     <body>
         <header class="site-header">

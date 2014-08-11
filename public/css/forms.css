@@ -60,17 +60,28 @@
         border: 0;
         padding: 10px 8px;
         font-family: "Roboto";
+        font-size: 14px;
     }
 
     .button-primary{
         background: #f66051;
         color: white;
         font-weight: 400;
-        font-size: 14px;
     }
 
         .button-primary:hover{
             background: #e45041;
+        }
+
+    .button-text{
+        text-decoration: underline;
+        background: none;
+        padding: 0px;
+        color: #f66051;
+    }
+
+        .button-text:hover{
+            color: #e45041;
         }
 
 
@@ -109,6 +120,10 @@
         .input-container input:focus{
             background-color: #ECECEC;
             box-shadow: 0 1px 1px rgba(0,0,0,.3) inset;
+        }
+        .input-container input[disabled]{
+            color: #CCC;
+            cursor: not-allowed;
         }
 
 /*  Select

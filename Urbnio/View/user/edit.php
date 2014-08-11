@@ -117,6 +117,37 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="input-container">
+                        <div class="small-12 medium-4 large-3 columns">
+                            <label for="email">Password:</label>
+                        </div>
+                        <div class="small-12 medium-8 large-6 columns end">
+                            <input type="password" name="password" id="password" value="Password" disabled />
+                            <div class="row">
+                                <div data-event="toggle" class="small-12 medium-12 large-12 columns hide">
+                                    <input type="password" name="confirm-password" id="confirm-password" value="Password" class="mtl" />
+                                    <div data-event="toggle-button" class="input-append-icon error hide">
+                                        <span class="fa fa-times"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 medium-12 large-12 columns">
+                                    <div class="checkbox-container mtl">
+                                        <button type="button" data-event="toggle-button toggle" class="mts button button-text show">Change Password</button>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                // Figure out where to put this.
+                                $('[data-event*="toggle-button"]').click(function(){
+                                    $('#password').toggleDisabled();
+                                });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </fieldset>
 
             <fieldset>
@@ -152,7 +183,7 @@
             <fieldset>
                 <div class="row">
                     <div class="small-12 medium-offset-8 medium-4 large-offset-10 large-2 columns">
-                        <button id="submit" style="white-space:nowrap;" class="large-12 fill button button-primary">
+                        <button id="submit" class="large-12 fill button button-primary">
                             Save Changes
                         </button>
                     </div>
