@@ -201,7 +201,7 @@ use \Exception as Exception;
                 // If user is logged in.
                 else{
 
-                    // Get user information.
+                    // Get user data.
                     $user_data = $users_model->data();
 
                     // Pages to edit.
@@ -215,10 +215,11 @@ use \Exception as Exception;
 
                             if(Input::exists()) {
 
-                                echo 'submit';
-
                                 // The password data for validation.
                                 $items = array(
+                                    'current-password' => array(
+                                        'required' => true
+                                    ),
                                     'password' => array(
                                         'required' => true,
                                         'min' => 6
@@ -238,34 +239,41 @@ use \Exception as Exception;
                                 // Check if validation has passed.
                                 if($validation->passed()) {
 
-                                    // Try saving the password.
-                                    try {
+                                    // Check if current password is incorrect.
+                                    if(!Hash::is_correct_password($_POST['current-password'], $users_model->data()->password)) {
 
-                                        $password = Hash::encrypt_password($_POST['password']);
-
-                                        $users_model->change_password(array(
-                                            'password' => $password
-                                        ));
-
-                                        // Flash message.
-                                        Session::flash('success', 'Your password has been updated.');
-
-                                        echo 'you did it';
-
-                                        // Redirect.
-                                        // Todo: Set up redirect to controller argument.
-                                        //Route::redirect('user', 'edit', 'change-password');
-
+                                        // Print errors.
+                                        $data['errors'] = array('Password' => 'incorrect');
                                     }
 
-                                    catch(Exception $e) {
-                                        die($e->getMessage());
+                                    else{
+
+                                        // Try saving the password.
+                                        try {
+
+                                            $password = Hash::encrypt_password($_POST['password']);
+
+                                            $users_model->change_password(array(
+                                                'password' => $password
+                                            ));
+
+                                            // Flash message.
+                                            Session::flash('success', 'Your password has been updated.');
+
+                                            // Redirect.
+                                            // Todo: Set up redirect to controller argument.
+                                            // Route::redirect('user', 'edit', 'change-password');
+
+                                        }
+
+                                        catch(Exception $e) {
+                                            die($e->getMessage());
+                                        }
                                     }
                                 }
 
                                 // Render validation errors.
                                 else{
-                                    echo'f';
                                     $data['errors'] = $validation->errors();
                                 }
 
@@ -343,7 +351,6 @@ use \Exception as Exception;
 
                         break;
                     }
-
 
                     // Escape and prepare data for view.
                     $data['input']['email']     = Response::escape($user_data->email);

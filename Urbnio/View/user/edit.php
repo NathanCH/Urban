@@ -12,7 +12,7 @@
     $section = $data['section'];
 
     // Debug.
-    //var_dump($data);
+    // var_dump($data);
 ?>
 
     <div class="site-container site-container-centered">
@@ -67,6 +67,21 @@
                         <div class="input-container">
                             <div class="small-12 medium-4 large-3 columns">
                                 <label for="email">Current Password:</label>
+                            </div>
+                            <div class="small-12 medium-8 large-6 columns end">
+                                <input type="password" name="current-password" id="current-password" autocomplete="off" />
+                                <div class="row">
+                                    <div class="small-12 medium-12 large-12 columns">
+                                        <button class="button button-text mtl">Forget Password?</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-container">
+                            <div class="small-12 medium-4 large-3 columns">
+                                <label for="email">New Password:</label>
                             </div>
                             <div class="small-12 medium-8 large-6 columns end">
                                 <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" />
