@@ -182,8 +182,10 @@ use \Exception as Exception;
 
         /**
          *  Edit user.
+         *
+         *  @param  $section  section of your profile you would like to edit.
          */
-            public function edit($id = null) {
+            public function edit($section = null) {
 
                 $data = array();
 
@@ -196,77 +198,158 @@ use \Exception as Exception;
                     Route::redirect('user/login');
                 }
 
+                // If user is logged in.
                 else{
+
                     // Get user information.
                     $user_data = $users_model->data();
 
-                    // Escape and prepare for view.
+                    // Pages to edit.
+                    switch ($section) {
+
+                        // Change Password.
+                        case 'change-password':
+
+                            // Tell view which section to render.
+                            $data['section'] = $section;
+
+                            if(Input::exists()) {
+
+                                echo 'submit';
+
+                                // The password data for validation.
+                                $items = array(
+                                    'password' => array(
+                                        'required' => true,
+                                        'min' => 6
+                                    ),
+                                    'confirm-password' => array(
+                                        'required' => true,
+                                        'matches' => 'password'
+                                    )
+                                );
+
+                                // Create validation object.
+                                $validate = new Validate;
+
+                                // Check the post data against the validation rules.
+                                $validation = $validate->check($_POST, $items);
+
+                                // Check if validation has passed.
+                                if($validation->passed()) {
+
+                                    // Try saving the password.
+                                    try {
+
+                                        $password = Hash::encrypt_password($_POST['password']);
+
+                                        $users_model->change_password(array(
+                                            'password' => $password
+                                        ));
+
+                                        // Flash message.
+                                        Session::flash('success', 'Your password has been updated.');
+
+                                        echo 'you did it';
+
+                                        // Redirect.
+                                        // Todo: Set up redirect to controller argument.
+                                        //Route::redirect('user', 'edit', 'change-password');
+
+                                    }
+
+                                    catch(Exception $e) {
+                                        die($e->getMessage());
+                                    }
+                                }
+
+                                // Render validation errors.
+                                else{
+                                    echo'f';
+                                    $data['errors'] = $validation->errors();
+                                }
+
+                            }
+
+                        break;
+
+                        // Edit Profile Page.
+                        default:
+
+                            // Tell view which section to render.
+                            $data['section'] = null;
+
+                            if(Input::exists()) {
+
+                                // The form inputs to validate and the validation rules.
+                                $items = array(
+                                    'name' => array(
+                                        'required' => false,
+                                        'min' => 2,
+                                        'max' => 64
+                                    ),
+                                    'email' => array(
+                                        'required' => true,
+                                        'min' => 7,
+                                        'max' => 64
+                                    ),
+                                    'about' => array(
+                                        'required' => false,
+                                        'max' => 10000
+                                    )
+                                );
+
+                                // Create validation object.
+                                $validate = new Validate;
+
+                                // Check the post data against the validation rules.
+                                $validation = $validate->check($_POST, $items);
+
+                                // Check if validation has passed.
+                                if($validation->passed()) {
+
+                                    // Try to edit profile.
+                                    try {
+
+                                        // Update the user.
+                                        $users_model->update_user(array(
+                                            'email' => $_POST['email'],
+                                            'name' => $_POST['name'],
+                                            'about' => $_POST['about'],
+                                            'location' => $_POST['location']
+                                        ));
+
+                                        // Flash message.
+                                        Session::flash('success', 'Your profile has been updated.');
+
+                                        // Redirect.
+                                        Route::redirect('user', 'edit');
+
+                                    }
+
+                                    catch(Exception $e) {
+                                        die($e->getMessage());
+                                    }
+                                }
+
+
+
+                                // Render validation errors.
+                                else{
+                                    $data['errors'] = $validation->errors();
+                                }
+
+                            }
+
+                        break;
+                    }
+
+
+                    // Escape and prepare data for view.
                     $data['input']['email']     = Response::escape($user_data->email);
                     $data['input']['name']      = Response::escape($user_data->name);
                     $data['input']['about']     = Response::escape($user_data->about);
                     $data['input']['location']  = Response::escape($user_data->location);
-
-                    // If profile has been edited.
-                    if(Input::exists()) {
-
-                        // The form inputs to validate and the validation rules.
-                        $items = array(
-                            'name' => array(
-                                'required' => false,
-                                'min' => 2,
-                                'max' => 64
-                            ),
-                            'email' => array(
-                                'required' => true,
-                                'min' => 7,
-                                'max' => 64
-                            ),
-                            'about' => array(
-                                'required' => false,
-                                'max' => 10000
-                            )
-                        );
-
-                        // Create validation object.
-                        $validate = new Validate;
-
-                        // Check the post data against the validation rules.
-                        $validation = $validate->check($_POST, $items);
-
-                        // Check if vllidation has passed.
-                        if($validation->passed()) {
-
-                            // Try to edit profile.
-                            try {
-
-                                // Update the user.
-                                $users_model->update_user(array(
-                                    'email' => $_POST['email'],
-                                    'name' => $_POST['name'],
-                                    'about' => $_POST['about'],
-                                    'location' => $_POST['location']
-                                ));
-
-                                // Flash message.
-                                Session::flash('success', 'Your profile has been updated.');
-
-                                // Redirect.
-                                Route::redirect('user', 'edit');
-
-                            }
-
-                            catch(Exception $e) {
-                                die($e->getMessage());
-                            }
-                        }
-
-                        // Render validation errors.
-                        else{
-                            $data['errors'] = $validation->errors();
-                        }
-
-                    }
-
                 }
 
                 // Render layout and view files.

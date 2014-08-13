@@ -82,6 +82,7 @@ use \Exception as Exception;
          *  Update user data.
          *
          *  @param array   $fields  the fields to updated.
+         *  @param integer $id      to specify a user.
          */
             public function update_user($fields = array(), $id = null) {
 
@@ -97,11 +98,29 @@ use \Exception as Exception;
             }
 
         /**
+         *  Change user password.
+         *
+         *  @param array    $password   password to update.
+         *  @param integer  $id         to specify a user.
+         */
+            public function change_password($password, $id = null) {
+
+                // If no user id is specified, get this user's id.
+                if(!$id && $this->isLoggedIn()) {
+                    $id = $this->data()->id;
+                }
+
+                // Update user password.
+                if(!$this->_db->update('users', $id, $password)) {
+                    throw new Exception('There was a problem updateing the password');
+                }
+            }
+
+        /**
          *  Find a user.
          *
          *  @param  string/int   find by email or id.
          *
-         *  @todo  replace query() method with get() method.
          *  @todo  since find() searches by ID or email, users can login with their user ID.
          *         create new validation rule to ensure email field is a proper email.
          */
