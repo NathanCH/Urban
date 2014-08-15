@@ -12,7 +12,7 @@
     $section = $data['section'];
 
     // Debug.
-    // var_dump($data);
+    var_dump($data);
 ?>
 
     <div class="site-container site-container-centered">
@@ -46,7 +46,7 @@
                             <ul>
                                 <?php
                                 foreach($data['errors'] as $item => $message) {
-                                    echo "<li>{$item} is {$message}.</li>";
+                                    echo "<li>{$message}</li>";
                                 }
                                 ?>
                             </ul>

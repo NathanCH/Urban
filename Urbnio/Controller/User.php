@@ -245,7 +245,7 @@ use \Exception as Exception;
                                     if(!Hash::is_correct_password($_POST['current-password'], $users_model->data()->password)) {
 
                                         // Print errors.
-                                        $data['errors'] = array('Password' => 'incorrect');
+                                        $data['errors'] = array(lang('matches', 'current-password', 'password'));
                                     }
 
                                     else{

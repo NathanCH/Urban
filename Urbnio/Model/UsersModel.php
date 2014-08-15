@@ -216,7 +216,7 @@ use \Exception as Exception;
                 if($this->_isLoggedIn){
 
                     // Remove active session from DB.
-                    $this->_db->query("DELETE FROM users_session WHERE user_id = ?", array($this->_data()->id));
+                    $this->_db->query("DELETE FROM users_session WHERE user_id = ?", array($this->data()->id));
 
                     // Delete session.
                     Session::delete($this->_sessionName);

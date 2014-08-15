@@ -44,7 +44,7 @@ namespace Urbnio\Helper;
 
                         // Check that required fields are not empty.
                         if($rule === 'required' && $answer && empty($value)) {
-                            $this->_addError($item, $rule);
+                            $this->_addError($item, $rule, $answer);
                         }
 
                         // If the field isn't empty, complete validation.
@@ -53,23 +53,23 @@ namespace Urbnio\Helper;
                                 case 'min':
                                     if(strlen($value) < $answer) {
                                         // Add the field and the error to error array.
-                                        $this->_addError($item, $rule);
+                                        $this->_addError($item, $rule, $answer);
                                     }
                                 break;
                                 case 'max':
                                     if(strlen($value) > $answer) {
-                                        $this->_addError($item, $rule);
+                                        $this->_addError($item, $rule, $answer);
                                     }
                                 break;
                                 case 'matches':
                                     if($value != $data[$answer]) {
-                                        $this->_addError($item, $rule);
+                                        $this->_addError($item, $rule, $answer);
                                     }
                                 break;
                                 case 'unique':
                                     $check = $this->_db->query("SELECT * FROM users WHERE {$item} = '{$value}'");
                                     if($check->count()) {
-                                        $this->_addError($item, $rule);
+                                        $this->_addError($item, $rule, $answer);
                                     }
                                 break;
                             }
@@ -98,11 +98,11 @@ namespace Urbnio\Helper;
         /**
          * Method to add errors to an associative array.
          *
-         * @param $item         the field/input name.
+         * @param $field         the field/input name.
          * @param $error_type   the type of error (ie. required).
          */
-            private function _addError($item, $error_type) {
-                return $this->_errors[$item] = $error_type;
+            private function _addError($field, $error_type, $value) {
+                return $this->_errors[$field] = lang($error_type, $field, $value);
             }
 
         /**

@@ -25,6 +25,9 @@ class Application {
             // Start session.
             session_start();
 
+            // Set user's location.
+            $this->set_session_language();
+
             // Create array with URL parts in $url
             $this->splitUrl();
 
@@ -94,4 +97,23 @@ class Application {
                 // echo 'Parameter 3: ' . $this->url_parameter_3 . '<br />';
             }
         }
+
+
+        /**
+         *  Set language.
+         *
+         *  @todo set users location based on input.
+         */
+            public function set_session_language() {
+
+                // English.
+                if(APP_LANG == 'en') {
+
+                    // Get path to language file.
+                    $path = LANG_PATH . '/' . APP_LANG . LANG_FILE_EXT;
+
+                }
+
+                include $path;
+            }
 }
