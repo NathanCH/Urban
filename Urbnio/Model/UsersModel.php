@@ -67,7 +67,7 @@ use \Exception as Exception;
             }
 
         /**
-         *  Add user to database.
+         *  Register user to database.
          *
          *  @param array  $fields   the fields to add.
          */
@@ -216,7 +216,7 @@ use \Exception as Exception;
                 if($this->_isLoggedIn){
 
                     // Remove active session from DB.
-                    $this->_db->query("DELETE FROM users_session WHERE user_id = ?", array($this->data()->id));
+                    $this->_db->query("DELETE FROM users_session WHERE user_id = ?", array($this->_data()->id));
 
                     // Delete session.
                     Session::delete($this->_sessionName);
@@ -240,6 +240,33 @@ use \Exception as Exception;
          */
             public function isLoggedIn() {
                 return $this->_isLoggedIn;
+            }
+
+        /**
+         *  Check if user has the correct permission levels.
+         *
+         *  @param  $level  permission level.
+         */
+            public function has_permission($level) {
+
+                // Get the user's current group.
+                $group = $this->_db->query("SELECT * FROM groups WHERE id = ?", array($this->data()->group));
+
+                // Ensure a group is found.
+                if($group->count()) {
+
+                    // Extract the permissions.
+                    $permissions = $group->first()->permissions;
+
+                    // Decode permissions JSON object into array.
+                    $permissions = json_decode($permissions, true);
+
+                    // Check that the permission level matches.
+                    return !empty($permissions[$level]);
+                }
+
+                return false;
+
             }
 
         /**

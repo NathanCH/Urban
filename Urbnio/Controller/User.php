@@ -105,6 +105,8 @@ use \Exception as Exception;
                 Route::redirect('user', 'login');
             }
 
+
+
         /**
          *  Account creation.
          */

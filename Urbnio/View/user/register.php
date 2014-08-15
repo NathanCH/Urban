@@ -4,6 +4,7 @@
  *
  *  @author nathancharrois@gmail.com
  */
+
 ?>
 
     <div class="site-container-small site-container-centered">
