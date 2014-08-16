@@ -1,10 +1,12 @@
 <?php
 namespace Urbnio\Lib;
 
+use Urbnio\Controller\USer;
 use Urbnio\Helper\Cookie;
 use Urbnio\Helper\Input;
 use Urbnio\Helper\Session;
 use Urbnio\Helper\DB;
+use Urbnio\Helper\i18n;
 
 class Application {
 
@@ -63,7 +65,7 @@ class Application {
                 }
             } else {
 
-                $user = new \Urbnio\Controller\User();
+                $user = new User();
                 $user->login();
             }
         }
@@ -107,13 +109,19 @@ class Application {
             public function set_session_language() {
 
                 // English.
-                if(APP_LANG == 'en') {
+                if(APP_LOCALE == 'en_us') {
 
                     // Get path to language file.
-                    $path = LANG_PATH . '/' . APP_LANG . LANG_FILE_EXT;
+                    $path = LANG_PATH . '/' . APP_LOCALE . LANG_FILE_EXT;
 
                 }
 
-                include $path;
+                // Set language data.
+                $language_data = include $path;
+
+                $i18n = new i18n;
+
+                $i18n->set_language_data($language_data);
+
             }
 }

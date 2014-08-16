@@ -14,7 +14,7 @@ define('COOKIE_EXPIRY', 604800);
 
 define('APP_NAME', 'Urbn');
 define('APP_VER' , '0.1');
-define('APP_LANG', 'en');
+define('APP_LOCALE', 'en_us');
 
 define('LAYOUT_PATH', 'Urbnio/Layout/');
 define('LAYOUT_FILE_EXT' , '.php');

@@ -7,6 +7,7 @@ use Urbnio\Helper\Session;
 use Urbnio\Helper\Route;
 use Urbnio\Helper\Hash;
 use Urbnio\Helper\Response;
+use Urbnio\Helper\i18n;
 use Urbnio\Lib\Controller;
 use \Exception as Exception;
 
@@ -220,7 +221,8 @@ use \Exception as Exception;
                                 // The password data for validation.
                                 $items = array(
                                     'current-password' => array(
-                                        'required' => true
+                                        'required' => true,
+                                        'check_password' => $users_model->data()->password
                                     ),
                                     'password' => array(
                                         'required' => true,
@@ -241,37 +243,28 @@ use \Exception as Exception;
                                 // Check if validation has passed.
                                 if($validation->passed()) {
 
-                                    // Check if current password is incorrect.
-                                    if(!Hash::is_correct_password($_POST['current-password'], $users_model->data()->password)) {
+                                    // Try saving the password.
+                                    try {
 
-                                        // Print errors.
-                                        $data['errors'] = array(lang('matches', 'current-password', 'password'));
+                                        $password = Hash::encrypt_password($_POST['password']);
+
+                                        $users_model->change_password(array(
+                                            'password' => $password
+                                        ));
+
+                                        // Flash message.
+                                        Session::flash('success', 'Your password has been updated.');
+
+                                        // Redirect.
+                                        // Todo: Set up redirect to controller argument.
+                                        // Route::redirect('user', 'edit', 'change-password');
+
                                     }
 
-                                    else{
-
-                                        // Try saving the password.
-                                        try {
-
-                                            $password = Hash::encrypt_password($_POST['password']);
-
-                                            $users_model->change_password(array(
-                                                'password' => $password
-                                            ));
-
-                                            // Flash message.
-                                            Session::flash('success', 'Your password has been updated.');
-
-                                            // Redirect.
-                                            // Todo: Set up redirect to controller argument.
-                                            // Route::redirect('user', 'edit', 'change-password');
-
-                                        }
-
-                                        catch(Exception $e) {
-                                            die($e->getMessage());
-                                        }
+                                    catch(Exception $e) {
+                                        die($e->getMessage());
                                     }
+
                                 }
 
                                 // Render validation errors.

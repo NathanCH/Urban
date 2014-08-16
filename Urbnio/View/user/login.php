@@ -30,7 +30,7 @@
                             <ul>
                                 <?php
                                 foreach($data['errors'] as $item => $message) {
-                                    echo "<li>{$item} is {$message}.</li>";
+                                    echo "<li>{$message}.</li>";
                                 }
                                 ?>
                             </ul>
