@@ -7,12 +7,15 @@
  *
  *  @todo create front-end validation.
  */
+
+    // Get view section.
+    $content = $data['content'];
 ?>
 
     <div class="site-container-small site-container-centered">
         <header class="row">
             <div class="small-12 medium-12 large-12 columns">
-                <h1>Login</h1>
+                <h1><?= $content['label.login']; ?></h1>
             </div>
         </header>
         <form action="<?= URL; ?>user/login/" method="POST">
@@ -25,7 +28,7 @@
                     <div class="small-12 medium-12 large-12 columns">
                         <div class="message error">
                             <p>
-                                Please correct the following errors.
+                                <?= $content['error.list']; ?>
                             </p>
                             <ul>
                                 <?php
@@ -64,13 +67,13 @@
                             <input type="hidden" name="remember_login" data-input="remember_login" value="0" />
                             <label class="input-checkbox-label">
                                 <span class="input-checkbox" data-input="remember_login"></span>
-                                Remember Me?
+                                <?= $content['form.remember-me']; ?>
                             </label>
                         </div>
                     </div>
                     <div class="small-12 medium-5 large-5 columns">
                         <button id="submit" class="large-12 fill button button-primary">
-                            Login
+                            <?= $content['label.login']; ?>
                         </button>
                     </div>
                 </div>

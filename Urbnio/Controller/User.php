@@ -70,7 +70,7 @@ use \Exception as Exception;
                         if($users_model->login($_POST['email'], $_POST['password'], $remember)) {
 
                             // Set flash.
-                            Session::flash('success', 'Logged in!.');
+                            Session::flash('success', i18n::lang('flash.login'));
                             Route::redirect('user', 'edit');
                         }
 
@@ -85,6 +85,12 @@ use \Exception as Exception;
                         $data = array('errors' => $validation->errors());
                     }
                 }
+
+                // Set locale date.
+                $data['content']['label.login'] = i18n::lang('label.login');
+                $data['content']['button.login'] = i18n::lang('button.login');
+                $data['content']['form.remember-me'] = i18n::lang('form.remember-me');
+                $data['content']['error.list'] = i18n::lang('error.list');
 
                // Render layout and view files.
                 $this->render('static/index', 'user/login', $data);
@@ -102,7 +108,7 @@ use \Exception as Exception;
                 $users_model->logout();
 
                 // Set session and redirect.
-                Session::flash('success', 'Logged out!');
+                Session::flash('success', i18n::lang('flash.logout'));
                 Route::redirect('user', 'login');
             }
 
@@ -163,7 +169,7 @@ use \Exception as Exception;
                             ));
 
                             // Flash message.
-                            Session::flash('success', 'You have registered! Login below.');
+                            Session::flash('success', i18n::lang('flash.registered'));
                             Route::redirect('user', 'login');
                         }
 
@@ -178,6 +184,11 @@ use \Exception as Exception;
                     }
 
                 }
+
+                // Set locale date.
+                $data['content']['label.register'] = i18n::lang('label.register');
+                $data['content']['button.create-account'] = i18n::lang('button.create-account');
+                $data['content']['error.list'] = i18n::lang('error.list');
 
                 // Render layout and view files.
                 $this->render('static/index', 'user/register', $data);
@@ -253,7 +264,7 @@ use \Exception as Exception;
                                         ));
 
                                         // Flash message.
-                                        Session::flash('success', 'Your password has been updated.');
+                                        Session::flash('success', i18n::lang('flash.update-password'));
 
                                         // Redirect.
                                         // Todo: Set up redirect to controller argument.
@@ -323,7 +334,7 @@ use \Exception as Exception;
                                         ));
 
                                         // Flash message.
-                                        Session::flash('success', 'Your profile has been updated.');
+                                        Session::flash('success', i18n::lang('flash.update-profile'));
 
                                         // Redirect.
                                         Route::redirect('user', 'edit');
@@ -346,6 +357,13 @@ use \Exception as Exception;
 
                         break;
                     }
+
+                    // Set locale date.
+                    $data['content']['label.edit'] = i18n::lang('label.edit');
+                    $data['content']['form.email-public'] = i18n::lang('form.email-public');
+                    $data['content']['button.save'] = i18n::lang('button.save');
+                    $data['content']['button.forgot-password'] = i18n::lang('button.forgot-password');
+                    $data['content']['error.list'] = i18n::lang('error.list');
 
                     // Escape and prepare data for view.
                     $data['input']['email']     = Response::escape($user_data->email);

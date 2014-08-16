@@ -1,0 +1,12 @@
+/*  Shame CSS
+    ===
+
+    Debug Styling
+    ---
+*/
+    #debug{
+        font-size: 12px;
+        font-family: "Consolas";
+        padding: 5px;
+        background: white;
+    }

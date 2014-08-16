@@ -10,7 +10,7 @@
     <div class="site-container-small site-container-centered">
         <header class="row">
             <div class="small-12 medium-12 large-12 columns">
-                <h1>Create Account</h1>
+                <h1><?= $content['label.register']; ?></h1>
             </div>
         </header>
         <form action="<?= URL; ?>user/register/" method="POST">
@@ -23,7 +23,7 @@
                     <div class="small-12 medium-12 large-12 columns">
                         <div class="message error">
                             <p>
-                                Please correct the following errors.
+                                <?= $content['error.list']; ?>
                             </p>
                             <ul>
                                 <?php
@@ -68,7 +68,7 @@
                 <div class="row">
                     <div class="small-12 medium-6 large-6 columns right">
                         <button id="submit" class="large-12 fill button button-primary">
-                            Create Account
+                            <?= $content['button.create-account']; ?>
                         </button>
                     </div>
                 </div>

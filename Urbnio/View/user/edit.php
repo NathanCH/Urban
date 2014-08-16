@@ -10,9 +10,6 @@
  */
     // Get view section.
     $section = $data['section'];
-
-    // Debug.
-    var_dump($data);
 ?>
 
     <div class="site-container site-container-centered">
@@ -41,7 +38,7 @@
                     <div class="small-12 medium-12 large-12 columns">
                         <div class="message error">
                             <p>
-                                Please correct the following errors.
+                                <?= $content['error.list']; ?>
                             </p>
                             <ul>
                                 <?php
@@ -72,7 +69,7 @@
                                 <input type="password" name="current-password" id="current-password" autocomplete="off" />
                                 <div class="row">
                                     <div class="small-12 medium-12 large-12 columns">
-                                        <button class="button button-text mtl">Forget Password?</button>
+                                        <button class="button button-text mtl"><?= $content['button.forgot-password']; ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +96,7 @@
                     <div class="row">
                         <div class="small-12 medium-offset-4 medium-4 large-offset-3 large-2 columns">
                             <button id="submit" class="large-12 fill button button-primary">
-                                Save Changes
+                                <?= $content['button.save']; ?>
                             </button>
                         </div>
                     </div>
@@ -123,7 +120,7 @@
                     <div class="small-12 medium-12 large-12 columns">
                         <div class="message error">
                             <p>
-                                Please correct the following errors.
+                                <?= $content['error.list']; ?>
                             </p>
                             <ul>
                                 <?php
@@ -210,7 +207,7 @@
                                             <input type="hidden" name="make-email-public" data-input="make-email-public" value="0" />
                                             <label class="input-checkbox-label">
                                                 <span class="input-checkbox" data-input="make-email-public"></span>
-                                                Make Public
+                                                <?= $content['form.email-public']; ?>
                                             </label>
                                         </div>
                                     </div>
@@ -254,7 +251,7 @@
                     <div class="row">
                         <div class="small-12 medium-offset-8 medium-4 large-offset-10 large-2 columns">
                             <button id="submit" class="large-12 fill button button-primary">
-                                Save Changes
+                                <?= $content['button.save']; ?>
                             </button>
                         </div>
                     </div>

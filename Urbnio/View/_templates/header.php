@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/typography.css" />
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/forms.css" />
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/components.css" />
+        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/shame.css" />
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
         <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css' />
         <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
@@ -17,6 +18,13 @@
         <script src="<?= URL; ?>public/js/extensions.js"></script>
     </head>
     <body>
+        <div id="debug" style="display:block;">
+            <?php
+            var_dump($data['content']);
+            //var_dump($data['input']);
+            // var_dump($data['errors']);
+            ?>
+        </div>
         <header class="site-header">
             <div class="site-container site-container-centered">
                 <div class="row">
@@ -28,7 +36,7 @@
                                 </a>
                             </div>
                             <div class="small-10 medium-11 large-11 columns">
-                                <span class="logo-text mlm"><a href="<?= URL ?>">Urban</a></span>
+                                <span class="logo-text mlm"><a href="<?= URL ?>">Urbn</a></span>
                                 <span class="slogan mlm">for architecture and urban enthusiasts.</span>
                             </div>
                         </div>
