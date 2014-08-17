@@ -7,10 +7,13 @@
 # Thanks
 
     PHP Academy Tutorial Series
-    Site: https://youtube.com/watch?v=c_hNNAdyfQk)
+    Site: https://youtube.com/watch?v=c_hNNAdyfQk
 
     Skeleton MVC Pattern by panique
     https://github.com/panique/php-mvc/
 
     Dion Moult
     Site: http://thinkmoult.com/
+
+    Felipe Cortez
+    Site: http://felipecortez.net/

@@ -6,8 +6,11 @@ return $en_us = array(
     'site.name' => 'Urbn',
     'site.slogan' => 'for architecture and urban enthusiasts.',
 
+    // Dates & Times.
+    'format.date' => 'dd/mm/yyyy',
+    'format.time' => 'HH:mm',
+
     // Page Labels.
-    // Todo: replace with virtual pages that exist in DB. Set page types.
     'label.login' => 'Login',
     'label.register' => 'Create Account',
     'label.edit' => 'Edit Account',
