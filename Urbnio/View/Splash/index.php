@@ -3,6 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?= APP_NAME; ?> - <?= APP_VER; ?></title>
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/foundation-grid.css" />
@@ -32,6 +33,18 @@
                 </div>
             </div>
         </div>
-        <div id="map">dfd</div>
+        <div id="map"></div>
+
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-9245624-4', 'urbn.io');
+        ga('require', 'linkid', 'linkid.js');
+        ga('require', 'displayfeatures')
+        ga('send', 'pageview');
+        </script>
     </body>
 </html>

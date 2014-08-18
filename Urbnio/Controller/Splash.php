@@ -11,11 +11,8 @@ use Urbnio\Lib\Controller;
  */
     class Splash extends Controller {
 
-
         /**
-         *  Index page.
-         *
-         *  @todo figure out what to do here.
+         *  Splash page.
          */
             public function index() {
 
