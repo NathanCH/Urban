@@ -1,0 +1,2 @@
+- Create function to route file paths for static files (css, js)
+- Create controller to handle layout types.

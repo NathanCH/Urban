@@ -4,35 +4,35 @@
     <head>
         <meta charset="utf-8">
         <title><?= APP_NAME; ?> - <?= APP_VER; ?></title>
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/reset.css" />
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/foundation-grid.css" />
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/main.css" />
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/typography.css" />
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/forms.css" />
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/components.css" />
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Public/css/shame.css" />
+        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/foundation-grid.css" />
+        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/main.css" />
+        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/typography.css" />
+        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/forms.css" />
+        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/components.css" />
+        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/shame.css" />
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
         <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css' />
         <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
-        <script src="<?= URL; ?>public/js/functions.js"></script>
-        <script src="<?= URL; ?>public/js/extensions.js"></script>
+        <script src="<?= URL; ?>Static/js/functions.js"></script>
+        <script src="<?= URL; ?>Static/js/extensions.js"></script>
     </head>
     <body>
-        <div id="debug" style="display:block;">
-            <?php
-            var_dump($data['content']);
-            //var_dump($data['input']);
-            // var_dump($data['errors']);
-            ?>
-        </div>
+        <?php
+        // Display flash message.
+        echo $this->element('debug', array(
+            'enabled' => true,
+            'data' => $data
+        ));
+        ?>
         <header class="site-header">
             <div class="site-container site-container-centered">
                 <div class="row">
-                    <div class="small-12 medium-8 large-8 columns">
+                    <div class="small-12 medium-7 large-7 columns">
                         <div class="row site-logo-container">
                             <div class="small-2 medium-1 large-1 columns">
                                 <a href="<?= URL ?>">
-                                    <img class="logo-icon" src="<?= URL; ?>public/img/logo-icon.png" />
+                                    <img class="logo-icon" src="<?= URL; ?>Static/img/logo-icon.png" />
                                 </a>
                             </div>
                             <div class="small-10 medium-11 large-11 columns">
@@ -41,20 +41,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="small-12 medium-4 large-4 columns">
-                        <nav class="site-navigation right">
-                            <ul>
-                                <li class="site-navigation-item">
-                                    <a href="<?= URL; ?>user/login">Login</a>
-                                </li>
-                                <li class="site-navigation-item">
-                                    <a href="<?= URL; ?>user/register">Register</a>
-                                </li>
-                                <li class="site-navigation-item">
-                                    <a href="<?= URL; ?>user/logout">Logout</a>
-                                </li>
-                            </ul>
-                        </nav>
+                    <div class="small-12 medium-5 large-5 columns">
+                        <?php
+                        // Display flash message.
+                        echo $this->element('navigation', array(
+                            'logged_in' => 'inheret',
+                            'data' => $data
+                        ));
+                        ?>
                     </div>
                 </div>
             </div>

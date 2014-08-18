@@ -2,7 +2,7 @@
 /**
  *  Static Layout.
  *
- *  associated views: user/login, user/register, user/edit
+ *  associated views: User/index, User/login, User/register, User/edit, User/edit/change-password
  */
 
     // Echo header view.

@@ -17,7 +17,7 @@ use \Exception as Exception;
  *
  *  @author nathancharrois@gmail.com
  */
-    class User extends Controller{
+    class User extends Controller {
 
         /**
          *  Index page.
@@ -27,7 +27,7 @@ use \Exception as Exception;
             public function index() {
 
                 // Render layout and view files.
-                $this->render('static/index', 'pages/blank');
+                $this->render('Static/index', 'User/blank');
             }
 
         /**
@@ -71,7 +71,7 @@ use \Exception as Exception;
 
                             // Set flash.
                             Session::flash('success', i18n::lang('flash.login'));
-                            Route::redirect('user', 'edit');
+                            Route::redirect('User', 'edit');
                         }
 
                         // If login is unsuccesful.
@@ -93,7 +93,7 @@ use \Exception as Exception;
                 $data['content']['error.list'] = i18n::lang('error.list');
 
                // Render layout and view files.
-                $this->render('static/index', 'user/login', $data);
+                $this->render('Static/index', 'User/login', $data);
             }
 
         /**
@@ -109,7 +109,7 @@ use \Exception as Exception;
 
                 // Set session and redirect.
                 Session::flash('success', i18n::lang('flash.logout'));
-                Route::redirect('user', 'login');
+                Route::redirect('User', 'login');
             }
 
 
@@ -170,7 +170,7 @@ use \Exception as Exception;
 
                             // Flash message.
                             Session::flash('success', i18n::lang('flash.registered'));
-                            Route::redirect('user', 'login');
+                            Route::redirect('User', 'login');
                         }
 
                         catch(Exception $e) {
@@ -191,7 +191,7 @@ use \Exception as Exception;
                 $data['content']['error.list'] = i18n::lang('error.list');
 
                 // Render layout and view files.
-                $this->render('static/index', 'user/register', $data);
+                $this->render('Static/index', 'User/register', $data);
             }
 
         /**
@@ -209,7 +209,7 @@ use \Exception as Exception;
                 if(!$users_model->isLoggedIn()) {
 
                     // Redirect to login page.
-                    Route::redirect('user/login');
+                    Route::redirect('User/login');
                 }
 
                 // If user is logged in.
@@ -268,7 +268,7 @@ use \Exception as Exception;
 
                                         // Redirect.
                                         // Todo: Set up redirect to controller argument.
-                                        // Route::redirect('user', 'edit', 'change-password');
+                                        // Route::redirect('User', 'edit', 'change-password');
 
                                     }
 
@@ -337,7 +337,7 @@ use \Exception as Exception;
                                         Session::flash('success', i18n::lang('flash.update-profile'));
 
                                         // Redirect.
-                                        Route::redirect('user', 'edit');
+                                        Route::redirect('User', 'edit');
 
                                     }
 
@@ -358,6 +358,9 @@ use \Exception as Exception;
                         break;
                     }
 
+                    // Logged in.
+                    $data['logged_in'] = true;
+
                     // Set locale date.
                     $data['content']['label.edit'] = i18n::lang('label.edit');
                     $data['content']['form.email-public'] = i18n::lang('form.email-public');
@@ -373,7 +376,7 @@ use \Exception as Exception;
                 }
 
                 // Render layout and view files.
-                $this->render('static/index', 'user/edit', $data);
+                $this->render('Static/index', 'User/edit', $data);
             }
 
 

@@ -1,5 +1,4 @@
 <?php
-
 require 'Urbnio/Config/Config.php';
 
 // Autoload Classes.
