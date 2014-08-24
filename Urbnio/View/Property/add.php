@@ -29,7 +29,7 @@
                         <ul>
                             <?php
                             foreach($data['errors'] as $item => $message) {
-                                echo "<li>{$item} is {$message}.</li>";
+                                echo "<li>{$message}</li>";
                             }
                             ?>
                         </ul>
@@ -51,7 +51,10 @@
                         <div class="small-12 medium-4 large-3 columns">
                             <label for="name">Address:</label>
                         </div>
-                        <div class="small-12 medium-9 large-9 columns end">
+                        <div class="input-append-icon mtm hide loader">
+                            <span class="fa fa-spin fa-circle-o-notch"></span>
+                        </div>
+                        <div class="small-12 medium-8 large-9 columns end">
                             <input type="text" name="location" id="search-location" data-map-component="search-location" placeholder="Enter a location" />
                         </div>
                     </div>
@@ -62,9 +65,18 @@
                             <label for="name">Coordinates:</label>
                             <span class="label-subtext">Drag marker to spot.</span>
                         </div>
-                        <div class="small-12 medium-8 large-6 columns end">
+                        <div class="small-12 medium-8 large-9 columns end">
+                            <input type="hidden" name="coordinate-x" id="coordinate-x" />
+                            <input type="hidden" name="coordinate-y" id="coordinate-y" />
+                            <input type="hidden" name="address" id="address" />
                             <div class="map-container">
-                                <div id="map" data-map-type="basic"></div>
+                                <div id="map" data-map-type="basic" data-map-event="create-marker"></div>
+                                <div id="map-tools">
+                                    <button type="button" class="button create-marker">
+                                        <i class="fa fa-plus mrs"></i>
+                                        Place Marker
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -73,14 +85,11 @@
             <fieldset>
                 <div class="row">
                     <div class="small-12 medium-offset-8 medium-4 large-offset-10 large-2 columns">
-                        <button id="submit" type="button" class="large-12 fill button button-primary">
+                        <button id="submit" type="submit" class="large-12 fill button button-primary">
                             <?= $content['button']; ?>
                         </button>
                     </div>
                 </div>
             </fieldset>
         </form>
-
-
-
     </div>

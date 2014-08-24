@@ -4,6 +4,7 @@ namespace Urbnio\Controller;
 use Urbnio\Lib\Controller;
 use Urbnio\Helper\Input;
 use Urbnio\Helper\i18n;
+use Urbnio\Helper\Validate;
 
 
 /**
@@ -34,6 +35,23 @@ use Urbnio\Helper\i18n;
 
                     if(Input::exists()) {
 
+                        $items = array(
+                            'address' => array(
+                                'required' => true
+                            )
+                        );
+
+                        $validate = new Validate;
+
+                        $validation = $validate->check($_POST, $items);
+
+                        if($validation->passed()) {
+                            echo 'passed';
+                        }
+
+                        else {
+                            $data['errors'] = $validation->errors();
+                        }
                     }
 
                     // Logged in.

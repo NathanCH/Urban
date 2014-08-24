@@ -1,7 +1,9 @@
 /*  components.js
  *  nathancharrois@gmail.com
  *
- *  standalonne site components and elements.
+ *  stand alone site components and elements.
+ *
+ *  @todo   refactor this with module pattern.
  */
 
     $(function(){
@@ -30,7 +32,6 @@
 
                 // Set an map components on the page. (ie. search location).
                 setMapComponents(map);
-
             }
 
         /**
@@ -50,6 +51,15 @@
                     setInterval(function() {
                         mapElement.panBy(1, .5);
                     }, 120);
+                }
+
+                // Draggable Marker updates long lat data.
+                else if(mapEvent == 'create-marker') {
+
+                    $('.create-marker').click(function() {
+                        createMarker(mapElement);
+                    });
+
                 }
             }
 
@@ -74,16 +84,22 @@
                     // Watch for 'place_changed' event listener.
                     google.maps.event.addListener(autocomplete, 'place_changed', function() {
 
-                            var place = autocomplete.getPlace();
-                            var x = place.geometry.location.lat()
-                            var y = place.geometry.location.lng();
+                        // Get place's data.
+                        var place   = autocomplete.getPlace();
+                        var x       = place.geometry.location.lat()
+                        var y       = place.geometry.location.lng();
+                        var address = place.formatted_address;
 
-                           mapElement.setCenter({lat: x, lng: y});
-                           mapElement.setOptions({zoom:15})
+                        // Center map and set new zoom level.
+                        mapElement.setCenter({lat: x, lng: y});
 
-                            console.log(x);
-                            console.log(y);
+                        // Update hidden inputs.
+                        $('#coordinate-x').val(x);
+                        $('#coordinate-y').val(y);
+                        $('#address').val(address);
 
+                        // Create marker at location.
+                        createMarker(mapElement);
                     });
 
                     // Return false on pressing 'enter'.
@@ -197,5 +213,96 @@
                 var cityCoordinates = cities[keys[Math.floor(Math.random() * keys.length)]];
 
                 return cityCoordinates;
+            }
+
+        /**
+         *  Create marker at center location.
+         */
+            function createMarker(mapElement) {
+                // Create marker.
+                var marker = new google.maps.Marker({
+                    position: mapElement.getCenter(),
+                    map: mapElement,
+                    draggable:true
+                });
+
+                // Get center coordinates.
+                var x = marker.position.lat();
+                var y = marker.position.lng();
+
+                $('#coordinate-x').val(x);
+                $('#coordinate-y').val(y);
+
+                // Get address at this location.
+                getAddress(marker.position);
+
+                // Update coordinates when dragged.
+                google.maps.event.addListener(marker, 'dragend', function() {
+
+                    var x = marker.position.lat();
+                    var y = marker.position.lng();
+
+                    $('#coordinate-x').val(x);
+                    $('#coordinate-y').val(y);
+
+                    getAddress(marker.position);
+
+                });
+            }
+
+        /**
+         *  Get address.
+         */
+            function getAddress(latlng) {
+
+                $('.loader').fadeIn(50);
+                $('#submit').attr('disabled', 'disabled');
+
+                var geocoder = new google.maps.Geocoder();
+
+                // Reverse Geocode latling.
+                geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+
+                    // If status is okay.
+                    if (status == google.maps.GeocoderStatus.OK) {
+
+                        var state;
+                        var city;
+                        var street_number;
+
+                        // Iterate trough multi-dimensional array of results data.
+                        for (var x = 0, length_1 = results.length; x < length_1; x++){
+
+                            for (var y = 0, length_2 = results[x].address_components.length; y < length_2; y++){
+
+                                // Type of address.
+                                var type = results[x].address_components[y].types[0];
+
+                                if (type === "administrative_area_level_1") {
+                                    state = results[x].address_components[y].long_name;
+                                    if (city) break;
+
+                                }
+
+                                else if(type === "locality") {
+                                    city = results[x].address_components[y].long_name;
+                                    if (state) break;
+                                }
+
+                                else if(type === "street_number") {
+                                    street_number = results[x].address_components[y].long_name;
+                                }
+                            }
+                        }
+
+                        // Update fields with address.
+                        $('#search-location').val(street_number + ', ' + city + ', ' + state);
+                        $('#address').val(street_number + ', ' + city + ', ' + state);
+
+                        $('.loader').fadeOut(150);
+                        $('#submit').removeAttr('disabled');
+                    }
+                });
+
             }
     });

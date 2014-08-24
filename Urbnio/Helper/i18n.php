@@ -58,7 +58,8 @@ namespace Urbnio\Helper;
                 'password' => 'password',
                 'confirm-password' => 'confirm password',
                 'email' => 'email address',
-                'current-password' => 'current password'
+                'current-password' => 'current password',
+                'address' => 'address'
             );
 
             // Assign them as items.

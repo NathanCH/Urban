@@ -84,6 +84,11 @@
             color: #e45041;
         }
 
+    .button:disabled{
+        color: #bbb;
+        cursor: wait;
+    }
+
 
 /*  Inputs
     ===
@@ -346,9 +351,8 @@
         position: absolute;
         right: -35px;
         top: 50%;
-        margin-top: 2px;
         cursor: pointer;
-        color: #5A5A5A;
+        color: #f66051;
     }
 
         .input-append-icon span{

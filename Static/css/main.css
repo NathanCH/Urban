@@ -89,7 +89,10 @@
     ---
 */
 
-    footer{ text-align: center; }
+    footer{
+        margin: 20px 0;
+        text-align: center;
+    }
 
     .copyright{
         margin: 20px 0;
