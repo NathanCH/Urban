@@ -13,9 +13,11 @@
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/shame.css" />
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
         <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css' />
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false&libraries=places"></script>
         <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
         <script src="<?= URL; ?>Static/js/functions.js"></script>
         <script src="<?= URL; ?>Static/js/extensions.js"></script>
+        <script src="<?= URL; ?>Static/js/components.js"></script>
     </head>
     <body>
         <?php

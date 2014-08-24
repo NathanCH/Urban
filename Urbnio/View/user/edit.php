@@ -5,6 +5,7 @@
  *  @author nathancharrois@gmail.com
  *  @param  array   $data['errors']     result of validation.
  *  @param  array   $data['input']      the user's profile information.
+ *  @param  array   $data['section']    edit sub pages.
  *
  *  @todo   remove sections and make every section its own view.
  */
@@ -15,7 +16,7 @@
     <div class="site-container site-container-centered">
         <header class="row">
             <div class="columns">
-                <h1>Edit Profile</h1>
+                <h1><?= $content['label']; ?></h1>
             </div>
         </header>
 
@@ -96,7 +97,7 @@
                     <div class="row">
                         <div class="small-12 medium-offset-4 medium-4 large-offset-3 large-2 columns">
                             <button id="submit" class="large-12 fill button button-primary">
-                                <?= $content['button.save']; ?>
+                                <?= $content['button']; ?>
                             </button>
                         </div>
                     </div>
@@ -251,7 +252,7 @@
                     <div class="row">
                         <div class="small-12 medium-offset-8 medium-4 large-offset-10 large-2 columns">
                             <button id="submit" class="large-12 fill button button-primary">
-                                <?= $content['button.save']; ?>
+                                <?= $content['button']; ?>
                             </button>
                         </div>
                     </div>

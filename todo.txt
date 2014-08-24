@@ -1,2 +1,5 @@
 - Create function to route file paths for static files (css, js)
 - Create controller to handle layout types.
+- Remove 'sections' on the edit user method.
+- Create form errors element.
+- Change 'label' to 'page-title' for en_us.

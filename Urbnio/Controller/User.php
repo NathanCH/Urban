@@ -21,8 +21,6 @@ use \Exception as Exception;
 
         /**
          *  Index page.
-         *
-         *  @todo figure out what to do here.
          */
             public function index() {
 
@@ -87,8 +85,8 @@ use \Exception as Exception;
                 }
 
                 // Set locale date.
-                $data['content']['label.login'] = i18n::lang('label.login');
-                $data['content']['button.login'] = i18n::lang('button.login');
+                $data['content']['label'] = i18n::lang('label.login');
+                $data['content']['button'] = i18n::lang('button.login');
                 $data['content']['form.remember-me'] = i18n::lang('form.remember-me');
                 $data['content']['error.list'] = i18n::lang('error.list');
 
@@ -186,8 +184,8 @@ use \Exception as Exception;
                 }
 
                 // Set locale date.
-                $data['content']['label.register'] = i18n::lang('label.register');
-                $data['content']['button.create-account'] = i18n::lang('button.create-account');
+                $data['content']['label'] = i18n::lang('label.register');
+                $data['content']['button'] = i18n::lang('button.create-account');
                 $data['content']['error.list'] = i18n::lang('error.list');
 
                 // Render layout and view files.
@@ -206,7 +204,7 @@ use \Exception as Exception;
                 $users_model = $this->loadModel('UsersModel');
 
                 // If the current user is not logged in.
-                if(!$users_model->isLoggedIn()) {
+                if(!$users_model->is_logged_in()) {
 
                     // Redirect to login page.
                     Route::redirect('User/login');
@@ -362,9 +360,9 @@ use \Exception as Exception;
                     $data['logged_in'] = true;
 
                     // Set locale date.
-                    $data['content']['label.edit'] = i18n::lang('label.edit');
+                    $data['content']['label'] = i18n::lang('label.edit');
                     $data['content']['form.email-public'] = i18n::lang('form.email-public');
-                    $data['content']['button.save'] = i18n::lang('button.save');
+                    $data['content']['button'] = i18n::lang('button.save');
                     $data['content']['button.forgot-password'] = i18n::lang('button.forgot-password');
                     $data['content']['error.list'] = i18n::lang('error.list');
 

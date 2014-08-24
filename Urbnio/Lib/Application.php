@@ -1,6 +1,6 @@
 <?php
 namespace Urbnio\Lib;
-use Urbnio\Controller\Splash;
+use Urbnio\Controller\User;
 use Urbnio\Helper\Cookie;
 use Urbnio\Helper\Input;
 use Urbnio\Helper\Session;
@@ -64,8 +64,8 @@ class Application {
                 }
             } else {
 
-                $splash = new Splash();
-                $splash->index();
+                $splash = new User();
+                $splash->login();
             }
         }
 

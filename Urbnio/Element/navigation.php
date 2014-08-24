@@ -6,6 +6,9 @@ if(isset($data['logged_in'])){
 <nav class="site-navigation right">
     <ul>
         <li class="site-navigation-item">
+            <a href="<?= URL; ?>property/add">Add</a>
+        </li>
+        <li class="site-navigation-item">
             <a href="<?= URL; ?>user/edit/">Edit</a>
         </li>
         <li class="site-navigation-item">

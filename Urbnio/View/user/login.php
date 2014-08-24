@@ -15,7 +15,7 @@
     <div class="site-container-small site-container-centered">
         <header class="row">
             <div class="small-12 medium-12 large-12 columns">
-                <h1><?= $content['label.login']; ?></h1>
+                <h1><?= $content['label']; ?></h1>
             </div>
         </header>
         <form action="<?= URL; ?>user/login/" method="POST">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="small-12 medium-5 large-5 columns">
                         <button id="submit" class="large-12 fill button button-primary">
-                            <?= $content['label.login']; ?>
+                            <?= $content['button']; ?>
                         </button>
                     </div>
                 </div>

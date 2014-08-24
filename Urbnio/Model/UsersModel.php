@@ -238,7 +238,7 @@ use \Exception as Exception;
         /**
          *  Check if the current user is logged in.
          */
-            public function isLoggedIn() {
+            public function is_logged_in() {
                 return $this->_isLoggedIn;
             }
 

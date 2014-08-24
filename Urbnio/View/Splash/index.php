@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/splash.css" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Lato:300,400,700' rel='stylesheet' type='text/css' />
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
         <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
         <script src="<?= URL; ?>Static/js/components.js"></script>
     </head>
@@ -33,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div id="map"></div>
+        <div id="map" data-map-type="subtle" data-map-event="pan"></div>
 
         <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
