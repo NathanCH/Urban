@@ -87,7 +87,7 @@ use \Exception as Exception;
             public function update_user($fields = array(), $id = null) {
 
                 // If no user id is specified, get this user's id.
-                if(!$id && $this->isLoggedIn()) {
+                if(!$id && $this->is_logged_in()) {
                     $id = $this->data()->id;
                 }
 
@@ -106,7 +106,7 @@ use \Exception as Exception;
             public function change_password($password, $id = null) {
 
                 // If no user id is specified, get this user's id.
-                if(!$id && $this->isLoggedIn()) {
+                if(!$id && $this->is_logged_in()) {
                     $id = $this->data()->id;
                 }
 

@@ -11,11 +11,10 @@
     // Get view section.
     $content = $data['content'];
 ?>
-
     <div class="site-container-small site-container-centered">
         <header class="row">
             <div class="small-12 medium-12 large-12 columns">
-                <h1><?= $content['label']; ?></h1>
+                <h1><?= $content['page-title']; ?></h1>
             </div>
         </header>
         <form action="<?= URL; ?>user/login/" method="POST">
@@ -63,7 +62,7 @@
                 </div>
                 <div class="row">
                     <div class="small-12 medium-7 large-7 columns">
-                        <div class="checkbox-container mtm">
+                        <div class="checkbox-container mtm mbl">
                             <input type="hidden" name="remember_login" data-input="remember_login" value="0" />
                             <label class="input-checkbox-label">
                                 <span class="input-checkbox" data-input="remember_login"></span>

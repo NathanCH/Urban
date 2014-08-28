@@ -2,4 +2,5 @@
 - Create controller to handle layout types.
 - Remove 'sections' on the edit user method.
 - Create form errors element.
-- Change 'label' to 'page-title' for en_us.
+- Convert underscore to dash in routing action.
+- Come up with better name that 'property'.

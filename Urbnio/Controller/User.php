@@ -25,7 +25,7 @@ use \Exception as Exception;
             public function index() {
 
                 // Render layout and view files.
-                $this->render('Static/index', 'User/blank');
+                $this->render('static/index', 'user/blank');
             }
 
         /**
@@ -69,7 +69,7 @@ use \Exception as Exception;
 
                             // Set flash.
                             Session::flash('success', i18n::lang('flash.login'));
-                            Route::redirect('User', 'edit');
+                            Route::redirect('user', 'edit');
                         }
 
                         // If login is unsuccesful.
@@ -85,13 +85,13 @@ use \Exception as Exception;
                 }
 
                 // Set locale date.
-                $data['content']['label'] = i18n::lang('label.login');
+                $data['content']['page-title'] = i18n::lang('page-title.login');
                 $data['content']['button'] = i18n::lang('button.login');
                 $data['content']['form.remember-me'] = i18n::lang('form.remember-me');
                 $data['content']['error.list'] = i18n::lang('error.list');
 
                // Render layout and view files.
-                $this->render('Static/index', 'User/login', $data);
+                $this->render('static/index', 'user/login', $data);
             }
 
         /**
@@ -107,7 +107,7 @@ use \Exception as Exception;
 
                 // Set session and redirect.
                 Session::flash('success', i18n::lang('flash.logout'));
-                Route::redirect('User', 'login');
+                Route::redirect('user', 'login');
             }
 
 
@@ -168,7 +168,7 @@ use \Exception as Exception;
 
                             // Flash message.
                             Session::flash('success', i18n::lang('flash.registered'));
-                            Route::redirect('User', 'login');
+                            Route::redirect('user', 'login');
                         }
 
                         catch(Exception $e) {
@@ -184,20 +184,18 @@ use \Exception as Exception;
                 }
 
                 // Set locale date.
-                $data['content']['label'] = i18n::lang('label.register');
+                $data['content']['page-title'] = i18n::lang('page-title.register');
                 $data['content']['button'] = i18n::lang('button.create-account');
                 $data['content']['error.list'] = i18n::lang('error.list');
 
                 // Render layout and view files.
-                $this->render('Static/index', 'User/register', $data);
+                $this->render('static/index', 'user/register', $data);
             }
 
         /**
          *  Edit user.
-         *
-         *  @param  $section  section of your profile you would like to edit.
          */
-            public function edit($section = null) {
+            public function edit() {
 
                 $data = array();
 
@@ -216,154 +214,68 @@ use \Exception as Exception;
                     // Get user data.
                     $user_data = $users_model->data();
 
-                    // Pages to edit.
-                    switch ($section) {
+                    if(Input::exists()) {
 
-                        // Change Password.
-                        case 'change-password':
+                        // The form inputs to validate and the validation rules.
+                        $items = array(
+                            'name' => array(
+                                'required' => false,
+                                'min' => 2,
+                                'max' => 64
+                            ),
+                            'email' => array(
+                                'required' => true,
+                                'min' => 7,
+                                'max' => 64
+                            ),
+                            'about' => array(
+                                'required' => false,
+                                'max' => 10000
+                            )
+                        );
 
-                            // Tell view which section to render.
-                            $data['section'] = $section;
+                        // Create validation object.
+                        $validate = new Validate;
 
-                            if(Input::exists()) {
+                        // Check the post data against the validation rules.
+                        $validation = $validate->check($_POST, $items);
 
-                                // The password data for validation.
-                                $items = array(
-                                    'current-password' => array(
-                                        'required' => true,
-                                        'check_password' => $users_model->data()->password
-                                    ),
-                                    'password' => array(
-                                        'required' => true,
-                                        'min' => 6
-                                    ),
-                                    'confirm-password' => array(
-                                        'required' => true,
-                                        'matches' => 'password'
-                                    )
-                                );
+                        // Check if validation has passed.
+                        if($validation->passed()) {
 
-                                // Create validation object.
-                                $validate = new Validate;
+                            // Try to edit profile.
+                            try {
 
-                                // Check the post data against the validation rules.
-                                $validation = $validate->check($_POST, $items);
+                                // Update the user.
+                                $users_model->update_user(array(
+                                    'email' => $_POST['email'],
+                                    'name' => $_POST['name'],
+                                    'about' => $_POST['about'],
+                                    'location' => $_POST['location']
+                                ));
 
-                                // Check if validation has passed.
-                                if($validation->passed()) {
-
-                                    // Try saving the password.
-                                    try {
-
-                                        $password = Hash::encrypt_password($_POST['password']);
-
-                                        $users_model->change_password(array(
-                                            'password' => $password
-                                        ));
-
-                                        // Flash message.
-                                        Session::flash('success', i18n::lang('flash.update-password'));
-
-                                        // Redirect.
-                                        // Todo: Set up redirect to controller argument.
-                                        // Route::redirect('User', 'edit', 'change-password');
-
-                                    }
-
-                                    catch(Exception $e) {
-                                        die($e->getMessage());
-                                    }
-
-                                }
-
-                                // Render validation errors.
-                                else{
-                                    $data['errors'] = $validation->errors();
-                                }
-
+                                // Flash message.
+                                Session::flash('success', i18n::lang('flash.update-profile'));
                             }
 
-                        break;
-
-                        // Edit Profile Page.
-                        default:
-
-                            // Tell view which section to render.
-                            $data['section'] = null;
-
-                            if(Input::exists()) {
-
-                                // The form inputs to validate and the validation rules.
-                                $items = array(
-                                    'name' => array(
-                                        'required' => false,
-                                        'min' => 2,
-                                        'max' => 64
-                                    ),
-                                    'email' => array(
-                                        'required' => true,
-                                        'min' => 7,
-                                        'max' => 64
-                                    ),
-                                    'about' => array(
-                                        'required' => false,
-                                        'max' => 10000
-                                    )
-                                );
-
-                                // Create validation object.
-                                $validate = new Validate;
-
-                                // Check the post data against the validation rules.
-                                $validation = $validate->check($_POST, $items);
-
-                                // Check if validation has passed.
-                                if($validation->passed()) {
-
-                                    // Try to edit profile.
-                                    try {
-
-                                        // Update the user.
-                                        $users_model->update_user(array(
-                                            'email' => $_POST['email'],
-                                            'name' => $_POST['name'],
-                                            'about' => $_POST['about'],
-                                            'location' => $_POST['location']
-                                        ));
-
-                                        // Flash message.
-                                        Session::flash('success', i18n::lang('flash.update-profile'));
-
-                                        // Redirect.
-                                        Route::redirect('User', 'edit');
-
-                                    }
-
-                                    catch(Exception $e) {
-                                        die($e->getMessage());
-                                    }
-                                }
-
-
-
-                                // Render validation errors.
-                                else{
-                                    $data['errors'] = $validation->errors();
-                                }
-
+                            catch(Exception $e) {
+                                die($e->getMessage());
                             }
+                        }
 
-                        break;
+                        // Render validation errors.
+                        else{
+                            $data['errors'] = $validation->errors();
+                        }
                     }
 
                     // Logged in.
                     $data['logged_in'] = true;
 
                     // Set locale date.
-                    $data['content']['label'] = i18n::lang('label.edit');
+                    $data['content']['page-title'] = i18n::lang('page-title.edit');
                     $data['content']['form.email-public'] = i18n::lang('form.email-public');
                     $data['content']['button'] = i18n::lang('button.save');
-                    $data['content']['button.forgot-password'] = i18n::lang('button.forgot-password');
                     $data['content']['error.list'] = i18n::lang('error.list');
 
                     // Escape and prepare data for view.
@@ -374,8 +286,97 @@ use \Exception as Exception;
                 }
 
                 // Render layout and view files.
-                $this->render('Static/index', 'User/edit', $data);
+                $this->render('static/index', 'user/edit', $data);
             }
 
+        /**
+         *  Change password.
+         */
+            public function change_password() {
 
+                $data = array();
+
+                $users_model = $this->loadModel('UsersModel');
+
+
+                // If the current user is not logged in.
+                if(!$users_model->is_logged_in()) {
+
+                    // Redirect to login page.
+                    Route::redirect('User/login');
+                }
+
+                // If user is logged in.
+                else{
+
+                    // Get user data.
+                    $user_data = $users_model->data();
+
+                    if(Input::exists()) {
+
+                        // The password data for validation.
+                        $items = array(
+                            'current-password' => array(
+                                'required' => true,
+                                'check_password' => $users_model->data()->password
+                            ),
+                            'password' => array(
+                                'required' => true,
+                                'min' => 6
+                            ),
+                            'confirm-password' => array(
+                                'required' => true,
+                                'matches' => 'password'
+                            )
+                        );
+
+                        // Create validation object.
+                        $validate = new Validate;
+
+                        // Check the post data against the validation rules.
+                        $validation = $validate->check($_POST, $items);
+
+                        // Check if validation has passed.
+                        if($validation->passed()) {
+
+                            // Try saving the password.
+                            try {
+
+                                $password = Hash::encrypt_password($_POST['password']);
+
+                                $users_model->change_password(array(
+                                    'password' => $password
+                                ));
+
+                                // Flash message.
+                                Session::flash('success', i18n::lang('flash.update-password'));
+
+                            }
+
+                            catch(Exception $e) {
+                                die($e->getMessage());
+                            }
+
+                        }
+
+                        // Render validation errors.
+                        else{
+                            $data['errors'] = $validation->errors();
+                        }
+                    }
+                }
+
+                // Logged in.
+                $data['logged_in'] = true;
+
+                // Set locale date.
+                $data['content']['page-title'] = i18n::lang('page-title.change-password');
+                $data['content']['button'] = i18n::lang('button.save');
+                $data['content']['button.forgot-password'] = i18n::lang('button.forgot-password');
+                $data['content']['error.list'] = i18n::lang('error.list');
+
+
+                // Render layout and view files.
+                $this->render('static/index', 'user/change-password', $data);
+            }
     }

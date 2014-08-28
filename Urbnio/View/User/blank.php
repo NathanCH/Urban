@@ -5,7 +5,6 @@
  *  @author nathancharrois@gmail.com
  */
 ?>
-
     <div class="site-container site-container-centered">
         <div class="row">
             <div class="columns">

@@ -12,7 +12,7 @@ if(isset($data['logged_in'])){
             <a href="<?= URL; ?>user/edit/">Edit</a>
         </li>
         <li class="site-navigation-item">
-            <a href="<?= URL; ?>user/edit/change-password">Change Password</a>
+            <a href="<?= URL; ?>user/change_password">Change Password</a>
         </li>
         <li class="site-navigation-item">
             <a href="<?= URL; ?>user/logout">Logout</a>

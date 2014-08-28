@@ -5,6 +5,7 @@ use Urbnio\Lib\Controller;
 use Urbnio\Helper\Input;
 use Urbnio\Helper\i18n;
 use Urbnio\Helper\Validate;
+use Urbnio\Helper\Route;
 
 
 /**
@@ -27,7 +28,7 @@ use Urbnio\Helper\Validate;
                 if(!$users_model->is_logged_in()) {
 
                     // Redirect to login page.
-                    Route::redirect('User/login');
+                    Route::redirect('user/login');
                 }
 
                 // If the user is logged in.
@@ -58,14 +59,14 @@ use Urbnio\Helper\Validate;
                     $data['logged_in'] = true;
 
                     // Set locale data.
-                    $data['content']['label'] = i18n::lang('label.add-property');
+                    $data['content']['page-title'] = i18n::lang('page-title.add-property');
                     $data['content']['button'] = i18n::lang('button.next-step');
                     $data['content']['error.list'] = i18n::lang('error.list');
 
                 }
 
                 // Render layout and view files.
-                $this->render('Static/index', 'Property/add', $data);
+                $this->render('static/index', 'property/add', $data);
             }
 
     }
