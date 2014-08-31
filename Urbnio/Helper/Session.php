@@ -31,7 +31,6 @@ namespace Urbnio\Helper;
          *  Check if a session exists.
          *
          *  @param  string    $name   name of the session.
-         *  @return boolean           if the session exists.
          */
 
             public static function exists($name) {
@@ -42,7 +41,6 @@ namespace Urbnio\Helper;
          *  Delete current session.
          *
          *  @param  string    $name   name of the session.
-         *  @return boolean           if the session has been deleted.
          */
             public static function delete($name){
                 if(self::exists($name)){

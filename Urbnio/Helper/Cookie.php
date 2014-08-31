@@ -9,7 +9,7 @@ namespace Urbnio\Helper;
         /**
          *  Check if cookie exists.
          *
-         *  @param  string    $name   name of the cookie.
+         *  @param string $name name of the cookie.
          */
             public static function exists($name) {
                 return (isset($_COOKIE[$name])) ? true : false;

@@ -16,6 +16,7 @@
             // Load the map when the page has loaded.
             google.maps.event.addDomListener(window, 'load', loadMap);
 
+
             function loadMap() {
 
                 // Get map options.
@@ -24,14 +25,18 @@
                 // Get map HTML DOM element.
                 var element = document.getElementById('map');
 
-                // Render the map.
-                var map = new google.maps.Map(element, options);
+               // If map element exists.
+                if(element) {
 
-                // Get map event type.
-                getMapEvent(map);
+                    // Render the map.
+                    var map = new google.maps.Map(element, options);
 
-                // Set an map components on the page. (ie. search location).
-                setMapComponents(map);
+                    // Get map event type.
+                    getMapEvent(map);
+
+                    // Set an map components on the page. (ie. search location).
+                    setMapComponents(map);
+                }
             }
 
         /**

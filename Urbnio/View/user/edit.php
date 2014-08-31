@@ -28,7 +28,7 @@
                         <ul>
                             <?php
                             foreach($data['errors'] as $item => $message) {
-                                echo "<li>{$item} is {$message}.</li>";
+                                echo "<li>{$message}</li>";
                             }
                             ?>
                         </ul>
@@ -38,6 +38,7 @@
             <?php
             }
             ?>
+
             <fieldset>
                 <div class="row">
                     <div class="columns">

@@ -17,6 +17,7 @@ namespace Urbnio\Helper;
          *  @todo   set up HTTP response controller to handle views and layout.
          */
             public static function redirect($location, $action = null) {
+
                 $path = URL . $location;
 
                 // Handle HTTP repsonse codes.

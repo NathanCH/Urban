@@ -7,7 +7,7 @@ use Urbnio\Lib\Controller;
 /**
  *  Users Controller
  *
- *  @author nathancharrois@gmail.com
+ *  @author nathan <nathancharrois@gmail.com>
  */
     class Splash extends Controller {
 

@@ -28,7 +28,7 @@
                         <ul>
                             <?php
                             foreach($data['errors'] as $item => $message) {
-                                echo "<li>{$message}</li>";
+                                echo "<li>- {$message}</li>";
                             }
                             ?>
                         </ul>

@@ -11,7 +11,7 @@ use Urbnio\Helper\Route;
 /**
  *  Property Controller
  *
- *  @author nathancharrois@gmail.com
+ *  @author nathan <nathancharrois@gmail.com>
  */
     class Property extends Controller {
 

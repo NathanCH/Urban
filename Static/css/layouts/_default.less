@@ -1,0 +1,39 @@
+/*  Default Layout Styles
+    ===
+*/
+
+    body{
+        background: #FFF linear-gradient(to bottom, #F1F1F1 0%, #FFFFFF 80%) no-repeat;
+        height: 100%;
+        width: 100%;
+    }
+
+/*  Site Structure
+    ===
+
+    Container Setup
+    ---
+*/
+
+    .site-container{
+        max-width: 1024px;
+        height: auto;
+    }
+
+    .site-container-small{
+        width: 400px;
+        height: auto;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        div[class^="site-container"]{
+            width: 100%;
+            padding: 0 40px 40px 40px;
+        }
+    }
+
+    .site-container-centered{
+        position: relative;
+        display: block;
+        margin: 0 auto;
+    }

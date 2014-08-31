@@ -1,6 +1,1 @@
-- Create function to route file paths for static files (css, js)
 - Create controller to handle layout types.
-- Remove 'sections' on the edit user method.
-- Create form errors element.
-- Convert underscore to dash in routing action.
-- Come up with better name that 'property'.

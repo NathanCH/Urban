@@ -15,7 +15,7 @@ use \Exception as Exception;
 /**
  *  Users Controller
  *
- *  @author nathancharrois@gmail.com
+ *  @author nathan <nathancharrois@gmail.com>
  */
     class User extends Controller {
 
@@ -205,7 +205,7 @@ use \Exception as Exception;
                 if(!$users_model->is_logged_in()) {
 
                     // Redirect to login page.
-                    Route::redirect('User/login');
+                    Route::redirect('user/login');
                 }
 
                 // If user is logged in.
@@ -255,7 +255,9 @@ use \Exception as Exception;
                                 ));
 
                                 // Flash message.
-                                Session::flash('success', i18n::lang('flash.update-profile'));
+                                Route::redirect('user/edit');
+                                // Session::flash('success', i18n::lang('flash.update-profile'));
+
                             }
 
                             catch(Exception $e) {

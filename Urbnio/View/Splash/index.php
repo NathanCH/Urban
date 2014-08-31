@@ -5,9 +5,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?= APP_NAME; ?> - <?= APP_VER; ?></title>
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/reset.css" />
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/foundation-grid.css" />
-        <link rel="stylesheet" type="text/css" href="<?= URL; ?>Static/css/splash.css" />
+        <link rel="stylesheet" type="text/less" href="<?= URL; ?>Static/css/splash.less" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.4/less.min.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Lato:300,400,700' rel='stylesheet' type='text/css' />
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
