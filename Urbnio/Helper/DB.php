@@ -44,6 +44,7 @@ namespace Urbnio\Helper;
          *  Get instance of database.
          */
             public static function getInstance() {
+
                 // Connect to the Database if we haven't already.
                 if(!isset(self::$_instance)) {
                     self::$_instance = new DB();

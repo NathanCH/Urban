@@ -2,8 +2,6 @@
  *  nathancharrois@gmail.com
  *
  *  stand alone site components and elements.
- *
- *  @todo   refactor this with module pattern.
  */
 
     $(function(){
@@ -224,6 +222,7 @@
          *  Create marker at center location.
          */
             function createMarker(mapElement) {
+
                 // Create marker.
                 var marker = new google.maps.Marker({
                     position: mapElement.getCenter(),

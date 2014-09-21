@@ -18,28 +18,34 @@
     }
 
     .button-primary{
-        background: #f66051;
+        background: @primary;
         color: white;
         font-weight: 400;
     }
 
         .button-primary:hover{
-            background: #e45041;
+            background: @primary-hover;
         }
 
     .button-text{
         text-decoration: underline;
         background: none;
         padding: 0px;
-        color: #f66051;
+        color: @primary;
     }
 
         .button-text:hover{
-            color: #e45041;
+            color: @primary-hover;
         }
 
     .button:disabled{
+        background: #ececec;
         color: #bbb;
         cursor: wait;
     }
+
+        .button:disabled:hover{
+            background: inherit;
+            color: inherit;
+        }
 

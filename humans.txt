@@ -1,7 +1,7 @@
 # Main
 
     Author: nathancharrois@gmail.com
-    Role: Lead Developer and Designer
+    Role: developer / designer
     Site: http://cetan.ca
 
 # Thanks

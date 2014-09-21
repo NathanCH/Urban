@@ -27,7 +27,7 @@
 
     /* Label Sub text */
     .label-subtext{
-        color: #888;
+        color: @body;
         font-size: 12px;
     }
 
@@ -117,7 +117,7 @@
         }
 
         .select-container:hover .select-caret i{
-            color: #f66051;
+            color: @primary;
         }
 
     .select-container .select-text{
@@ -194,9 +194,11 @@
     }
 
     .input-checkbox.active{
-        background: #f66051;
+        background: @primary;
         box-shadow: 0 0 0 2px #FFFFFF inset;
     }
+
+
 
 /*  File Upload
     ---

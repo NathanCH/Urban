@@ -52,7 +52,7 @@
                             <label for="name">Address:</label>
                         </div>
                         <div class="input-append-icon mtm hide loader">
-                            <span class="fa fa-spin fa-circle-o-notch"></span>
+                            <span class="fa fa-spin fa-spinner"></span>
                         </div>
                         <div class="small-12 medium-8 large-9 columns end">
                             <input type="text" name="location" id="search-location" data-map-component="search-location" placeholder="Enter a location" />

@@ -58,6 +58,7 @@ use \Exception as Exception;
 
                     // Check if validation has passed.
                     if($validation->passed()){
+
                         // Load UsersModel.
                         $users_model = $this->loadModel('UsersModel');
 

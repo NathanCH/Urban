@@ -28,6 +28,7 @@ use \Exception as Exception;
          *  @todo  create logic to delete expired sessions.
          */
             function __construct($user = null) {
+
                 // Get an instance of the database.
                 $this->_db = DB::getInstance();
 
@@ -39,13 +40,16 @@ use \Exception as Exception;
 
                 // Make sure this isn't for a specific user.
                 if(!$user) {
+
                     // And this user is logged in.
                     if(Session::exists($this->_sessionName)) {
+
                         // Get the user's id.
                         $user = Session::get($this->_sessionName);
 
                         // Check if the user exists.
                         if($this->find($user)) {
+
                             // Set them as logged in.
                             $this->_isLoggedIn = true;
                         }
@@ -61,6 +65,7 @@ use \Exception as Exception;
 
                 // If the user has been defined.
                 else{
+
                     // Get a user's data.
                     $this->find($user);
                 }
@@ -72,6 +77,7 @@ use \Exception as Exception;
          *  @param array  $fields   the fields to add.
          */
             public function register_user($fields = array()) {
+
                 // Insert user into database, else throw an error.
                 if(!$this->_db->insert('users', $fields)) {
                     throw new Exception('There was a problem creating this user.');
@@ -125,7 +131,9 @@ use \Exception as Exception;
          *         create new validation rule to ensure email field is a proper email.
          */
             public function find($user = null){
+
                 if($user) {
+
                     // If $user if an integer, search by id.
                     $field = (is_numeric($user)) ? 'id' : 'email';
 
@@ -134,6 +142,7 @@ use \Exception as Exception;
 
                     // If the user does exist...
                     if($data->count()) {
+
                         // Set the user's data.
                         $this->_data = $data->first();
 
@@ -154,19 +163,21 @@ use \Exception as Exception;
          */
             public function login($username = null, $password = null, $remember = false) {
 
-
                 // When username or password haven't been defined, but the current user exists.
                 if(!$username && !$password && $this->exists()) {
+
                     // Create a session for a user that has a valid cookie.
                     Session::put($this->_sessionName, $this->data()->id);
                 }
 
                 else{
+
                     // Check that fields are passed.
                     $user = $this->find($username);
 
                     // If we found a user.
                     if($user) {
+
                         // Create new hash and check if it matches their password.
                         if(Hash::is_correct_password($password, $this->data()->password)) {
 
@@ -201,7 +212,6 @@ use \Exception as Exception;
                             return true;
                         }
                     }
-
                 }
 
                 return false;

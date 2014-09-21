@@ -11,16 +11,16 @@ namespace Urbnio\Lib;
          *  Load the model with the given name.
          *
          *  @param   string $model_name      The name of the model
-         *  @param   string $param           Pass the model information.
+         *  @param   string $dependency      Pass the model dependencies.
          *  @return  object model
          */
-            public function loadModel($model_name, $param = null) {
+            public function loadModel($model_name, $dependency = null) {
 
                 // Append controller action to class location.
                 $controller_action = $model_name;
                 $class_location = '\\Urbnio\\Model\\' . $controller_action;
 
-                return new $class_location($param);
+                return new $class_location($dependency);
             }
 
         /**

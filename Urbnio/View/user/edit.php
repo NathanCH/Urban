@@ -133,13 +133,13 @@
                                 <textarea class="textarea-editor-body" name="about" rows="5"><?php echo $data['input']['about']; ?></textarea>
                                 <div class="textarea-editor-tools">
                                     <ul class="tools clearfix">
-                                        <li class="tool active">
+                                        <li class="tool disabled">
                                             <i class="fa fa-bold"></i>
                                         </li>
-                                        <li class="tool">
+                                        <li class="tool disabled">
                                             <i class="fa fa-italic"></i>
                                         </li>
-                                        <li class="tool">
+                                        <li class="tool disabled">
                                             <i class="fa fa-list-ul"></i>
                                         </li>
                                     </ul>
