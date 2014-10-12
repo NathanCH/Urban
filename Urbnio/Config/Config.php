@@ -15,6 +15,7 @@ define('COOKIE_EXPIRY', 604800);
 
 define('APP_NAME', 'Urbn');
 define('APP_VER' , '0.2');
+define('APP_TAG' , 'for architecture and urban enthusiasts.');
 define('APP_LOCALE', 'en_us');
 
 define('LAYOUT_PATH', 'Urbnio/Layout/');

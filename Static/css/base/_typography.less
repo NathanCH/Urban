@@ -60,12 +60,13 @@
     ---
 */
     .logo-text{
-        font-size: 26px;
-        font-weight: 400;
-        font-family: "Roboto", Arial, sans-serif;
+        font-size: 25px;
+        font-weight: 600;
+        font-family: 'Open Sans', Arial, san-serif;
+        letter-spacing: 1px;
         letter-spacing: 1px;
         display: block;
-        line-height: 42px;
+        line-height: 38px;
     }
 
         .logo-text a{
@@ -73,6 +74,12 @@
             text-decoration: none;
         }
 
+        .logo-text:after{
+            content: ".";
+            color: @accent;
+        }
+
     .slogan{
         color: #AAA;
+        font-size: 16px;
     }

@@ -1,9 +1,9 @@
-<div id="debug" style="display:block;">
-<pre>
+<div id="debug">
+    <pre>
     <?php
-    //var_dump($data['content']);
-    //var_dump($data['input']);
-    //var_dump($data['errors']);
+    // isset($data['content']) ? var_dump($data['content']) : null;
+    isset($data['input']) ? var_dump($data['input']) : null;
+    isset($data['errors']) ? var_dump($data['errors']) : null;
     ?>
-</pre>
+    </pre>
 </div>

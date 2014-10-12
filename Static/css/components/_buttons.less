@@ -10,13 +10,32 @@
 */
 
     .button{
+        display: inline-block;
         cursor: pointer;
         border: 0;
-        padding: 10px 8px;
+        padding: 10px 20px;
         font-family: "Roboto";
         font-size: 14px;
+        line-height: normal;
+        text-align: center;
     }
 
+    .button:disabled{
+        background: #ececec;
+        color: #bbb;
+        cursor: wait;
+    }
+
+        .button:disabled:hover{
+            background: inherit;
+            color: inherit;
+        }
+
+/*  Button Types
+    ---
+*/
+
+    /* Primary */
     .button-primary{
         background: @primary;
         color: white;
@@ -27,6 +46,7 @@
             background: @primary-hover;
         }
 
+    /* Text Link */
     .button-text{
         text-decoration: underline;
         background: none;
@@ -38,14 +58,8 @@
             color: @primary-hover;
         }
 
-    .button:disabled{
-        background: #ececec;
-        color: #bbb;
-        cursor: wait;
-    }
-
-        .button:disabled:hover{
-            background: inherit;
-            color: inherit;
+        .button-text-grey{
+            color: @body;
+            text-decoration: none;
         }
 
