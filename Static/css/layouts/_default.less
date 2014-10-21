@@ -15,27 +15,23 @@
     ---
 */
 
-    .site-container{
+    .site-wrap{
         max-width: 1024px;
         height: auto;
+        margin: 0 auto;
     }
 
-    .site-container-small{
+    .site-wrap-small{
         width: 400px;
         height: auto;
-    }
-
-    @media only screen and (max-width: 1024px) {
-        div[class^="site-container"]{
-            width: 100%;
-            padding: 0 40px 40px 40px;
-        }
-    }
-
-    .site-container-centered{
-        position: relative;
-        display: block;
         margin: 0 auto;
+    }
+
+    @media only screen and (max-width: @tablet) {
+        div[class^="site-wrap"]{
+            width: 100%;
+            padding: 0 40px;
+        }
     }
 
 /*  Container Row Colors

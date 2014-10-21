@@ -80,29 +80,44 @@
             });
 
         /**
-         *  Delay Fade Element.
-         *
-         *  <div data-event"fade" />
-         */
-            $(document).ready(function(){
-                // Fadeout after 2 seconds.
-                setTimeout(function(){
-                    $('[data-event*="fade"]').fadeOut(750);
-                }, 2000);
-            });
-
-
-        /**
          *  Toggle Container visibility.
          *
          *  <div class="hide" data-event="toggle">Toggle A</div>
          *  <div class="show" data-event="toggle">Toggle B</div>
          *  <button data-event="toggle-button">Toggle</button>
-         *  <img data-event="toggle-button" />
          */
             $(document).ready(function(){
                 $('[data-event*="toggle-button"]').click(function(){
                     $('[data-event*="toggle"]').toggle();
+                });
+            });
+
+        /**
+         *  Dropdown
+         *
+         *  <span class="dropdown" data-event="toggle-dropdown">
+         *      <a class="button button-text button-text-grey" href="#">Nathan Charrois</a>
+         *      <ul class="dropdown-menu hide">
+         *          <li>...</li>
+         *      </ul>
+         *  </span>
+         */
+            $(document).ready(function(){
+                $('[data-event*="toggle-dropdown"]').click(function(e){
+                    $(this).siblings('.dropdown-menu').toggle();
+
+                    return false;
+                });
+
+                $('.dropdown-menu').click(function(e){
+                    e.stopPropagation();
+                });
+
+                $(document).click(function(){
+                    $('.dropdown-menu').hide();
+                });
+                $(window).resize(function(){
+                    $('.dropdown-menu').hide();
                 });
             });
 

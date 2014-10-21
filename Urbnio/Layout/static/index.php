@@ -1,8 +1,6 @@
 <?php
 /**
  *  Static Layout.
- *
- *  associated views: User/index, User/login, User/register, User/edit, User/edit/change-password
  */
 
     // Echo header view.

@@ -6,7 +6,7 @@
  */
 
 ?>
-    <div class="site-container-small site-container-centered">
+    <div class="site-wrap-small">
         <header class="row">
             <div class="small-12 medium-12 large-12 columns">
                 <h1><?= $content['page-title']; ?></h1>

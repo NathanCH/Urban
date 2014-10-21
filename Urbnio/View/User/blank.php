@@ -5,7 +5,7 @@
  *  @author nathancharrois@gmail.com
  */
 ?>
-    <div class="site-container site-container-centered">
+    <div class="site-wrap">
         <div class="row">
             <div class="columns">
                 <h1>Hmm...</h1>

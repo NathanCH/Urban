@@ -25,7 +25,7 @@ use \Exception as Exception;
             public function index() {
 
                 // Render layout and view files.
-                $this->render('static/index', 'user/blank');
+                $this->render('splash/index', 'splash/index');
             }
 
         /**
@@ -38,61 +38,73 @@ use \Exception as Exception;
 
                 $data = array();
 
-                // If login details have been submitted.
-                if(Input::exists()) {
-                    // The form inputs to validate and the validation rules.
-                    $items = array(
-                        'email' => array(
-                            'required' => true
-                        ),
-                        'password' => array(
-                            'required' => true
-                        )
-                    );
+                $users_model = $this->loadModel('UsersModel');
 
-                    // Create validation object.
-                    $validate = new Validate;
+                // If the current user is already logged in.
+                if($users_model->is_logged_in()) {
 
-                    // Check the post data against the validation rules.
-                    $validation = $validate->check($_POST, $items);
-
-                    // Check if validation has passed.
-                    if($validation->passed()){
-
-                        // Load UsersModel.
-                        $users_model = $this->loadModel('UsersModel');
-
-                        // Check if they want to be remembered.
-                        $remember = ($_POST['remember_login'] === '1') ? true : false;
-
-                        // Login the user.
-                        if($users_model->login($_POST['email'], $_POST['password'], $remember)) {
-
-                            // Set flash.
-                            Session::flash('success', i18n::lang('flash.login'));
-                            Route::redirect('user', 'edit');
-                        }
-
-                        // If login is unsuccesful.
-                        else{
-                            $data = array('errors' => array('login-failed' => "This email and password combination don't exist."));
-                        }
-                    }
-
-                    // Render validation errors.
-                    else{
-                        $data = array('errors' => $validation->errors());
-                    }
+                    // Redirect to edit page.
+                    Route::redirect('user/edit');
                 }
 
-                // Set locale date.
-                $data['content']['page-title'] = i18n::lang('page-title.login');
-                $data['content']['button'] = i18n::lang('button.login');
-                $data['content']['form.remember-me'] = i18n::lang('form.remember-me');
-                $data['content']['error.list'] = i18n::lang('error.list');
+                else {
 
-               // Render layout and view files.
-                $this->render('static/index', 'user/login', $data);
+                    // If login details have been submitted.
+                    if(Input::exists()) {
+                        // The form inputs to validate and the validation rules.
+                        $items = array(
+                            'email' => array(
+                                'required' => true
+                            ),
+                            'password' => array(
+                                'required' => true
+                            )
+                        );
+
+                        // Create validation object.
+                        $validate = new Validate;
+
+                        // Check the post data against the validation rules.
+                        $validation = $validate->check($_POST, $items);
+
+                        // Check if validation has passed.
+                        if($validation->passed()){
+
+                            // Load UsersModel.
+                            $users_model = $this->loadModel('UsersModel');
+
+                            // Check if they want to be remembered.
+                            $remember = ($_POST['remember_login'] === '1') ? true : false;
+
+                            // Login the user.
+                            if($users_model->login($_POST['email'], $_POST['password'], $remember)) {
+
+                                // Set flash.
+                                Session::flash('success', i18n::lang('flash.login'));
+                                Route::redirect('user', 'edit');
+                            }
+
+                            // If login is unsuccesful.
+                            else{
+                                $data = array('errors' => array('login-failed' => "This email and password combination don't exist."));
+                            }
+                        }
+
+                        // Render validation errors.
+                        else{
+                            $data = array('errors' => $validation->errors());
+                        }
+                    }
+
+                    // Set locale date.
+                    $data['content']['page-title'] = i18n::lang('page-title.login');
+                    $data['content']['button'] = i18n::lang('button.login');
+                    $data['content']['form.remember-me'] = i18n::lang('form.remember-me');
+                    $data['content']['error.list'] = i18n::lang('error.list');
+
+                    // Render layout and view files.
+                    $this->render('static/index', 'user/login', $data);
+                }
             }
 
         /**
@@ -120,77 +132,90 @@ use \Exception as Exception;
 
                 $data = array();
 
-                // If registration data has been submitted.
-                if(Input::exists()) {
+                $users_model = $this->loadModel('UsersModel');
 
-                    // The form inputs to validate and the validation rules.
-                    $items = array(
-                        'email' => array(
-                            'required' => true,
-                            'min' => 7,
-                            'max' => 64,
-                            'unique' => 'users'
-                        ),
-                        'password' => array(
-                            'required' => true,
-                            'min' => 6
-                        ),
-                        'confirm-password' => array(
-                            'required' => true,
-                            'matches' => 'password'
-                        )
-                    );
+                // If the current user is already logged in.
+                if($users_model->is_logged_in()) {
 
-                    // Create validation object.
-                    $validate = new Validate;
-
-                    // Check the post data against the validation rules.
-                    $validation = $validate->check($_POST, $items);
-
-                    // Check if validation has passed.
-                    if($validation->passed()) {
-
-                        // Load UsersModel.
-                        $users_model = $this->loadModel('UsersModel');
-
-                        // Try to create user.
-                        try {
-
-                            $password   = Hash::encrypt_password($_POST['password']);
-                            $created    = date('Y-m-d H:i:s');
-
-                            // Register the user.
-                            $users_model->register_user(array(
-                                'email'     => $_POST['email'],
-                                'password'  => $password,
-                                'group'     => 'user',
-                                'created'   => $created
-                            ));
-
-                            // Flash message.
-                            Session::flash('success', i18n::lang('flash.registered'));
-                            Route::redirect('user', 'login');
-                        }
-
-                        catch(Exception $e) {
-                            die($e->getMessage());
-                        }
-                    }
-
-                    // Render validation errors.
-                    else{
-                        $data['errors'] = $validation->errors();
-                    }
-
+                    // Redirect to edit page.
+                    Route::redirect('user/edit');
                 }
 
-                // Set locale date.
-                $data['content']['page-title'] = i18n::lang('page-title.register');
-                $data['content']['button'] = i18n::lang('button.create-account');
-                $data['content']['error.list'] = i18n::lang('error.list');
+                else {
 
-                // Render layout and view files.
-                $this->render('static/index', 'user/register', $data);
+                    // If registration data has been submitted.
+                    if(Input::exists()) {
+
+                        // The form inputs to validate and the validation rules.
+                        $items = array(
+                            'email' => array(
+                                'required' => true,
+                                'min' => 7,
+                                'max' => 64,
+                                'unique' => 'users'
+                            ),
+                            'password' => array(
+                                'required' => true,
+                                'min' => 6
+                            ),
+                            'confirm-password' => array(
+                                'required' => true,
+                                'matches' => 'password'
+                            )
+                        );
+
+                        // Create validation object.
+                        $validate = new Validate;
+
+                        // Check the post data against the validation rules.
+                        $validation = $validate->check($_POST, $items);
+
+                        // Check if validation has passed.
+                        if($validation->passed()) {
+
+                            // Load UsersModel.
+                            $users_model = $this->loadModel('UsersModel');
+
+                            // Try to create user.
+                            try {
+
+                                $password   = Hash::encrypt_password($_POST['password']);
+                                $created    = date('Y-m-d H:i:s');
+
+                                // Register the user.
+                                $users_model->register_user(array(
+                                    'email'     => $_POST['email'],
+                                    'password'  => $password,
+                                    'group'     => 'user',
+                                    'created'   => $created
+                                ));
+
+                                // Flash message.
+                                Session::flash('success', i18n::lang('flash.registered'));
+                                Route::redirect('user', 'login');
+                            }
+
+                            catch(Exception $e) {
+                                die($e->getMessage());
+                            }
+                        }
+
+                        // Render validation errors.
+                        else{
+                            $data['errors'] = $validation->errors();
+                        }
+
+                    }
+
+                    // Set locale date.
+                    $data['content']['page-title'] = i18n::lang('page-title.register');
+                    $data['content']['button'] = i18n::lang('button.create-account');
+                    $data['content']['error.list'] = i18n::lang('error.list');
+
+                    // Render layout and view files.
+                    $this->render('static/index', 'user/register', $data);
+
+                }
             }
 
         /**

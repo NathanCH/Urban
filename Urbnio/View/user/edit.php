@@ -7,7 +7,7 @@
  *  @param  array   $data['input']      the user's profile information.
  */
 ?>
-    <div class="site-container site-container-centered">
+    <div class="site-wrap">
         <header class="row">
             <div class="columns">
                 <h1><?= $content['page-title']; ?></h1>

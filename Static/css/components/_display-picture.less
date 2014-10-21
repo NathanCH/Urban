@@ -1,0 +1,41 @@
+/*  Display Picture
+    ===
+
+    Basic
+    ---
+
+    <div class="display-picture-container">
+        <a href="#">
+            <img src="http://placehold.it/32" class="display-picture" />
+        </a>
+    </div>
+*/
+
+    .display-picture-container{
+        display: inline-block;
+        margin: 0 15px;
+    }
+
+    /* Tablet */
+    @media only screen and (max-width: @tablet) {
+        .display-picture-container{
+            display: block;
+            text-align: center;
+            margin: 0 0 10px;
+        }
+    }
+
+
+    /* Mobile */
+    @media only screen and (max-width: @mobile) {
+        .display-picture-container{
+            display: block;
+            margin: 0 0 10px;
+        }
+    }
+
+    .display-picture{
+        border-radius: 16px;
+        width: 32px;
+        height: 32px;
+    }

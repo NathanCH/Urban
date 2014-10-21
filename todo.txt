@@ -1,2 +1,3 @@
 - Create controller to handle layout types.
 - Refactor map component.
+- Create authentication helper.

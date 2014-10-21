@@ -38,5 +38,4 @@ return $en_us = array(
     'flash.registered'              => 'You have registered! Login below.',
     'flash.update-password'         => 'Your password has been updated!',
     'flash.update-profile'          => 'Your profile has been updated!'
-
 );

@@ -106,7 +106,6 @@ class Application {
 
                     // Get path to language file.
                     $path = LANG_PATH . '/' . APP_LOCALE . LANG_FILE_EXT;
-
                 }
 
                 // Set language data.

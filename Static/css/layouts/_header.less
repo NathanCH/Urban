@@ -12,18 +12,75 @@
         position: relative;
     }
 
-/*  Logo & Container
+/*  Logo container
+    ---
 */
     .site-logo-container{
         margin: 25px 0 35px;
     }
 
-/*
+    /* Mobile */
+    @media only screen and (max-width: @mobile) {
+        .site-logo-container{
+            text-align: center;
+        }
+    }
 
-    User Control Panel
+/*
+    Header sign in section
     ---
 */
 
-    .user-control{
-        margin-top: 40px;
+    .header-sign-in{
+        margin-top: 38px;
+        width: 240px;
+    }
+
+    .header-sign-in span{
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    /* Tablet */
+    @media only screen and (max-width: @tablet) {
+        .header-sign-in{
+            margin-top: 24px;
+            text-align: center;
+            width: 150px;
+        }
+    }
+
+    /* Mobile */
+    @media only screen and (max-width: @mobile) {
+        .header-sign-in{
+            margin-bottom: 24px;
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+/*
+    User Controls
+    ---
+*/
+
+    .user-controls{
+        margin-top: 44px;
+    }
+
+
+    /* Tablet */
+    @media only screen and (max-width: @tablet) {
+    .user-controls{
+        margin-top: 30px;
+    }
+    }
+
+    /* Mobile */
+    @media only screen and (max-width: @mobile) {
+        .user-controls{
+            width: 100%;
+            text-align: center;
+            margin: 0 0 30px 0;
+        }
     }

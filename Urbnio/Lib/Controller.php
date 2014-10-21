@@ -4,8 +4,7 @@ namespace Urbnio\Lib;
 /**
  *  This is the "base controller class". All other controllers extend this class.
  */
-    class Controller
-    {
+    class Controller {
 
         /**
          *  Load the model with the given name.
