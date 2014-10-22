@@ -15,6 +15,7 @@ namespace Urbnio\Helper;
          *  @param $method   string
          */
             public static function exists($method = 'post') {
+
                 switch ($method) {
                     case 'post':
                         return (!empty($_POST)) ? true : false;

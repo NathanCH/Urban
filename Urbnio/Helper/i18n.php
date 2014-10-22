@@ -68,14 +68,15 @@ namespace Urbnio\Helper;
             // Validation Phrases.
             $validation_response = array(
                 'required' => $field . ' is required.',
-                'min' => $field . ' must be at least ' . $value . ' characters',
-                'max' => $field . ' must be less than ' . $value . ' characters',
-                'matches' => $field . ' does not match ' . $value,
+                'min' => $field . ' must be at least ' . $value . ' characters.',
+                'max' => $field . ' must be less than ' . $value . ' characters.',
+                'matches' => $field . ' does not match ' . $value . '.',
                 'unique' => $field . ' already exists.',
-                'check_password' => 'Password is incorrect.'
+                'check_password' => 'Password is incorrect.',
+                'login_failed' => 'Email password combination doesn\'t exist.'
             );
 
-            return $validation_response[$error_type];
+            return ucfirst($validation_response[$error_type]);
         }
 
     }

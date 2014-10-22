@@ -1,6 +1,8 @@
 <?php
 namespace Urbnio\Lib;
 
+use Urbnio\Controller\Layout;
+
 /**
  *  This is the "base controller class". All other controllers extend this class.
  */
@@ -74,6 +76,11 @@ namespace Urbnio\Lib;
          *  @param $data_array data to be passed to the layout.
          */
             public function layout($layout, $data = array()) {
+
+                $set_layout = new Layout();
+
+                $data += $set_layout->fetch_header();
+                $data += $set_layout->fetch_footer();
 
                 extract($data);
 

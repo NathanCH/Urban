@@ -14,7 +14,7 @@
             </div>
         </header>
 
-        <form action="<?= URL; ?>user/change_password" method="POST">
+        <form action="<?= URL; ?>user/change-password" method="POST">
             <?php
             // Display errors.
             if(isset($data['errors'])) {
@@ -49,7 +49,7 @@
                             <input type="password" name="current-password" id="current-password" autocomplete="off" />
                             <div class="row">
                                 <div class="small-12 medium-12 large-12 columns">
-                                    <button class="button button-text mtl"><?= $content['button.forgot-password']; ?></button>
+                                    <a href="#" class="button button-text mtl"><?= $content['button.forgot-password']; ?></a>
                                 </div>
                             </div>
                         </div>

@@ -86,7 +86,7 @@ use \Exception as Exception;
 
                             // If login is unsuccesful.
                             else{
-                                $data = array('errors' => array('login-failed' => "This email and password combination don't exist."));
+                                $data = array('errors' => array('login_failed' => "This email and password combination do not exist."));
                             }
                         }
 
@@ -297,9 +297,6 @@ use \Exception as Exception;
                         }
                     }
 
-                    // Logged in.
-                    $data['logged_in'] = true;
-
                     // Set locale date.
                     $data['content']['page-title'] = i18n::lang('page-title.edit');
                     $data['content']['form.email-public'] = i18n::lang('form.email-public');
@@ -393,9 +390,6 @@ use \Exception as Exception;
                         }
                     }
                 }
-
-                // Logged in.
-                $data['logged_in'] = true;
 
                 // Set locale date.
                 $data['content']['page-title'] = i18n::lang('page-title.change-password');
