@@ -203,25 +203,56 @@
 /*  File Upload
     ---
 
-    <input type="file" class="hide" />
-    <div class="file_upload">
-        <i class="fa"></i>
+    <div class="file-upload-container">
+        <input type="file" class="hide" />
+        <div class="file-upload">
+            <i class="fa"></i>
+        </div>
     </div>
 */
 
-    .file_upload{
-        max-width: 78px;
+    .file-upload-container{
         height: 78px;
+        min-width: 78px;
+        display: inline-block;
+        position: relative;
+    }
+
+    .file-upload{
+        max-width: 78px;
         border-radius: 4px;
         border: 2px dashed #DDD;
         text-align: center;
         cursor: pointer;
     }
 
-        .file_upload i{
+        .file-upload i{
             color: #DDD;
             font-size: 18px;
             line-height: 70px;
         }
 
-        .file_upload.active{ border-color: #f66051;}
+        .file-upload.active{ border-color: @primary;}
+        .file-upload.active i{ color: @primary;}
+
+/**
+ *  File Upload Preview Image
+ *
+ *  <div class="file-upload-container">
+ *      <img src="#" class="file-preview" />
+ *      <div class="close-preview hide">
+ *          <i class="fa fa-times" />
+ *      </div>
+ *  </div>
+ */
+    .file-upload-container .file-preview{
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 5px;
+    }
+
+    .file-upload-container .close-preview{
+        position: absolute;
+        right: -25px;
+        cursor: pointer;
+    }

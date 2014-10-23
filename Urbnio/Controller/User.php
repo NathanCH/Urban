@@ -119,7 +119,7 @@ use \Exception as Exception;
                 $users_model->logout();
 
                 // Set session and redirect.
-                Session::flash('success', i18n::lang('flash.logout'));
+                Session::flash('success', i18n::lang('flash.logged-out'));
                 Route::redirect('user', 'login');
             }
 
@@ -191,8 +191,8 @@ use \Exception as Exception;
                                 ));
 
                                 // Flash message.
+                                // Route::redirect('user/login');
                                 Session::flash('success', i18n::lang('flash.registered'));
-                                Route::redirect('user', 'login');
                             }
 
                             catch(Exception $e) {
@@ -237,9 +237,6 @@ use \Exception as Exception;
                 // If user is logged in.
                 else{
 
-                    // Get user data.
-                    $user_data = $users_model->data();
-
                     if(Input::exists()) {
 
                         // The form inputs to validate and the validation rules.
@@ -280,9 +277,12 @@ use \Exception as Exception;
                                     'location' => $_POST['location']
                                 ));
 
+                                // Get updated data.
+                                $users_model = $this->loadModel('UsersModel');
+
                                 // Flash message.
-                                Route::redirect('user/edit');
-                                // Session::flash('success', i18n::lang('flash.update-profile'));
+                                // Route::redirect('user/edit');
+                                Session::flash('success', i18n::lang('flash.update-profile'));
 
                             }
 
@@ -296,6 +296,9 @@ use \Exception as Exception;
                             $data['errors'] = $validation->errors();
                         }
                     }
+
+                    // Get user data.
+                    $user_data = $users_model->data();
 
                     // Set locale date.
                     $data['content']['page-title'] = i18n::lang('page-title.edit');
@@ -322,7 +325,6 @@ use \Exception as Exception;
                 $data = array();
 
                 $users_model = $this->loadModel('UsersModel');
-
 
                 // If the current user is not logged in.
                 if(!$users_model->is_logged_in()) {
@@ -375,7 +377,6 @@ use \Exception as Exception;
 
                                 // Flash message.
                                 Session::flash('success', i18n::lang('flash.update-password'));
-
                             }
 
                             catch(Exception $e) {

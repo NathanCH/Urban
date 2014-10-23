@@ -16,7 +16,7 @@ use Urbnio\Lib\Controller;
 
                 $users_model = $this->loadModel('UsersModel');
 
-                // If the current user is already logged in.
+                // If the current user is logged in.
                 if($users_model->is_logged_in()) {
 
                     $user_data = $users_model->data();

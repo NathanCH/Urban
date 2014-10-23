@@ -18,8 +18,13 @@
                         var $this = $(this);
 
                         // Toggle disabled attribute.
-                        if ($this.attr('disabled')) $this.removeAttr('disabled');
-                        else $this.attr('disabled', 'disabled');
+                        if ($this.attr('disabled')) {
+                            $this.removeAttr('disabled');
+                        }
+
+                        else{
+                            $this.attr('disabled', 'disabled');
+                        }
                     });
                 };
             })(jQuery);

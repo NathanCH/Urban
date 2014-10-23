@@ -6,7 +6,6 @@
         <meta content="<?= APP_TAG; ?>" name="description">
         <title><?= APP_NAME; ?> - <?= APP_VER; ?></title>
         <link rel="stylesheet" type="text/less" href="<?= CSS_PATH; ?>/main.less" />
-        <link rel="stylesheet" type="text/less" href="<?= CSS_PATH; ?>/shame.less" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.4/less.min.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700|Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
