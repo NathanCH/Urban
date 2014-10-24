@@ -195,7 +195,7 @@
 
     .input-checkbox.active{
         background: @primary;
-        box-shadow: 0 0 0 2px #FFFFFF inset;
+        box-shadow: 0 0 0 2px #ffffff inset;
     }
 
 
@@ -212,28 +212,45 @@
 */
 
     .file-upload-container{
-        height: 78px;
-        min-width: 78px;
+        height: 90px;
         display: inline-block;
         position: relative;
     }
 
+    @media only screen and (max-width: @mobile) {
+        .file-upload-container{
+            float: right;
+        }
+    }
+
     .file-upload{
-        max-width: 78px;
+        max-width: 90px;
+        min-width: 90px;
         border-radius: 4px;
-        border: 2px dashed #DDD;
+        border: 2px dashed #ccc;
         text-align: center;
         cursor: pointer;
+
+        &:hover{
+            border: 2px dashed #bbb;
+
+            i{
+                 color: #bbb;
+            }
+        }
     }
 
         .file-upload i{
-            color: #DDD;
+            color: #ccc;
             font-size: 18px;
-            line-height: 70px;
+            line-height: 80px;
         }
 
         .file-upload.active{ border-color: @primary;}
         .file-upload.active i{ color: @primary;}
+
+        .file-upload.error{ border-color: @error;}
+        .file-upload.error i{ color: @error;}
 
 /**
  *  File Upload Preview Image
@@ -251,8 +268,25 @@
         border-radius: 5px;
     }
 
+    @media only screen and (max-width: @mobile) {
+        .file-upload-container .file-preview{
+            float: right;
+        }
+    }
+
     .file-upload-container .close-preview{
         position: absolute;
         right: -25px;
         cursor: pointer;
+        color: #ccc;
+
+        &:hover{
+            color: #bbb;
+        }
+    }
+
+     @media only screen and (max-width: @mobile) {
+        .file-upload-container .close-preview{
+            left: -25px;
+        }
     }

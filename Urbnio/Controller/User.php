@@ -269,21 +269,25 @@ use \Exception as Exception;
                             // Try to edit profile.
                             try {
 
-                                // Update the user.
-                                $users_model->update_user(array(
-                                    'email' => $_POST['email'],
-                                    'name' => $_POST['name'],
-                                    'about' => $_POST['about'],
-                                    'location' => $_POST['location']
-                                ));
+                                if($_FILES) {
+                                    $users_model->upload_user_file($_FILES['profile_photo']);
+                                }
 
-                                // Get updated data.
-                                $users_model = $this->loadModel('UsersModel');
 
-                                // Flash message.
-                                // Route::redirect('user/edit');
-                                Session::flash('success', i18n::lang('flash.update-profile'));
+                                // // Update the user.
+                                // $users_model->update_user(array(
+                                //     'location' => $_POST['location'],
+                                //     'name' => $_POST['name'],
+                                //     'email' => $_POST['email'],
+                                //     'about' => $_POST['about'],
+                                // ));
 
+                                // // Get updated data.
+                                // $users_model = $this->loadModel('UsersModel');
+
+                                // // Flash message.
+                                // // Route::redirect('user/edit');
+                                // Session::flash('success', i18n::lang('flash.update-profile'));
                             }
 
                             catch(Exception $e) {

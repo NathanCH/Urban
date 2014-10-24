@@ -5,6 +5,7 @@ use Urbnio\Helper\DB;
 use Urbnio\Helper\Session;
 use Urbnio\Helper\Hash;
 use Urbnio\Helper\Cookie;
+use Urbnio\Helper\Upload;
 use \Exception as Exception;
 
 /**
@@ -88,7 +89,7 @@ use \Exception as Exception;
          *  Update user data.
          *
          *  @param array   $fields  the fields to updated.
-         *  @param integer $id      to specify a user.
+         *  @param int     $id      to specify a user.
          */
             public function update_user($fields = array(), $id = null) {
 
@@ -104,10 +105,36 @@ use \Exception as Exception;
             }
 
         /**
+         *  Upload user file.
+         *
+         *  @param $_FILE   $file
+         *  @param int      $user_id
+         */
+            public function upload_user_file($file, $id = null) {
+
+                // If no user id is specified, get this user's id.
+                if(!$id && $this->is_logged_in()) {
+                    $id = $this->data()->id;
+                }
+
+                $upload = Upload::start('Uploads/users');
+
+                if(!$upload->set_file($file)) {
+                    throw new Exception('There was a problem uploading the user\'s file.');
+                }
+
+
+                $results = $upload->upload();
+
+                var_dump($results);
+            }
+
+
+        /**
          *  Change user password.
          *
          *  @param array    $password   password to update.
-         *  @param integer  $id         to specify a user.
+         *  @param int      $id         to specify a user.
          */
             public function change_password($password, $id = null) {
 
@@ -118,7 +145,7 @@ use \Exception as Exception;
 
                 // Update user password.
                 if(!$this->_db->update('users', $id, $password)) {
-                    throw new Exception('There was a problem updateing the password');
+                    throw new Exception('There was a problem updateing the password.');
                 }
             }
 
@@ -129,6 +156,7 @@ use \Exception as Exception;
          *
          *  @todo  since find() searches by ID or email, users can login with their user ID.
          *         create new validation rule to ensure email field is a proper email.
+         *         howover, keep this functionality because it's user to search via user ID.
          */
             public function find($user = null){
 

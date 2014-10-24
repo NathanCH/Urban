@@ -19,7 +19,7 @@
 
             // Click to browse for file.
             selectFile.click(function(){
-                $('[data-target="browse-file"]').click();
+                fileInput.click();
             });
 
 
@@ -56,8 +56,6 @@
             // Render image preview.
             var renderPreview = function(file){
 
-                console.log(file);
-
                 if(file) {
 
                     var reader = new FileReader();
@@ -65,16 +63,35 @@
                     // Create image element with image preview.
                     reader.onload = function(event) {
 
-                        // Hide uploader.
-                        $(selectFile).hide();
+                        var file = event.target.result;
+                        var fileType = file.split(",")[0].split(":")[1].split(";")[0].split("\/")[1];
+                        var fileTypes = [
+                            "jpeg",
+                            "png",
+                            "gif"
+                        ];
 
-                        // Hide uploader.
-                        $('.close-preview').show();
+                        // Check file type.
+                        if(fileTypes.indexOf(fileType) > -1) {
 
-                        // Create image preview.
-                        var imagePreview = $('<img class="file-preview">');
-                        imagePreview.attr('src', event.target.result);
-                        imagePreview.appendTo('.file-upload-container');
+                            // Hide uploader.
+                            $(selectFile).hide();
+
+                            // Hide uploader.
+                            $('.close-preview').show();
+
+                            // Create image preview.
+                            var imagePreview = $('<img class="file-preview">');
+                            imagePreview.attr('src', file);
+                            imagePreview.appendTo('.file-upload-container');
+                        }
+
+                        // Incorrect file type.
+                        else{
+                            console.log('hey');
+                            selectFile.addClass('error');
+                            $('.file-upload i').attr('class', 'fa fa-exclamation-triangle')
+                        }
                     }
 
                     reader.readAsDataURL(file);
@@ -102,7 +119,7 @@
                     // Get map HTML DOM element.
                     var element = document.getElementById('map');
 
-                   // If map element exists.
+                    // If map element exists.
                     if(element) {
 
                         // Render the map.

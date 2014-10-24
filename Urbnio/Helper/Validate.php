@@ -98,8 +98,6 @@ namespace Urbnio\Helper;
 
         /**
          *  Method to hold any validation errors.
-         *
-         *  @todo create method that adds errors to _errors.
          */
             public function errors() {
                 return $this->_errors;

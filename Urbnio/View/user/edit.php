@@ -15,7 +15,7 @@
             </div>
         </header>
 
-        <form action="<?= URL; ?>user/edit" method="POST">
+        <form action="<?= URL; ?>user/edit" method="POST" enctype="multipart/form-data">
             <?php
             // Display errors.
             if(isset($data['errors'])) {
@@ -76,11 +76,11 @@
                 </div>
                 <div class="row">
                     <div class="input-container">
-                        <div class="small-8 medium-4 large-3 columns">
+                        <div class="small-6 medium-4 large-3 columns">
                             <label for="name">Profile Photo:</label>
                             <span class="label-subtext">.jpg .gif .png</span>
                         </div>
-                        <div class="small-4 medium-8 large-6 columns end">
+                        <div class="small-6 medium-8 large-6 columns end">
                             <div class="file-upload-container">
                                 <input type="file" class="hide" name="profile_photo" data-target="browse-file" />
                                 <div class="file-upload" data-event="toggle select-file">
