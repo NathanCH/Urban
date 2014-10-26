@@ -88,7 +88,6 @@
 
                         // Incorrect file type.
                         else{
-                            console.log('hey');
                             selectFile.addClass('error');
                             $('.file-upload i').attr('class', 'fa fa-exclamation-triangle')
                         }

@@ -59,7 +59,8 @@ namespace Urbnio\Helper;
                 'confirm-password' => 'confirm password',
                 'email' => 'email address',
                 'current-password' => 'current password',
-                'address' => 'address'
+                'address' => 'address',
+                'file' => 'file'
             );
 
             // Assign them as items.
@@ -73,7 +74,9 @@ namespace Urbnio\Helper;
                 'matches' => $field . ' does not match ' . $value . '.',
                 'unique' => $field . ' already exists.',
                 'check_password' => 'Password is incorrect.',
-                'login_failed' => 'Email password combination doesn\'t exist.'
+                'login_failed' => 'Email password combination doesn\'t exist.',
+                'max_file_size' => $field . ' must be less than ' . $value . ' bytes.',
+                'file_type' => $field . ' must be an image'
             );
 
             return ucfirst($validation_response[$error_type]);

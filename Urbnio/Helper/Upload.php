@@ -11,16 +11,17 @@ use \Exception as Exception;
 
     class Upload {
 
-        /**
-         *  File destination directory.
-         */
-            private $_directory,
+            private $_root,
+                    $_directory,
                     $_errors = array(),
                     $_file,
-                    $_tmp_name;
+                    $_tmp_name,
+                    $_filename,
+                    $_callback_object,
+                    $_callback_method = array();
 
         /**
-         *  File data that gets returned.
+         *  File's data that gets returned.
          */
             public  $data = array();
 
@@ -36,6 +37,12 @@ use \Exception as Exception;
          *  Set and create directory path.
          */
             public function __construct($directory) {
+
+                // Set local route.
+                $this->_root = $_SERVER['DOCUMENT_ROOT'] . '/2014/urban/';
+
+                // Set server route.
+                // $this->_root = URL;
 
                 if(!$this->set_directory($directory)) {
 
@@ -96,6 +103,9 @@ use \Exception as Exception;
 
                     return $this->save();
                 }
+
+                // Return state of upload.
+                return $this->data;
             }
 
         /**
@@ -106,31 +116,58 @@ use \Exception as Exception;
          */
             private function check() {
 
-                // If there are no errors.
-                if(empty($this->_errors)) {
+                // Set file data.
+                $this->set_file_data();
 
-                    // Set file data.
-                    $this->set_file_data();
+                // Execute Callbacks.
+                $this->callback($this->_callback_method, $this->_callback_object);
 
-                    // Get errors.
-                    $errors = $this->errors();
+                // Get errors.
+                $errors = $this->errors();
 
-                    $this->data['errors'] = $errors;
-                    $this->data['status'] = empty($errors);
+                $this->data['errors'] = $errors;
+                $this->data['status'] = empty($errors);
 
+                return $this->data['status'];
+            }
 
+        /**
+         *  Callback to validation class.
+         */
+            private function callback($callbacks, $object) {
 
-                    return $this->data['status'];
+                // Loop through array of callbacks.
+                foreach ($callbacks as $method => $rules) {
+
+                    // And executre class action, passing
+                    // this object as an argument.
+                    // Also pass in rules for validation.
+                    $object->$method($this, $rules);
                 }
             }
 
         /**
          *  Save file to server.
          */
-        public function save() {
+            public function save() {
 
-            return $this->data;
-        }
+                // Set filename.
+                if(empty($this->_filename)) {
+
+                    $this->set_file_name();
+                }
+
+                // Assign file name.
+                $this->data['filename'] = $this->_filename;
+
+                // Get full path.
+                $this->data['full_path'] = $this->_root . $this->_directory . $this->_filename;
+
+                // Move file to directory.
+                $status = move_uploaded_file($this->_tmp_name, $this->data['full_path']);
+
+                return $this->data;
+            }
 
         /**
          *  Set file data.
@@ -142,7 +179,6 @@ use \Exception as Exception;
                 $file_size = filesize($this->_tmp_name);
 
                 $this->data = array(
-
                     'status'    => false, // Must pass validation.
                     'directory' => $this->_directory,
                     'original_filename' => $this->_file['name'],
@@ -152,7 +188,37 @@ use \Exception as Exception;
                 );
             }
 
-            private function add_error($error) {
+        /**
+         *  Set filename.
+         *
+         *  Generated a unique filename.
+         */
+            private function set_file_name() {
+                $filename = sha1(mt_rand(1, 9999) . $this->_directory . uniqid()) . time();
+
+                $this->_filename = $filename;
+            }
+
+        /**
+         *  Set callbacks.
+         */
+            public function set_callback($object, $method) {
+
+                if(empty($object)) {
+
+                    throw new Exception('Object can\'t be empty.');
+                }
+
+                if(!is_array($method)) {
+
+                    throw new Exception('Method must be an array.');
+                }
+
+                $this->_callback_object = $object;
+                $this->_callback_method = $method;
+            }
+
+            public function add_error($error) {
                 $this->_errors[] = $error;
             }
 

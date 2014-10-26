@@ -269,25 +269,24 @@ use \Exception as Exception;
                             // Try to edit profile.
                             try {
 
-                                if($_FILES) {
+                                if(!empty($_FILES['profile_photo']['tmp_name'])) {
                                     $users_model->upload_user_file($_FILES['profile_photo']);
                                 }
 
+                                // Update the user.
+                                $users_model->update_user(array(
+                                    'location' => $_POST['location'],
+                                    'name' => $_POST['name'],
+                                    'email' => $_POST['email'],
+                                    'about' => $_POST['about'],
+                                ));
 
-                                // // Update the user.
-                                // $users_model->update_user(array(
-                                //     'location' => $_POST['location'],
-                                //     'name' => $_POST['name'],
-                                //     'email' => $_POST['email'],
-                                //     'about' => $_POST['about'],
-                                // ));
+                                // Get updated data.
+                                $users_model = $this->loadModel('UsersModel');
 
-                                // // Get updated data.
-                                // $users_model = $this->loadModel('UsersModel');
-
-                                // // Flash message.
-                                // // Route::redirect('user/edit');
-                                // Session::flash('success', i18n::lang('flash.update-profile'));
+                                // Flash message.
+                                // Route::redirect('user/edit');
+                                Session::flash('success', i18n::lang('flash.update-profile'));
                             }
 
                             catch(Exception $e) {

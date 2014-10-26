@@ -6,6 +6,7 @@ use Urbnio\Helper\Session;
 use Urbnio\Helper\Hash;
 use Urbnio\Helper\Cookie;
 use Urbnio\Helper\Upload;
+use Urbnio\Helper\Validate;
 use \Exception as Exception;
 
 /**
@@ -117,16 +118,32 @@ use \Exception as Exception;
                     $id = $this->data()->id;
                 }
 
-                $upload = Upload::start('Uploads/users');
+                // Consider moving this out.
+                $upload = Upload::start('uploads/users/');
 
                 if(!$upload->set_file($file)) {
                     throw new Exception('There was a problem uploading the user\'s file.');
                 }
 
+                $rules = array(
+                    'required' => true,
+                    'max_file_size' => 256000,
+                    'file_type' => 'images'
+                );
+
+                $validation = new Validate;
+
+                $upload->set_callback($validation, array('check_file' => $rules));
 
                 $results = $upload->upload();
 
-                var_dump($results);
+                if($results['status']){
+                    echo 'File Uploaded';
+                }
+
+                else{
+                    var_dump($results['errors']);
+                }
             }
 
 

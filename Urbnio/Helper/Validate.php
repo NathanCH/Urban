@@ -97,6 +97,51 @@ namespace Urbnio\Helper;
             }
 
         /**
+         *  Check file against validation rules.
+         */
+            public function check_file($object, $rules = array()) {
+
+                // Get rule and answer.
+                foreach ($rules as $rule => $answer) {
+
+                    $file_data = $object->data;
+
+                    // Check that the file has been uploaded.
+                    if($rule === 'required' && $answer && empty($file_data)){
+                        $object->add_error('Field is required.');
+                    }
+
+                    else if(!empty($file_data)) {
+                        switch ($rule) {
+
+                            // Check max file size.
+                            case 'max_file_size':
+                                if($file_data['file_size'] > $answer) {
+                                    $object->add_error(i18n::validation_lang($rule, 'file', $answer));
+                                }
+                            break;
+
+                            // Check file type.
+                            case 'file_type';
+
+                                // Allowed files.
+                                if($answer = 'images') {
+                                    $allowed_files = array(
+                                        'image/jpeg',
+                                        'image/png'
+                                    );
+                                }
+
+                                if(!in_array($file_data['mime'], $allowed_files)){
+                                    $object->add_error(i18n::validation_lang($rule, 'file', $answer));
+                                }
+                            break;
+                        }
+                    }
+                }
+            }
+
+        /**
          *  Method to hold any validation errors.
          */
             public function errors() {
