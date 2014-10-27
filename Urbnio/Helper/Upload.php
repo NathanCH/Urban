@@ -39,7 +39,7 @@ use \Exception as Exception;
             public function __construct($directory) {
 
                 // Set local route.
-                $this->_root = $_SERVER['DOCUMENT_ROOT'] . '/2014/urban/';
+                $this->_root = $_SERVER['DOCUMENT_ROOT'] . '2014/urban/';
 
                 // Set server route.
                 // $this->_root = URL;
@@ -79,8 +79,6 @@ use \Exception as Exception;
 
                 // Set temp file name.
                 $this->_tmp_name = $file['tmp_name'];
-
-                return true;
             }
 
         /**
@@ -184,6 +182,7 @@ use \Exception as Exception;
                     'original_filename' => $this->_file['name'],
                     'mime' => $this->_file['type'],
                     'file_size' => $file_size,
+                    'file_size_kb' => $this->bytes_to_kb($file_size),
                     'post_data' => $this->_file
                 );
             }
@@ -228,5 +227,9 @@ use \Exception as Exception;
 
             public function get_file() {
                 return $this->_file;
+            }
+
+            public function bytes_to_kb($bytes) {
+                return round(($bytes / 1024), 2);
             }
     }

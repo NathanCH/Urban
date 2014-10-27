@@ -5,7 +5,6 @@ use Urbnio\Helper\DB;
 use Urbnio\Helper\Session;
 use Urbnio\Helper\Hash;
 use Urbnio\Helper\Cookie;
-use Urbnio\Helper\Upload;
 use Urbnio\Helper\Validate;
 use \Exception as Exception;
 
@@ -108,8 +107,8 @@ use \Exception as Exception;
         /**
          *  Upload user file.
          *
-         *  @param $_FILE   $file
-         *  @param int      $user_id
+         *  @param array   $file   file data to be saved.
+         *  @param int     $id     to specify a user.
          */
             public function upload_user_file($file, $id = null) {
 
@@ -118,39 +117,15 @@ use \Exception as Exception;
                     $id = $this->data()->id;
                 }
 
-                // Consider moving this out.
-                $upload = Upload::start('uploads/users/');
-
-                if(!$upload->set_file($file)) {
-                    throw new Exception('There was a problem uploading the user\'s file.');
-                }
-
-                $rules = array(
-                    'required' => true,
-                    'max_file_size' => 256000,
-                    'file_type' => 'images'
-                );
-
-                $validation = new Validate;
-
-                $upload->set_callback($validation, array('check_file' => $rules));
-
-                $results = $upload->upload();
-
-                if($results['status']){
-                    echo 'File Uploaded';
-                }
-
-                else{
-                    var_dump($results['errors']);
-                }
+                // Upload data.
+                // ...
             }
 
 
         /**
          *  Change user password.
          *
-         *  @param array    $password   password to update.
+         *  @param string   $password   password to update.
          *  @param int      $id         to specify a user.
          */
             public function change_password($password, $id = null) {
@@ -183,6 +158,7 @@ use \Exception as Exception;
                     $field = (is_numeric($user)) ? 'id' : 'email';
 
                     // Search in the database.
+                    // $data = $this->_db->query("SELECT * FROM users WHERE $field = ?", array($user));
                     $data = $this->_db->query("SELECT * FROM users WHERE $field = ?", array($user));
 
                     // If the user does exist...

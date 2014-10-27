@@ -26,7 +26,7 @@ namespace Urbnio\Helper;
          *  Method to check input against validation rules.
          *
          *  @param $data    array   $_POST or $_GET to validate.
-         *  @param $items   array   The form element.
+         *  @param $items   array   The form element(s).
          *  @param $rules   array   All the rules associated with an element.
          *  @param $value   $_POST  the user's form input.
          *
@@ -88,57 +88,79 @@ namespace Urbnio\Helper;
                     }
                 }
 
-                // If there are no errors...
-                if(empty($this->_errors)) {
-                    $this->_passed = true;
-                }
+                $this->_passed = empty($this->_errors);
 
                 return $this;
             }
 
         /**
          *  Check file against validation rules.
+         *
+         *  @param $object  array   File upload object gives access to data.
+         *  @param $items   array   The form element(s).
          */
-            public function check_file($object, $rules = array()) {
+            public function check_file($object, $items = array()) {
 
-                // Get rule and answer.
-                foreach ($rules as $rule => $answer) {
+                // Seperate each item and its rules.
+                foreach ($items as $item => $rules) {
 
-                    $file_data = $object->data;
+                    // Get rule and answer.
+                    foreach ($rules as $rule => $answer) {
 
-                    // Check that the file has been uploaded.
-                    if($rule === 'required' && $answer && empty($file_data)){
-                        $object->add_error('Field is required.');
-                    }
+                        $file_data = $object->data;
 
-                    else if(!empty($file_data)) {
-                        switch ($rule) {
+                        // Check that the file has been uploaded.
+                        // Error type 4: No file was uploaded.
+                        if($rule === 'required' && $answer && $file_data['post_data']['error'] == 4){
+                            $object->add_error('Field is required.');
+                            $this->_addError('file', $rule, $answer);
+                        }
 
-                            // Check max file size.
-                            case 'max_file_size':
-                                if($file_data['file_size'] > $answer) {
-                                    $object->add_error(i18n::validation_lang($rule, 'file', $answer));
-                                }
-                            break;
+                        else if(!empty($file_data)) {
+                            switch ($rule) {
 
-                            // Check file type.
-                            case 'file_type';
+                                // Check max file size.
+                                case 'max_file_size':
+                                    if($file_data['file_size_kb'] > $answer) {
+                                        $object->add_error(i18n::validation_lang($rule, 'file', $answer));
+                                        $this->_addError('file', $rule, $answer);
+                                    }
+                                break;
 
-                                // Allowed files.
-                                if($answer = 'images') {
-                                    $allowed_files = array(
-                                        'image/jpeg',
-                                        'image/png'
-                                    );
-                                }
-
-                                if(!in_array($file_data['mime'], $allowed_files)){
-                                    $object->add_error(i18n::validation_lang($rule, 'file', $answer));
-                                }
-                            break;
+                                // Check file type.
+                                case 'file_type';
+                                    if($file_data['mime'] !== '' && !$this->check_file_type($file_data['mime'], $answer)){
+                                        $object->add_error(i18n::validation_lang($rule, 'file', $answer));
+                                        $this->_addError('file', $rule, $answer);
+                                    }
+                                break;
+                            }
                         }
                     }
                 }
+
+                $this->_passed = empty($this->_errors);
+            }
+
+        /**
+         *  Check file type.
+         *
+         *  @param $file_type  string  The file's mime type.
+         *  @param $category   string  Category of file types to check against.
+         */
+            private function check_file_type($file_type, $category) {
+
+                switch ($category) {
+                    case 'image':
+                        $allowed_files = array(
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif'
+                        );
+                    break;
+                }
+
+                return in_array($file_type, $allowed_files);
             }
 
         /**

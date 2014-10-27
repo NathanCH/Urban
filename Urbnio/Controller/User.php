@@ -8,6 +8,7 @@ use Urbnio\Helper\Route;
 use Urbnio\Helper\Hash;
 use Urbnio\Helper\Response;
 use Urbnio\Helper\i18n;
+use Urbnio\Helper\Upload;
 use Urbnio\Lib\Controller;
 use \Exception as Exception;
 
@@ -220,6 +221,8 @@ use \Exception as Exception;
 
         /**
          *  Edit user.
+         *
+         *  @todo  abstract file setup and upload.
          */
             public function edit() {
 
@@ -239,8 +242,11 @@ use \Exception as Exception;
 
                     if(Input::exists()) {
 
+                        // Create validation object.
+                        $validate = new Validate;
+
                         // The form inputs to validate and the validation rules.
-                        $items = array(
+                        $post_data = array(
                             'name' => array(
                                 'required' => false,
                                 'min' => 2,
@@ -257,21 +263,37 @@ use \Exception as Exception;
                             )
                         );
 
-                        // Create validation object.
-                        $validate = new Validate;
+                        // Validate $_POST data
+                        $validation = $validate->check($_POST, $post_data);
 
-                        // Check the post data against the validation rules.
-                        $validation = $validate->check($_POST, $items);
+
+                        // File's validation rules.
+                        $file_data = array(
+                            'profile_photo' => array(
+                                'required' => false,
+                                'max_file_size' => 1024,
+                                'file_type' => 'image'
+                            )
+                        );
+
+                        // Setup upload class and set directory.
+                        $upload = Upload::start('uploads/users/');
+
+                        // Prepare file for upload.
+                        $upload->set_file($_FILES['profile_photo']);
+
+                        // Validate $_FILE data.
+                        $upload->set_callback($validation, array('check_file' => $file_data));
+
+                        // Upload the file and get the results.
+                        $results = $upload->upload();
+
 
                         // Check if validation has passed.
                         if($validation->passed()) {
 
                             // Try to edit profile.
                             try {
-
-                                if(!empty($_FILES['profile_photo']['tmp_name'])) {
-                                    $users_model->upload_user_file($_FILES['profile_photo']);
-                                }
 
                                 // Update the user.
                                 $users_model->update_user(array(

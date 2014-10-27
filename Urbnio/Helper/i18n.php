@@ -75,8 +75,8 @@ namespace Urbnio\Helper;
                 'unique' => $field . ' already exists.',
                 'check_password' => 'Password is incorrect.',
                 'login_failed' => 'Email password combination doesn\'t exist.',
-                'max_file_size' => $field . ' must be less than ' . $value . ' bytes.',
-                'file_type' => $field . ' must be an image'
+                'max_file_size' => $field . ' must be less than ' . $value . ' KB.',
+                'file_type' => $field . ' must be an image.'
             );
 
             return ucfirst($validation_response[$error_type]);
