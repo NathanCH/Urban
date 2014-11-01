@@ -50,7 +50,7 @@
                             <div class="user-controls right">
                                 <div class="display-picture-container">
                                     <a href="#">
-                                        <img src="http://placehold.it/32" class="display-picture" />
+                                        <img src="<?php echo USER_UPLOAD_PATH; ?>/<?php echo $data['profile_photo']['file_name']; ?>" class="display-picture" />
                                     </a>
                                 </div>
                                 <span class="dropdown">

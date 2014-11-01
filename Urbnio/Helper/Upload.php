@@ -199,7 +199,10 @@ use \Exception as Exception;
             }
 
         /**
-         *  Set callbacks.
+         *  Set callback.
+         *
+         *  @param object $object pass the object and its data.
+         *  @param array  $method access object with a method name and any data to that methd.
          */
             public function set_callback($object, $method) {
 

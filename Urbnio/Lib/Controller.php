@@ -14,6 +14,8 @@ use Urbnio\Controller\Layout;
          *  @param   string $model_name      The name of the model
          *  @param   string $dependency      Pass the model dependencies.
          *  @return  object model
+         *
+         *  @author panique@web.de
          */
             public function loadModel($model_name, $dependency = null) {
 
@@ -30,6 +32,8 @@ use Urbnio\Controller\Layout;
          *  @param $layout the layout to render.
          *  @param $view the view to render.
          *  @param $data_array data to be passed to view() and layout().
+         *
+         *  @author nathancharrois@gmail.com
          */
             public function render($layout, $view, $data = array()) {
 
@@ -50,6 +54,8 @@ use Urbnio\Controller\Layout;
          *
          *  @param $view the view to render.
          *  @param $data_array data to be passed to the view.
+         *
+         *  @author nathancharrois@gmail.com
          */
             public function view($view, $data = array()) {
 
@@ -74,6 +80,8 @@ use Urbnio\Controller\Layout;
          *
          *  @param $layout the layout to render.
          *  @param $data_array data to be passed to the layout.
+         *
+         *  @author nathancharrois@gmail.com
          */
             public function layout($layout, $data = array()) {
 
@@ -103,6 +111,8 @@ use Urbnio\Controller\Layout;
              *
              *  @param  string   $name  the name of the element file.
              *  @param  array    $data  element options and/or data.
+             *
+             *  @author nathancharrois@gmail.com
              */
                 public function element($name, $data = array()) {
 

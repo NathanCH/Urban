@@ -112,17 +112,15 @@ namespace Urbnio\Helper;
                         // Check that the file has been uploaded.
                         // Error type 4: No file was uploaded.
                         if($rule === 'required' && $answer && $file_data['post_data']['error'] == 4){
-                            $object->add_error('Field is required.');
                             $this->_addError('file', $rule, $answer);
                         }
 
                         else if(!empty($file_data)) {
                             switch ($rule) {
 
-                                // Check max file size.
+                                // Check max file size (kb).
                                 case 'max_file_size':
                                     if($file_data['file_size_kb'] > $answer) {
-                                        $object->add_error(i18n::validation_lang($rule, 'file', $answer));
                                         $this->_addError('file', $rule, $answer);
                                     }
                                 break;
@@ -130,7 +128,6 @@ namespace Urbnio\Helper;
                                 // Check file type.
                                 case 'file_type';
                                     if($file_data['mime'] !== '' && !$this->check_file_type($file_data['mime'], $answer)){
-                                        $object->add_error(i18n::validation_lang($rule, 'file', $answer));
                                         $this->_addError('file', $rule, $answer);
                                     }
                                 break;

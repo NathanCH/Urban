@@ -195,6 +195,16 @@ namespace Urbnio\Helper;
             }
 
         /**
+         *  Get the last result.
+         */
+            public function last() {
+
+                $results = $this->results();
+
+                return end($results);
+            }
+
+        /**
          *  Access row count.
          */
             public function count() {

@@ -5,7 +5,6 @@
     //var_dump($data);
 
     // Echo header view.
-    //echo $this->view('_templates/header', $data);
     echo $data['header'];
 
     // View Content.

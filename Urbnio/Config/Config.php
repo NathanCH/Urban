@@ -33,3 +33,5 @@ define('LANG_FILE_EXT' , '.php');
 define('CSS_PATH', URL . 'Static/css');
 define('JS_PATH', URL . 'Static/js');
 define('IMG_PATH', URL . 'Static/img');
+
+define('USER_UPLOAD_PATH', URL . 'uploads/users');

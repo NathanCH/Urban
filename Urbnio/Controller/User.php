@@ -245,7 +245,7 @@ use \Exception as Exception;
                         // Create validation object.
                         $validate = new Validate;
 
-                        // The form inputs to validate and the validation rules.
+                        // $_POST data and validation.
                         $post_data = array(
                             'name' => array(
                                 'required' => false,
@@ -270,7 +270,7 @@ use \Exception as Exception;
                         // File's validation rules.
                         $file_data = array(
                             'profile_photo' => array(
-                                'required' => false,
+                                'required' => true,
                                 'max_file_size' => 1024,
                                 'file_type' => 'image'
                             )
@@ -286,7 +286,7 @@ use \Exception as Exception;
                         $upload->set_callback($validation, array('check_file' => $file_data));
 
                         // Upload the file and get the results.
-                        $results = $upload->upload();
+                        $profile_photo = $upload->upload();
 
 
                         // Check if validation has passed.
@@ -300,7 +300,12 @@ use \Exception as Exception;
                                     'location' => $_POST['location'],
                                     'name' => $_POST['name'],
                                     'email' => $_POST['email'],
-                                    'about' => $_POST['about'],
+                                    'about' => $_POST['about']
+                                ));
+
+                                $users_model->upload_user_file(array(
+                                    'user_id' => $users_model->data()->id,
+                                    'file_name' => $profile_photo['filename']
                                 ));
 
                                 // Get updated data.
@@ -325,6 +330,9 @@ use \Exception as Exception;
                     // Get user data.
                     $user_data = $users_model->data();
 
+                    // Get profile data.
+                    $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
+
                     // Set locale date.
                     $data['content']['page-title'] = i18n::lang('page-title.edit');
                     $data['content']['form.email-public'] = i18n::lang('form.email-public');
@@ -336,6 +344,18 @@ use \Exception as Exception;
                     $data['input']['name']      = Response::escape($user_data->name);
                     $data['input']['about']     = Response::escape($user_data->about);
                     $data['input']['location']  = Response::escape($user_data->location);
+
+                    if($user_profile_photo){
+                        // Additional profile data.
+                        $data['profile_photo']['set']          = true;
+                        $data['profile_photo']['file_name']    = $user_profile_photo->file_name;
+                    }
+
+                    else{
+
+                        $data['profile_photo']['set']          = false;
+                    }
+
                 }
 
                 // Render layout and view files.

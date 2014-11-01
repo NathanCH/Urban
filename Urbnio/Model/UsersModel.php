@@ -110,15 +110,38 @@ use \Exception as Exception;
          *  @param array   $file   file data to be saved.
          *  @param int     $id     to specify a user.
          */
-            public function upload_user_file($file, $id = null) {
+            public function upload_user_file($file) {
 
-                // If no user id is specified, get this user's id.
-                if(!$id && $this->is_logged_in()) {
-                    $id = $this->data()->id;
+                // Add user file.
+                if(!$this->_db->insert('users_file', $file)) {
+                    throw new Exception('There was a problem adding this file.');
                 }
+            }
 
-                // Upload data.
-                // ...
+        /**
+         *  Get file data.
+         *
+         *  @todo  move this to database helper.
+         */
+            public function get($table, $data = null) {
+
+                if($data) {
+
+                    $field = 'user_id';
+
+                    // Search in the database.
+                    $data = $this->_db->query("SELECT * FROM $table WHERE $field = ?", array($data));
+
+                    if($data->count()) {
+
+                        // Get latest profile photo.
+                        $this->_data = $data->last();
+
+                        return $this->data();
+                    }
+
+                    return false;
+                }
             }
 
 
@@ -257,7 +280,6 @@ use \Exception as Exception;
                 }
 
             }
-
 
         /**
          *  Get the user's data.

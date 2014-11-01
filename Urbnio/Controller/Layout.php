@@ -23,6 +23,12 @@ use Urbnio\Lib\Controller;
 
                     $data['logged_in'] = true;
                     $data['user_data'] = (array) $user_data;
+
+                     // Get profile data.
+                    $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
+
+                    $data['profile_photo']['set']          = true;
+                        $data['profile_photo']['file_name']    = $user_profile_photo->file_name;
                 }
 
                 $data['header'] = $this->view('_templates/header', $data);
