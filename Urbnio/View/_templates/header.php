@@ -19,7 +19,6 @@
         <?php
         // Display flash message.
         echo $this->element('debug', array(
-            'enabled' => true,
             'data' => $data
         ));
         ?>
@@ -28,8 +27,8 @@
                 <div class="site-wrap">
                     <div class="row">
                         <div class="small-12 medium-12 large-12 columns">
-                            <a href="#" class="button button-text button-text-grey left mtm mbm">Send Feedback</a>
-                            <a href="#" class="button button-text button-text-grey right mtm mbm">View Source</a>
+                            <a href="#" class="link-grey left mtm mbm">Send Feedback</a>
+                            <a href="#" class="link-grey right mtm mbm">View Source</a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +49,20 @@
                             <div class="user-controls right">
                                 <div class="display-picture-container">
                                     <a href="#">
+                                        <?php
+                                        // Profile photo is not set.
+                                        if(!$data['profile_photo']['set']) {
+                                        ?>
+                                        <img src="http://placehold.it/50x50" class="display-picture" />
+                                        <?php
+                                        }
+
+                                        else{
+                                        ?>
                                         <img src="<?php echo USER_UPLOAD_PATH; ?>/<?php echo $data['profile_photo']['file_name']; ?>" class="display-picture" />
+                                        <?php
+                                        }
+                                        ?>
                                     </a>
                                 </div>
                                 <span class="dropdown">

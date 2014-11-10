@@ -89,15 +89,14 @@
                         // Incorrect file type.
                         else{
                             selectFile.addClass('error');
-                            $('.file-upload i').attr('class', 'fa fa-exclamation-triangle')
+                            $('.file-upload i').attr('class', 'fa fa-exclamation-triangle');
+                            fileInput.val('');
                         }
                     }
 
                     reader.readAsDataURL(file);
                 }
             }
-
-
         });
 
     /**

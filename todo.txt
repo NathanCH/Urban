@@ -1,3 +1,6 @@
-- Figure how to make layout functionality correctly (better FrontController?).
-- Refactor map component.
+- Refactor maps component.
 - Create authentication helper.
+- Refactor upload js component.
+- Create crop interface.
+- Resize images on upload.
+- Check size for preview.

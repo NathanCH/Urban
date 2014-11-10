@@ -49,7 +49,7 @@
                             <input type="password" name="current-password" id="current-password" autocomplete="off" />
                             <div class="row">
                                 <div class="small-12 medium-12 large-12 columns">
-                                    <a href="#" class="button button-text mtl"><?= $content['button.forgot-password']; ?></a>
+                                    <a href="#" class="mtl"><?= $content['button.forgot-password']; ?></a>
                                 </div>
                             </div>
                         </div>

@@ -352,7 +352,6 @@ use \Exception as Exception;
                     }
 
                     else{
-
                         $data['profile_photo']['set']          = false;
                     }
 
