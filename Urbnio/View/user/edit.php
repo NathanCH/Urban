@@ -81,35 +81,12 @@
                             <span class="label-subtext">.jpg .gif .png</span>
                         </div>
                         <div class="small-6 medium-8 large-6 columns end">
-                            <div class="file-upload-container">
-                                <input type="file" class="hide" name="profile_photo" data-target="browse-file" />
-                                <?php
-                                // Profile photo is not set.
-                                if(!$data['profile_photo']['set']) {
-                                ?>
-                                <div class="file-upload" data-event="toggle select-file">
-                                    <i class="fa fa-upload"></i>
-                                </div>
-                                <div class="close-preview hide">
-                                    <i class="fa fa-times"></i>
-                                </div>
-                                <?php
-                                }
-
-                                // Display profile photo.
-                                else {
-                                ?>
-                                <div class="file-upload hide" data-event="toggle select-file">
-                                    <i class="fa fa-upload"></i>
-                                </div>
-                                <div class="close-preview">
-                                    <i class="fa fa-times"></i>
-                                </div>
-                                <img class="file-preview" src="<?php echo USER_UPLOAD_PATH; ?>/<?php echo $data['profile_photo']['file_name']; ?>" />
-                                <?php
-                                }
-                                ?>
-                            </div>
+                            <?php
+                            // Display file upload element for profile photo.
+                            echo $this->element('file_upload', array(
+                                'file' => $data['profile_photo']
+                            ));
+                            ?>
                         </div>
                     </div>
                 </div>

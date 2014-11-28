@@ -27,8 +27,16 @@ use Urbnio\Lib\Controller;
                      // Get profile data.
                     $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
 
-                    $data['profile_photo']['set']          = true;
+                    if($user_profile_photo){
+                        // Additional profile data.
+                        $data['profile_photo']['set']          = true;
                         $data['profile_photo']['file_name']    = $user_profile_photo->file_name;
+                    }
+
+                    else{
+
+                        $data['profile_photo']['set']          = false;
+                    }
                 }
 
                 $data['header'] = $this->view('_templates/header', $data);

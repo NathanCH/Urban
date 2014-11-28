@@ -15,38 +15,50 @@
         $(function(){
 
             var selectFile = $('[data-event*="select-file"]');
+            var dropZone = $('[data-event*="drop-zone"]');
+            var removePreview = $('[data-event*="remove-preview"]');
             var fileInput = $('[data-target*="browse-file"]');
 
             // Click to browse for file.
-            selectFile.click(function(){
+            selectFile.click(function(event){
+                event.preventDefault();
                 fileInput.click();
             });
-
 
             // Trigger upload via file selection.
             fileInput.change(function(event){
                 var file = this.files[0];
-
                 renderPreview(file);
             });
 
-
             // Trigger upload via drag and drop.
-            selectFile.on("drop dragleave dragover dragenter", function(event){
+            dropZone.on("drop dragover dragenter", function(event){
 
                 // Prevent browser from rendering file.
                 event.preventDefault();
                 event.stopPropagation();
 
-            }).on("drop", function(event){
-                var file = event.originalEvent.dataTransfer.files;
+                // Add active class when dragover.
+                selectFile.addClass('active');
+            })
 
+            // Remove active class when dragleave.
+            .on("dragleave", function(event){
+                selectFile.removeClass('active');
+            })
+
+            // Render preview.
+            .on("drop", function(event){
+                selectFile.removeClass('active');
+                var file = event.originalEvent.dataTransfer.files;
                 renderPreview(file[0]);
             });
 
 
-            // Close image preview.
-            $('.close-preview').click(function(){
+            // Remove image preview.
+            removePreview.click(function(event){
+                event.preventDefault();
+                // Todo: move to its own function.
                 selectFile.show();
                 $('.file-preview').remove();
                 $(this).hide();
@@ -64,6 +76,8 @@
                     reader.onload = function(event) {
 
                         var file = event.target.result;
+                        var fileSize = event.target.result.length;
+                        var fileSizeLimit = 1500000; // Whatever for now.
                         var fileType = file.split(",")[0].split(":")[1].split(";")[0].split("\/")[1];
                         var fileTypes = [
                             "jpeg",
@@ -72,18 +86,21 @@
                         ];
 
                         // Check file type.
-                        if(fileTypes.indexOf(fileType) > -1) {
+                        if((fileTypes.indexOf(fileType) > -1) && (fileSize < fileSizeLimit)) {
 
                             // Hide uploader.
-                            $(selectFile).hide();
+                           $('.file-upload').hide();
 
-                            // Hide uploader.
-                            $('.close-preview').show();
+                            // Remove existing preview if there is one.
+                            $('.file-preview').remove();
+
+                            // Show 'remove preview' button.
+                            removePreview.addClass('show');
 
                             // Create image preview.
-                            var imagePreview = $('<img class="file-preview">');
+                            var imagePreview = $('<img class="file-preview" data-event="select-file">');
                             imagePreview.attr('src', file);
-                            imagePreview.appendTo('.file-upload-container');
+                            imagePreview.appendTo('.file-upload-container .row div:first-child');
                         }
 
                         // Incorrect file type.
@@ -91,6 +108,9 @@
                             selectFile.addClass('error');
                             $('.file-upload i').attr('class', 'fa fa-exclamation-triangle');
                             fileInput.val('');
+                            selectFile.show();
+                            removePreview.hide();
+                            $('.file-preview').remove();
                         }
                     }
 

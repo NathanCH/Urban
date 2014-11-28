@@ -34,6 +34,7 @@
         background-color: white;
         min-width: 175px;
         box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, .20);
+        border-radius: 2px;
     }
 
     /* Mobile */
@@ -52,11 +53,19 @@
         text-decoration: none;
     }
 
-    .dropdown-menu a:hover{
-        background-color: @primary;
-        color: white;
+    /* Hover detail */
+    .dropdown-menu li{
+        a:hover{
+            background-color: @primary;
+            color: white;
+        }
+        &:first-child a:hover{
+            border-radius: 2px 2px 0px 0px;
+        }
+        &:last-child a:hover{
+            border-radius: 0px 0px 2px 2px;
+        }
     }
-
 /*  Dropdown decoration
     ---
 */

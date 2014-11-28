@@ -1,6 +1,6 @@
 - Refactor maps component.
 - Create authentication helper.
-- Refactor upload js component.
+- Refactor upload js component using FileReader (http://www.html5rocks.com/en/tutorials/file/dndfiles/)
 - Create crop interface.
 - Resize images on upload.
 - Check size for preview.

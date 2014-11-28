@@ -221,6 +221,12 @@
         }
     }
 
+    @media only screen and (max-width: @mobile) {
+        .file-upload-controls{
+            display: none;
+        }
+    }
+
     .file-upload{
         max-width: 90px;
         min-width: 90px;
@@ -256,13 +262,13 @@
  *  <div class="file-upload-container">
  *      <img src="#" class="file-preview" />
  *      <div class="close-preview hide">
- *          <i class="fa fa-times" />
+ *          <i class="fa fa-times"></i>
  *      </div>
  *  </div>
  */
     .file-upload-container .file-preview{
         max-width: 100%;
-        max-height: 100%;
+        max-height: 90px;
         border-radius: 5px;
     }
 
@@ -273,18 +279,21 @@
     }
 
     .file-upload-container .close-preview{
-        position: absolute;
-        right: -25px;
-        cursor: pointer;
-        color: #ccc;
-
-        &:hover{
-            color: #bbb;
-        }
+        display: none;
     }
 
      @media only screen and (max-width: @mobile) {
         .file-upload-container .close-preview{
-            left: -25px;
+            display: block;
+            position: absolute;
+            right: 0px;
+            top: -8px;
+            cursor: pointer;
+            color: white;
+            background-color: @primary;
+            padding: 8px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            line-height: 10px;
         }
     }

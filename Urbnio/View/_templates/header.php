@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="small-12 medium-12 large-7 columns">
                                         <span class="text">
-                                            or <a class="button button-text mls" href="<?= URL; ?>user/register/">create account</a>
+                                            or <a class="mls" href="<?= URL; ?>user/register/">create account</a>
                                         </span>
                                     </div>
                                 </div>
