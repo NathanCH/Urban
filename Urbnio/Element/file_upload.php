@@ -2,10 +2,10 @@
     <div class="row">
         <div class="small-12 medium-3 large-3 columns">
 
-            <input type="file" class="hide" name="profile_photo" data-target="browse-file" />
+            <input type="file" class="hide" id="file-upload" name="profile_photo"/>
             <?php
             // Profile photo is not set.
-            if(!$file['set']) {
+            if($file['set']) {
             ?>
             <div class="file-upload" data-event="select-file">
                 <i class="fa fa-upload"></i>
@@ -19,7 +19,9 @@
             <div class="file-upload hide" data-event="select-file">
                 <i class="fa fa-upload"></i>
             </div>
-            <img class="file-preview" src="<?php echo USER_UPLOAD_PATH; ?>/<?php echo $file['file_name']; ?>" />
+            <div class="file-preview-container">
+                <img class="file-preview" src="<?php echo USER_UPLOAD_PATH; ?>/<?php echo $file['file_name']; ?>" />
+            </div>
             <div class="close-preview" data-event="remove-preview">
                 <i class="fa fa-times"></i>
             </div>
@@ -35,3 +37,9 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function(){
+    $('#file-upload').fileupload();
+});
+</script>

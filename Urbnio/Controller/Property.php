@@ -37,6 +37,9 @@ use Urbnio\Helper\Route;
                     if(Input::exists()) {
 
                         $items = array(
+                            'name' => array(
+                                'required' => true
+                            ),
                             'address' => array(
                                 'required' => true
                             )

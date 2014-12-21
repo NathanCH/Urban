@@ -12,112 +12,118 @@
      *  </div>
      *  <input data-target="browse-file" type="file" class="hide" />
      */
-        $(function(){
 
-            var selectFile = $('[data-event*="select-file"]');
-            var dropZone = $('[data-event*="drop-zone"]');
-            var removePreview = $('[data-event*="remove-preview"]');
-            var fileInput = $('[data-target*="browse-file"]');
+        (function($){
 
-            // Click to browse for file.
-            selectFile.click(function(event){
-                event.preventDefault();
-                fileInput.click();
-            });
+            var FileUpload = {
 
-            // Trigger upload via file selection.
-            fileInput.change(function(event){
-                var file = this.files[0];
-                renderPreview(file);
-            });
+                config: {
+                    filePath:       null,
+                    fileUpload:     $('.file-upload'),
+                    selectFile:     $('[data-event*="select-file"]'),
+                    dropZone:       $('[data-event*="drop-zone"]')
+                },
 
-            // Trigger upload via drag and drop.
-            dropZone.on("drop dragover dragenter", function(event){
-
-                // Prevent browser from rendering file.
-                event.preventDefault();
-                event.stopPropagation();
-
-                // Add active class when dragover.
-                selectFile.addClass('active');
-            })
-
-            // Remove active class when dragleave.
-            .on("dragleave", function(event){
-                selectFile.removeClass('active');
-            })
-
-            // Render preview.
-            .on("drop", function(event){
-                selectFile.removeClass('active');
-                var file = event.originalEvent.dataTransfer.files;
-                renderPreview(file[0]);
-            });
-
-
-            // Remove image preview.
-            removePreview.click(function(event){
-                event.preventDefault();
-                // Todo: move to its own function.
-                selectFile.show();
-                $('.file-preview').remove();
-                $(this).hide();
-            });
-
-
-            // Render image preview.
-            var renderPreview = function(file){
-
-                if(file) {
-
-                    var reader = new FileReader();
-
-                    // Create image element with image preview.
-                    reader.onload = function(event) {
-
-                        var file = event.target.result;
-                        var fileSize = event.target.result.length;
-                        var fileSizeLimit = 1500000; // Whatever for now.
-                        var fileType = file.split(",")[0].split(":")[1].split(";")[0].split("\/")[1];
-                        var fileTypes = [
-                            "jpeg",
-                            "png",
-                            "gif"
-                        ];
-
-                        // Check file type.
-                        if((fileTypes.indexOf(fileType) > -1) && (fileSize < fileSizeLimit)) {
-
-                            // Hide uploader.
-                           $('.file-upload').hide();
-
-                            // Remove existing preview if there is one.
-                            $('.file-preview').remove();
-
-                            // Show 'remove preview' button.
-                            removePreview.addClass('show');
-
-                            // Create image preview.
-                            var imagePreview = $('<img class="file-preview" data-event="select-file">');
-                            imagePreview.attr('src', file);
-                            imagePreview.appendTo('.file-upload-container .row div:first-child');
-                        }
-
-                        // Incorrect file type.
-                        else{
-                            selectFile.addClass('error');
-                            $('.file-upload i').attr('class', 'fa fa-exclamation-triangle');
-                            fileInput.val('');
-                            selectFile.show();
-                            removePreview.hide();
-                            $('.file-preview').remove();
-                        }
+                init: function(element, config) {
+                    if(typeof config === 'object') {
+                        this.config = config;
                     }
 
-                    reader.readAsDataURL(file);
+                    this.config.fileInput = $(element);
+                    this.setup();
+                },
+
+                setup: function() {
+                    this.setImage();
+                    this.bindEvents();
+                    this.subscriptions();
+                },
+
+                setImage: function() {
+                    if (this.config.filePath != null) {
+                        // Place image on container.
+                        this.config.fileUpload.hide();
+                        $('.file-preview').remove();
+
+                        var imagePreview = $('<img class="file-preview" data-event="select-file">');
+                        imagePreview.attr('src', this.config.filePath);
+                        imagePreview.appendTo('.file-upload-container .row div:first-child');
+                    }
+                },
+
+                bindEvents: function() {
+
+                    var el = this.config;
+
+                    el.selectFile.on('click', function(event){
+                        event.preventDefault();
+                        $.publish('FileUpload/select-file');
+                    });
+
+                    el.fileInput.on('change', function(event){
+                        $.publish('FileUpload/file-ready');
+                    });
+
+                    // Drag and Drop Events.
+                    el.dropZone.on('drop dragover dragenter', function(event){
+                        event.preventDefault();
+                        event.stopPropagation();
+                        el.selectFile.addClass('active');
+                    })
+
+                    .on('dragleave', function(){
+                        el.selectFile.removeClass('active');
+                    })
+
+                    .on('drop', function(event){
+                        el.selectFile.removeClass('active');
+                        $.publish('FileUpload/file-ready');
+                    });
+                },
+
+                subscriptions: function() {
+                    $.subscribe('FileUpload/select-file', this.browseForFile);
+                    $.subscribe('FileUpload/file-ready', this.uploadFile);
+                },
+
+                browseForFile: function() {
+                    console.log('cliocked');
+                    FileUpload.config.fileInput.click();
+                },
+
+                uploadFile: function() {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/2014/urban/upload/profile_photo',
+                        success: function(response){
+                            if(response.length) {
+                                FileUpload.config.filePath = response;
+                                FileUpload.setImage();
+                            }
+
+                            else{
+                                FileUpload.renderError();
+                            }
+                        }
+                    });
+                },
+
+                renderError: function() {
+                    FileUpload.config.selectFile.addClass('error');
+                    $('.file-upload i').attr('class', 'fa fa-exclamation-triangle');
+                    FileUpload.config.fileInput.val('');
+                    FileUpload.config.selectFile.show();
+                    $('.file-preview').remove();
                 }
+            };
+
+            $.fn.fileupload = function(config) {
+                return this.each(function() {
+                    window.FileUpload = FileUpload.init(this, config);
+                });
             }
-        });
+
+        })(jQuery);
 
     /**
      *  Google Maps Component
@@ -284,7 +290,7 @@
             /**
              *  Get (random) city coordinates.
              */
-                function getCityCoordinates(type) {
+                function getCityCoordinates() {
 
                     // List of Cities.
                     var cities = {

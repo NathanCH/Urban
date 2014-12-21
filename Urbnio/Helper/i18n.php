@@ -60,7 +60,8 @@ namespace Urbnio\Helper;
                 'email' => 'email address',
                 'current-password' => 'current password',
                 'address' => 'address',
-                'file' => 'file'
+                'file' => 'file',
+                'name' => 'name'
             );
 
             // Assign them as items.

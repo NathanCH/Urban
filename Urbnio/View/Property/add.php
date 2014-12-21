@@ -15,7 +15,11 @@
         </header>
 
         <form action="<?= URL; ?>property/add" method="POST">
-
+            <div class="row">
+                <div class="small-12 medium-12 large-12 columns">
+                    <p><em>You can change these settings at any time.</em></p>
+                </div>
+            </div>
             <?php
             // Display errors.
             if(isset($data['errors'])) {
@@ -43,13 +47,57 @@
             <fieldset>
                 <div class="row">
                     <div class="columns">
+                        <h3>Details</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-container">
+                        <div class="small-12 medium-4 large-3 columns">
+                            <label for="name">Name:</label>
+                        </div>
+                        <div class="small-12 medium-8 large-9 columns end">
+                            <input type="text" name="name" id="name" placeholder="ie. New Park Bench" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-container">
+                        <div class="small-12 medium-4 large-3 columns">
+                            <label for="type">Property Type:</label>
+                        </div>
+                        <div class="small-12 medium-8 large-6 columns end">
+                            <div class="select-container">
+                                <select name="type" id="type">
+                                    <option value="Agriculture">Agriculture</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Educational">Educational</option>
+                                    <option value="Government">Government</option>
+                                    <option value="Industrial">Industrial</option>
+                                    <option value="Landmark">Landmark</option>
+                                    <option value="Military">Military</option>
+                                    <option value="Transport">Transport</option>
+                                    <option value="Infrastructure">Infrastructure</option>
+                                    <option value="Power Station">Power Station</option>
+                                    <option value="Skyscraper">Skyscraper</option>
+                                </select>
+                                <div class="select-text"></div>
+                                <div class="select-caret">
+                                    <i class="fa fa-caret-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="columns">
                         <h3>Location</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-container">
                         <div class="small-12 medium-4 large-3 columns">
-                            <label for="name">Address:</label>
+                            <label for="search-location">Address:</label>
                         </div>
                         <div class="input-append-icon mtm hide loader">
                             <span class="fa fa-spin fa-spinner"></span>

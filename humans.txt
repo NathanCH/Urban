@@ -1,7 +1,6 @@
 # Main
 
     Author: nathancharrois@gmail.com
-    Role: developer / designer
     Site: http://cetan.ca
 
 # Thanks
@@ -9,8 +8,11 @@
     PHP Academy Tutorial Series
     Site: https://youtube.com/watch?v=c_hNNAdyfQk
 
-    Skeleton MVC Pattern by panique
+    panique (Skeleton MVC Pattern)
     https://github.com/panique/php-mvc/
+
+    Cowboy (jQuery Tiny Pub/Sub)
+    https://github.com/cowboy/jquery-tiny-pubsub
 
     Dion Moult
     Site: http://thinkmoult.com/
