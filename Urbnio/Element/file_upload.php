@@ -5,7 +5,7 @@
             <input type="file" class="hide" id="file-upload" name="profile_photo"/>
             <?php
             // Profile photo is not set.
-            if($file['set']) {
+            if(!$file['set']) {
             ?>
             <div class="file-upload" data-event="select-file">
                 <i class="fa fa-upload"></i>

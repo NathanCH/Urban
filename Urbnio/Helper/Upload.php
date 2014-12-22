@@ -5,8 +5,6 @@ use \Exception as Exception;
 
 /**
  *  Upload Helper.
- *
- *  @author nathan charrois <nathancharrois@gmail.com>
  */
 
     class Upload {

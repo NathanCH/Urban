@@ -34,14 +34,13 @@
                 },
 
                 setup: function() {
-                    this.setImage();
+                    this.displayImage();
                     this.bindEvents();
                     this.subscriptions();
                 },
 
-                setImage: function() {
+                displayImage: function() {
                     if (this.config.filePath != null) {
-                        // Place image on container.
                         this.config.fileUpload.hide();
                         $('.file-preview').remove();
 
@@ -87,18 +86,26 @@
                 },
 
                 browseForFile: function() {
-                    console.log('cliocked');
                     FileUpload.config.fileInput.click();
                 },
 
                 uploadFile: function() {
+
+                    var formData = new FormData();
+                    var file = FileUpload.config.fileInput[0].files;
+
+                    formData.append('files', file[0])
+
                     $.ajax({
-                        type: 'GET',
-                        url: '/2014/urban/upload/profile_photo',
+                        type: 'POST',
+                        url: '/2014/urban/file/add_profile_photo',
+                        processData: false,
+                        contentType: false,
+                        data: formData,
                         success: function(response){
                             if(response.length) {
                                 FileUpload.config.filePath = response;
-                                FileUpload.setImage();
+                                FileUpload.displayImage();
                             }
 
                             else{
@@ -109,10 +116,11 @@
                 },
 
                 renderError: function() {
-                    FileUpload.config.selectFile.addClass('error');
-                    $('.file-upload i').attr('class', 'fa fa-exclamation-triangle');
-                    FileUpload.config.fileInput.val('');
-                    FileUpload.config.selectFile.show();
+                    var fileUpload = FileUpload.config;
+                    fileUpload.selectFile.addClass('error');
+                    fileUpload.fileUpload.find('i').attr('class', 'fa fa-exclamation-triangle');
+                    fileUpload.fileInput.val('');
+                    fileUpload.selectFile.show();
                     $('.file-preview').remove();
                 }
             };

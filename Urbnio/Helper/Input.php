@@ -21,6 +21,10 @@ namespace Urbnio\Helper;
                         return (!empty($_POST)) ? true : false;
                         break;
 
+                    case 'file':
+                        return (!empty($_FILES)) ? true : false;
+                        break;
+
                     case 'get':
                         return (!empty($_GET)) ? true : false;
                         break;

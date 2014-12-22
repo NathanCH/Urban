@@ -266,33 +266,6 @@ use \Exception as Exception;
                         // Validate $_POST data
                         $validation = $validate->check($_POST, $post_data);
 
-
-
-
-                        if($_FILES['profile_photo']['tmp_name']) {
-
-                            // File's validation rules.
-                            $file_data = array(
-                                'profile_photo' => array(
-                                    'required' => false,
-                                    'max_file_size' => 1024,
-                                    'file_type' => 'image'
-                                )
-                            );
-
-                            // Setup upload class and set directory.
-                            $upload = Upload::start('uploads/users/');
-
-                            // Prepare file for upload.
-                            $upload->set_file($_FILES['profile_photo']);
-
-                            // Validate $_FILE data.
-                            $upload->set_callback($validation, array('check_file' => $file_data));
-
-                            // Upload the file and get the results.
-                            $profile_photo = $upload->upload();
-                        }
-
                         // Check if validation has passed.
                         if($validation->passed()) {
 
@@ -306,14 +279,6 @@ use \Exception as Exception;
                                     'email' => $_POST['email'],
                                     'about' => $_POST['about']
                                 ));
-
-                                if($_FILES['profile_photo']['tmp_name']) {
-
-                                    $users_model->upload_user_file(array(
-                                        'user_id' => $users_model->data()->id,
-                                        'file_name' => $profile_photo['filename']
-                                    ));
-                                }
 
                                 // Get updated data.
                                 $users_model = $this->loadModel('UsersModel');

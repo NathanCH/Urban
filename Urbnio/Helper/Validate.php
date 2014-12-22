@@ -100,7 +100,7 @@ namespace Urbnio\Helper;
          *  @param $items   array   The form element(s).
          */
             public function check_file($object, $items = array()) {
-
+                        //var_dump($object);
                 // Seperate each item and its rules.
                 foreach ($items as $item => $rules) {
 
@@ -113,6 +113,7 @@ namespace Urbnio\Helper;
                         // Error type 4: No file was uploaded.
                         if($rule === 'required' && $answer && $file_data['post_data']['error'] == 4){
                             $this->_addError('file', $rule, $answer);
+
                         }
 
                         else if(!empty($file_data)) {
@@ -137,6 +138,8 @@ namespace Urbnio\Helper;
                 }
 
                 $this->_passed = empty($this->_errors);
+
+                return $this;
             }
 
         /**
