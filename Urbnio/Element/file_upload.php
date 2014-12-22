@@ -20,10 +20,7 @@
                 <i class="fa fa-upload"></i>
             </div>
             <div class="file-preview-container">
-                <img class="file-preview" src="<?php echo USER_UPLOAD_PATH; ?>/<?php echo $file['file_name']; ?>" />
-            </div>
-            <div class="close-preview" data-event="remove-preview">
-                <i class="fa fa-times"></i>
+                <img class="file-preview" src="<?php echo USER_UPLOAD_PATH; ?>/<?php echo $file['file_name']; ?>" data-event="select-file"/>
             </div>
             <?php
             }

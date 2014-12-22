@@ -78,7 +78,8 @@
                     <div class="input-container">
                         <div class="small-6 medium-4 large-3 columns">
                             <label for="name">Profile Photo:</label>
-                            <span class="label-subtext">.jpg .gif .png</span>
+                            <span class="label-subtext">Accepts .jpg .gif .png</span><br />
+                            <span class="label-subtext">2 MB limit</span>
                         </div>
                         <div class="small-6 medium-8 large-6 columns end">
                             <?php

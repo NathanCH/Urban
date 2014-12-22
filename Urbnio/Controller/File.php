@@ -38,7 +38,7 @@ use \Exception as Exception;
                     $file_data = array(
                         'profile_photo' => array(
                             'required' => true,
-                            'max_file_size' => 125,
+                            'max_file_size' => 4000,
                             'file_type' => 'image'
                         )
                     );
