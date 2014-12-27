@@ -78,6 +78,9 @@
 
                     .on('drop', function(event) {
                         el.selectFile.removeClass('active');
+
+                        el.droppedFile = event.originalEvent.dataTransfer.files;
+
                         $.publish('FileUpload/file-ready');
                     });
                 },
@@ -87,6 +90,16 @@
                     $.subscribe('FileUpload/file-ready', this.uploadFile);
                 },
 
+                getFileData: function() {
+                    var el = FileUpload.config;
+
+                    if(el.droppedFile != null) {
+                        return el.droppedFile[0];
+                    }
+
+                    return el.fileInput[0].files[0];
+                },
+
                 browseForFile: function() {
                     FileUpload.config.fileInput.click();
                 },
@@ -94,9 +107,9 @@
                 uploadFile: function() {
 
                     var formData = new FormData();
-                    var file = FileUpload.config.fileInput[0].files;
+                    var file = FileUpload.getFileData();
 
-                    formData.append('files', file[0])
+                    formData.append('files', file);
 
                     $.ajax({
                         type: 'POST',
@@ -111,6 +124,7 @@
                             if(response.length) {
                                 FileUpload.config.filePath = response;
                                 FileUpload.displayImage();
+                                FileUpload.config.droppedFile = null;
                             }
 
                             else{
