@@ -57,7 +57,7 @@
 
                                         else{
                                         ?>
-                                        <img src="<?php echo USER_UPLOAD_PATH; ?>/<?php echo $data['profile_photo']['file_name']; ?>" class="display-picture" />
+                                        <img src="<?php echo URL; ?>/<?php echo $data['profile_photo']['file_name']; ?>" class="display-picture" />
                                         <?php
                                         }
                                         ?>

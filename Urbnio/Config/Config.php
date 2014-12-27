@@ -34,4 +34,4 @@ define('CSS_PATH', URL . 'Static/css');
 define('JS_PATH', URL . 'Static/js');
 define('IMG_PATH', URL . 'Static/img');
 
-define('USER_UPLOAD_PATH', URL . 'uploads/users');
+define('USER_UPLOAD_PATH', 'uploads/users');

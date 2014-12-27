@@ -14,6 +14,9 @@
     Cowboy (jQuery Tiny Pub/Sub)
     https://github.com/cowboy/jquery-tiny-pubsub
 
+    Aditya Patadia (ImageResize PHP Class)
+    https://github.com/eventviva/php-image-resize
+
     Dion Moult
     Site: http://thinkmoult.com/
 

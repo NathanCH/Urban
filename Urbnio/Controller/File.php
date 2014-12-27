@@ -1,97 +1,106 @@
 <?php
 namespace Urbnio\Controller;
 
-use Urbnio\Lib\Controller;
 use Urbnio\Helper\Input;
-use Urbnio\Helper\Upload;
 use Urbnio\Helper\Route;
+use Urbnio\Helper\Upload;
 use Urbnio\Helper\Validate;
+use Urbnio\Helper\ImageResize;
+use Urbnio\Lib\Controller;
 use \Exception as Exception;
-
 
 /**
  *  Upload Controller
  *
  *  @author nathan <nathancharrois@gmail.com>
  */
-    class File extends Controller {
+class File extends Controller {
 
-        public function add_profile_photo() {
+    public function add_profile_photo() {
 
+        $users_model = $this->loadModel('UsersModel');
 
-            $users_model = $this->loadModel('UsersModel');
+        // If the current user is already logged in.
+        if (!$users_model->is_logged_in()) {
 
-            // If the current user is already logged in.
-            if(!$users_model->is_logged_in()) {
+            // Redirect to edit page.
+            Route::redirect('user/edit');
+        }
 
-                // Redirect to edit page.
-                Route::redirect('user/edit');
-            }
+        // If user is logged in.
+        else {
 
-            // If user is logged in.
-            else{
+            if (Input::exists('file')) {
 
-                if(Input::exists('file')) {
+                $validate = new Validate;
 
-                    $validate = new Validate;
+                $file_data = array(
+                    'profile_photo' => array(
+                        'required' => true,
+                        'max_file_size' => 8000,
+                        'file_type' => 'image',
+                    ),
+                );
 
-                    $file_data = array(
-                        'profile_photo' => array(
-                            'required' => true,
-                            'max_file_size' => 4000,
-                            'file_type' => 'image'
-                        )
-                    );
+                // Setup upload class and set directory.
+                $upload = new Upload('uploads/users/');
 
-                    // Setup upload class and set directory.
-                    $upload = new Upload('uploads/users/');
+                // Prepare file for upload.
+                $upload->set_file($_FILES['files']);
 
-                    // Prepare file for upload.
-                    $upload->set_file($_FILES['files']);
+                $profile_photo = $upload->upload();
 
-                    $profile_photo = $upload->upload();
+                $validation = $validate->check_file($upload, $file_data);
 
-                    $validation = $validate->check_file($upload, $file_data);
+                // Check if validation has passed.
+                if ($validate->passed()) {
 
-                    // Check if validation has passed.
-                    if($validate->passed()) {
+                    // Try to edit profile.
+                    try {
 
-                        // Try to edit profile.
-                        try {
+                        $image = USER_UPLOAD_PATH . '/' . $profile_photo['filename'];
 
-                            $users_model->upload_user_file(array(
-                                'user_id' => $users_model->data()->id,
-                                'file_name' => $profile_photo['filename']
-                            ));
+                        // Update user file record.
+                        $users_model->upload_user_file(array(
+                            'user_id' => $users_model->data()->id,
+                            'file_name' => $this->create_image($image, 'square_90'),
+                        ));
 
-                            // Get profile data.
-                            $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
+                        // Get profile data.
+                        $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
 
-                            echo USER_UPLOAD_PATH . '/' . $user_profile_photo->file_name;
+                        echo URL . $user_profile_photo->file_name;
 
-                            // Flash message.
-                            // Route::redirect('user/edit');
-                            // Session::flash('success', i18n::lang('flash.update-profile'));
-                        }
-
-                        catch(Exception $e) {
-                            die($e->getMessage());
-                        }
-
+                    } catch (Exception $e) {
+                        die($e->getMessage());
                     }
                 }
             }
+        }
+    }
 
+    private function create_image($image, $size) {
+        $file_type = IMAGETYPE_JPEG; // ImageResize property.
 
+        $file_name = array(
+            'square_90' => '_90x90.jpg',
+            'square_24' => '_24x24.jpg'
+        );
 
-            // 2. In controller, upload file normally. Then generate 3 sizes of avatar with image path.
-            // 3. Save images as current image name + _small, _medium, _large.
-            // 4. On display page, get the current image name, and depending on the situation display certain size.
-            // var_dump($_FILES['files']);
+        $new_image = new ImageResize($image);
+        $new_file_name = $image . $file_name[$size];
 
-            // $path = 'http://localhost/2014/urban/uploads/users/55a5e3158734e585ee061bf1e54bf0b55b06b3101417161134';
-
-            // echo $path;
+        switch ($size) {
+            case 'square_90':
+                $new_image->crop(90, 90);
+                $new_image->save($new_file_name, $file_type);
+            break;
+            case 'square_24':
+                $new_image->crop(24, 24);
+                $new_image->save($new_file_name, $file_type);
+            break;
         }
 
+        return $new_file_name;
     }
+}
