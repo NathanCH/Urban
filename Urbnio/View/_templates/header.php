@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta content="<?= APP_TAG; ?>" name="description">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?= APP_NAME; ?> - <?= APP_VER; ?></title>
         <link rel="stylesheet" type="text/less" href="<?= CSS_PATH; ?>/main.less" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -11,6 +11,7 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700|Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false&libraries=places"></script>
         <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
+        <script src="<?= JS_PATH; ?>/urbn.js"></script>
         <script src="<?= JS_PATH; ?>/extensions.js"></script>
     </head>
     <body>
@@ -25,8 +26,8 @@
                 <div class="site-wrap">
                     <div class="row">
                         <div class="small-12 medium-12 large-12 columns">
-                            <a href="#" class="link-grey left mtm mbm">Send Feedback</a>
-                            <a href="#" class="link-grey right mtm mbm">View Source</a>
+                            <a href="mailto:nathancharrois@gmail.com" class="link-grey left mtm mbm">Send Feedback</a>
+                            <a href="https://github.com/NathanCH/Urban" class="link-grey right mtm mbm">View Source</a>
                         </div>
                     </div>
                 </div>
@@ -66,6 +67,7 @@
                                 <span class="dropdown">
                                     <a class="button button-text button-text-grey" data-event="toggle-dropdown"><?= $data['user_data']['name'] ?></a>
                                     <ul class="dropdown-menu hide">
+                                        <li><a href="<?= URL; ?>property/add">Add Property</a></li>
                                         <li><a href="<?= URL; ?>user/edit">Edit Profile</a></li>
                                         <li><a href="<?= URL; ?>user/change-password">Change Password</a></li>
                                         <li><a href="<?= URL; ?>user/logout">Logout</a></li>

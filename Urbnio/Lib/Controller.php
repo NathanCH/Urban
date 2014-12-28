@@ -1,6 +1,5 @@
 <?php
 namespace Urbnio\Lib;
-
 use Urbnio\Controller\Layout;
 
 /**

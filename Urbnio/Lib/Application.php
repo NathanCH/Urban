@@ -1,6 +1,6 @@
 <?php
 namespace Urbnio\Lib;
-use Urbnio\Controller\User;
+use Urbnio\Controller\Splash;
 use Urbnio\Helper\Cookie;
 use Urbnio\Helper\Input;
 use Urbnio\Helper\Session;
@@ -63,9 +63,9 @@ class Application {
                     $this->url_controller->index();
                 }
             } else {
-
-                $splash = new User();
-                $splash->login();
+                // check if class exists, if not see why autoloader isnt loading it.
+                $splash = new Splash();
+                $splash->index();
             }
         }
 
@@ -89,6 +89,9 @@ class Application {
                 $this->url_parameter_1 = (isset($url[2]) ? $url[2] : null);
                 $this->url_parameter_2 = (isset($url[3]) ? $url[3] : null);
                 $this->url_parameter_3 = (isset($url[4]) ? $url[4] : null);
+
+                // Captalize controller file.
+                $this->url_controller = ucfirst($this->url_controller);
             }
         }
 

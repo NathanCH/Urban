@@ -1,7 +1,7 @@
 <?php
-
-define('URL', 'http://' . $_SERVER['SERVER_NAME'] . '/2014/urban/');
-// Live URL: define('URL', 'http://' . $_SERVER['SERVER_NAME'] . '/');
+define('FOLDER', '/2014/urban/');
+define('URL', 'http://' . $_SERVER['SERVER_NAME'] . FOLDER);
+define('ROOT', $_SERVER['DOCUMENT_ROOT'] . FOLDER);
 
 define('DB_TYPE', 'mysql');
 define('DB_HOST', '127.0.0.1');

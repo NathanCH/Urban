@@ -37,7 +37,7 @@ use \Exception as Exception;
             public function __construct($directory) {
 
                 // Set local route.
-                $this->_root = $_SERVER['DOCUMENT_ROOT'] . '2014/urban/';
+                $this->_root = ROOT;
 
                 // Set server route.
                 // $this->_root = URL;

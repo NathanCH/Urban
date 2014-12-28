@@ -1,6 +1,5 @@
 <?php
 namespace Urbnio\Controller;
-
 use Urbnio\Lib\Controller;
 use Urbnio\Helper\Input;
 use Urbnio\Helper\i18n;

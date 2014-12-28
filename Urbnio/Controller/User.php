@@ -1,6 +1,5 @@
 <?php
 namespace Urbnio\Controller;
-
 use Urbnio\Helper\Input;
 use Urbnio\Helper\Validate;
 use Urbnio\Helper\Session;
@@ -11,7 +10,6 @@ use Urbnio\Helper\i18n;
 use Urbnio\Helper\Upload;
 use Urbnio\Lib\Controller;
 use \Exception as Exception;
-
 
 /**
  *  Users Controller

@@ -1,6 +1,5 @@
 <?php
 namespace Urbnio\Controller;
-
 use Urbnio\Helper\Input;
 use Urbnio\Helper\Route;
 use Urbnio\Helper\Upload;

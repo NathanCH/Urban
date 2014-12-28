@@ -1,6 +1,3 @@
-#set max post size
-php_value post_max_size 10M
-
 # Necessary to prevent problems when using a controller named "index" and having a root index.php.
 Options -MultiViews
 
@@ -12,6 +9,7 @@ Options -Indexes
 
 # When using the script within a sub-folder, put this path here, like /mysubfolder/
 RewriteBase /2014/urban/
+# RewriteBase /
 
 # General rewrite rules
 RewriteCond %{REQUEST_FILENAME} !-d
