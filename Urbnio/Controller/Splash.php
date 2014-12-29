@@ -16,7 +16,7 @@ use Urbnio\Lib\Controller;
             public function index() {
 
                 // Render layout and view files.
-                $this->render('splash/index', 'splash/index');
+                $this->render('splash_layout', 'splash/index');
             }
 
     }

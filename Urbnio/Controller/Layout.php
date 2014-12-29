@@ -9,6 +9,43 @@ use Urbnio\Lib\Controller;
  */
     class Layout extends Controller {
 
+            private $_path = null;
+
+            public function get_path() {
+                return $this->_path;
+            }
+
+            public function splash_layout() {
+                $data['header'] = $this->fetch_header();
+                $data['footer'] = $this->fetch_footer();
+
+                $this->_path = 'splash/index';
+                return $data;
+            }
+
+            public function static_layout() {
+                $data['header'] = $this->fetch_header();
+                $data['footer'] = $this->fetch_footer();
+
+                $this->_path = 'static/index';
+                return $data;
+            }
+
+            public function pages_layout($page) {
+                $data['header'] = $this->fetch_header();
+                switch ($page) {
+                    case 'pages/index':
+                        $data['hero'] = $this->fetch_hero();
+                        // Fetch cities.
+                    break;
+                }
+
+                $data['footer'] = $this->fetch_footer();
+
+                $this->_path = $page;
+                return $data;
+            }
+
             public function fetch_header() {
 
                 $data = array();
@@ -37,17 +74,15 @@ use Urbnio\Lib\Controller;
                         $data['profile_photo']['set']          = false;
                     }
                 }
-
-                $data['header'] = $this->view('_templates/header', $data);
-
-                return $data;
+                return $this->view('Templates/header', $data);
             }
 
             public function fetch_footer() {
+                return $this->view('Templates/footer');
+            }
 
-                $data['footer'] = $this->view('_templates/footer');
-
-                return $data;
+            public function fetch_hero() {
+                return $this->view('Components/hero');
             }
 
     }

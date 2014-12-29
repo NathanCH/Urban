@@ -14,26 +14,28 @@
         <script src="<?= JS_PATH; ?>/components.js"></script>
     </head>
     <body>
-        <div class="map-overlay">
-            <div class="row">
-                <div class="small-12 medium-12 large-12 columns">
+        <section class="fullscreen-container">
+            <div class="map-overlay">
+                <div class="row">
+                    <div class="small-12 medium-12 large-12 columns">
 
-                    <div class="row">
-                        <div class="small-offset-1 small-10 medium-offset-2 medium-8 large-offset-2 large-4 columns">
-                            <div class="splash-content">
-                                <h1>urbn.io</h1>
-                                <p>
-                                    a website for architecture and urban enthusiasts - track your neighbourhood's growth, discuss local politics, and get involved.
-                                </p>
-                                <a href="http://github.com/NathanCH/urban" class="github" title="View source on Github">View source.</a>
+                        <div class="row">
+                            <div class="small-offset-1 small-10 medium-offset-2 medium-8 large-offset-2 large-4 columns">
+                                <div class="splash-content">
+                                    <h1>urbn.io</h1>
+                                    <p>
+                                        a website for architecture and urban enthusiasts - track your neighbourhood's growth, discuss local politics, and get involved.
+                                    </p>
+                                    <a href="http://github.com/NathanCH/urban" class="github" title="View source on Github">View source.</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="map" data-map-type="subtle" data-map-event="pan"></div>
+            <div id="map" data-map-type="subtle" data-map-event="pan"></div>
+        </section>
 
         <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

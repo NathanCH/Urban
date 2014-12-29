@@ -1,9 +1,11 @@
 <?php
 /**
- *  Static Layout.
+ *  Pages Layout.
  */
     // Echo header view.
     echo $data['layout']['header'];
+
+    echo $data['layout']['hero'];
 
     // View Content.
     echo $data['view_content'];

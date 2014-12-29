@@ -68,7 +68,7 @@ use Urbnio\Helper\Route;
                 }
 
                 // Render layout and view files.
-                $this->render('static/index', 'property/add', $data);
+                $this->render('static_layout', 'property/add', $data);
             }
 
     }

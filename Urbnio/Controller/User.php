@@ -22,9 +22,7 @@ use \Exception as Exception;
          *  Index page.
          */
             public function index() {
-
-                // Render layout and view files.
-                $this->render('splash/index', 'splash/index');
+                Route::redirect('user/login');
             }
 
         /**
@@ -102,7 +100,8 @@ use \Exception as Exception;
                     $data['content']['error.list'] = i18n::lang('error.list');
 
                     // Render layout and view files.
-                    $this->render('static/index', 'user/login', $data);
+                    // $this->render('static/index', 'user/login', $data);
+                    $this->render('static_layout', 'user/login', $data);
                 }
             }
 
@@ -212,8 +211,7 @@ use \Exception as Exception;
                     $data['content']['error.list'] = i18n::lang('error.list');
 
                     // Render layout and view files.
-                    $this->render('static/index', 'user/register', $data);
-
+                    $this->render('static_layout', 'user/register', $data);
                 }
             }
 
@@ -324,11 +322,10 @@ use \Exception as Exception;
                     else{
                         $data['profile_photo']['set']          = false;
                     }
-
                 }
 
                 // Render layout and view files.
-                $this->render('static/index', 'user/edit', $data);
+                $this->render('static_layout', 'user/edit', $data);
             }
 
         /**
@@ -396,7 +393,6 @@ use \Exception as Exception;
                             catch(Exception $e) {
                                 die($e->getMessage());
                             }
-
                         }
 
                         // Render validation errors.
@@ -412,8 +408,7 @@ use \Exception as Exception;
                 $data['content']['button.forgot-password'] = i18n::lang('button.forgot-password');
                 $data['content']['error.list'] = i18n::lang('error.list');
 
-
                 // Render layout and view files.
-                $this->render('static/index', 'user/change-password', $data);
+                $this->render('static_layout', 'user/change-password', $data);
             }
     }

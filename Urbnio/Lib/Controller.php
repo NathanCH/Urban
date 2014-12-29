@@ -43,7 +43,7 @@ use Urbnio\Controller\Layout;
                 $data['view_content'] = $prepare_view;
 
                 // Returns layout HTML.
-                $prepare_layout = $this->layout($layout, $data);
+                $prepare_layout = $this->layout($layout, $view, $data);
 
                 echo $prepare_layout;
             }
@@ -77,17 +77,18 @@ use Urbnio\Controller\Layout;
         /**
          *  Render Layout.
          *
-         *  @param $layout the layout to render.
-         *  @param $data_array data to be passed to the layout.
+         *  @param $layout  the layout to render.
+         *  @param $data    array data to be passed to the layout.
+         *  @param $view
          *
          *  @author nathancharrois@gmail.com
          */
-            public function layout($layout, $data = array()) {
+            public function layout($layout, $view, $data = array()) {
 
                 $set_layout = new Layout();
 
-                $data += $set_layout->fetch_header();
-                $data += $set_layout->fetch_footer();
+                $data['layout'] = $set_layout->$layout($view);
+                $data['layout_path'] = $set_layout->get_path();
 
                 extract($data);
 
@@ -95,7 +96,7 @@ use Urbnio\Controller\Layout;
                 ob_start();
 
                 // Build full path to layout file.
-                $path = LAYOUT_PATH . $layout . LAYOUT_FILE_EXT;
+                $path = LAYOUT_PATH . $data['layout_path'] . LAYOUT_FILE_EXT;
 
                 include $path;
 

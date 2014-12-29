@@ -7,7 +7,7 @@
  *  @param  array   $data['input']      the user's profile information.
  */
 ?>
-
+<section class="content-container">
     <div class="site-wrap">
         <header class="row">
             <div class="columns">
@@ -165,3 +165,4 @@
             </fieldset>
         </form>
     </div>
+</section>

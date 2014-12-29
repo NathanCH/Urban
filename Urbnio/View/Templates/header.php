@@ -5,7 +5,7 @@
         <meta content="<?= APP_TAG; ?>" name="description">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?= APP_NAME; ?> - <?= APP_VER; ?></title>
-        <link rel="stylesheet" type="text/less" href="<?= CSS_PATH; ?>/main.less" />
+        <link rel="stylesheet" type="text/less" href="<?= CSS_PATH; ?>/static.less" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.4/less.min.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700|Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
@@ -100,11 +100,9 @@
                 </div>
             </div>
         </header>
-        <div class="site-wrap">
-            <div class="notifications">
-                <?php
-                // Display flash message.
-                echo $this->element('flash');
-                ?>
-            </div>
+        <div class="notifications-container">
+            <?php
+            // Display flash message.
+            echo $this->element('flash');
+            ?>
         </div>

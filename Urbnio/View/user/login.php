@@ -11,6 +11,7 @@
     // Get view section.
     $content = $data['content'];
 ?>
+<section class="content-container">
     <div class="site-wrap-small">
         <header class="row">
             <div class="small-12 medium-12 large-12 columns">
@@ -79,3 +80,4 @@
             </fieldset>
         </form>
     </div>
+</section>
