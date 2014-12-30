@@ -5,8 +5,6 @@
 */
 
     fieldset > .row { margin-bottom: 30px; }
-    fieldset > .row:last-child { margin-bottom: 0; }
-    fieldset > .row:last-child { margin-bottom: 30px; }
 
 /*  Forms
     ===
@@ -63,30 +61,64 @@
         font-family: "Roboto";
         outline: none;
     }
-
     .input-container{
         position: relative;
     }
 
-        .input-container input{
-            width: 100%;
-            height: 40px;
-            background: @grey-light;
-            border: none;
-            box-shadow: 0 1px 1px rgba(0,0,0,.2) inset;
-            font-size: 14px;
-            font-weight: 400;
-            padding: 10px 9px 11px;
-            color: #666;
+/*  Input Container Stack Fields
+    ---
+
+    <div class="input-container input-stack">
+        <div />
+        <div />
+    </div>
+*/
+
+    @media only screen and (max-width: @mobile) {
+        .input-container.input-stack > div{
+            margin-bottom: 15px;
         }
-        .input-container input:focus{
-            background-color: @grey-light-alt;
-            box-shadow: 0 1px 1px rgba(0,0,0,.3) inset;
-        }
-        .input-container input[disabled]{
-            color: #CCC;
-            cursor: not-allowed;
-        }
+    }
+
+/*  Input Default
+    ---
+
+    <div class="input-container">
+        <input />
+    </div>
+*/
+    .input-container input{
+        width: 100%;
+        height: 40px;
+        background: @grey-light;
+        border: none;
+        box-shadow: 0 1px 1px rgba(0,0,0,.2) inset;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 10px 9px 11px;
+        color: @grey-dark;
+    }
+    .input-container input:focus{
+        background-color: @grey-light-alt;
+        box-shadow: 0 1px 1px rgba(0,0,0,.3) inset;
+    }
+    .input-container input[disabled]{
+        color: #CCC;
+        cursor: not-allowed;
+    }
+
+/*  Input White (Variation)
+    ---
+
+    <div class="input-container input-white" />
+*/
+    .input-container.input-white input,
+    .input-container.input-white .select-container{
+        border-radius: 3px;
+        background-color: white;
+        box-shadow: 0px 2px 0px 0px rgba(0,0,0,.1);
+        color: @grey-medium;
+    }
 
 /*  Select
     ---
@@ -106,12 +138,12 @@
     .select-container{
         width: 100%;
         height: 40px;
+        color: @grey-dark;
         background-color: @grey-light;
         box-shadow: 0px 2px 0px 0px rgba(0,0,0,.1);
         border: none;
         position: relative;
     }
-
         .select-container:hover{
             background-color: @grey-light-alt;
         }
@@ -125,14 +157,13 @@
         position: absolute;
         top: 0;
         left: 0;
-        color: #666;
+        color: inherit;
         font-size: 14px;
         font-weight: 400;
         height: 40px;
         line-height: 40px;
         padding-left: 12px;
     }
-
     .select-container .select-caret{
         z-index: 1;
         height: 40px;
@@ -143,7 +174,6 @@
         top: 0;
         right: 0;
     }
-
         .select-container .select-caret i{
             color: #666666;
             font-size: 15px;
@@ -181,7 +211,6 @@
         -ms-user-select: none;
         user-select: none;
     }
-
     .input-checkbox{
         display: inline-block;
         width: 14px;
@@ -192,7 +221,6 @@
         position: relative;
         top:2px;
     }
-
     .input-checkbox.active{
         background: @primary;
         box-shadow: 0 0 0 2px #ffffff inset;
@@ -215,19 +243,16 @@
         height: 90px;
         position: relative;
     }
-
     @media only screen and (max-width: @mobile) {
         .file-upload-container{
             float: right;
         }
     }
-
     @media only screen and (max-width: @mobile) {
         .file-upload-controls{
             display: none;
         }
     }
-
     .file-upload{
         max-width: 90px;
         min-width: 90px;
@@ -270,7 +295,6 @@
         border-radius: 5px;
         cursor: pointer;
     }
-
     @media only screen and (max-width: @mobile) {
         .file-upload-container .file-preview{
             float: right;

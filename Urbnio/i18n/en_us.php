@@ -24,6 +24,7 @@ return $en_us = array(
     'button.forgot-password'        => 'Forget Password?',
     'button.add'                    => 'Add',
     'button.next-step'              => 'Onwards!',
+    'button.search-listings'        => 'Search Listings',
 
     // Form Labels.
     'form.remember-me'              => 'Remember Me',

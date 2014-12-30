@@ -11,7 +11,7 @@
     <div class="site-wrap">
         <header class="row">
             <div class="columns">
-                <h1><?= $content['page-title']; ?></h1>
+                <h1 class="heading-page"><?= $content['page-title']; ?></h1>
             </div>
         </header>
 

@@ -1,3 +1,27 @@
 /*  Hero Component
     ===
+
+    Structure
 */
+    .hero-container{
+        background-image: url('../img/london.jpg');
+        background-size: cover;
+        height: 500px;
+    }
+    .hero-copy{
+        padding: 125px 0 0;
+    }
+    .hero-ui{
+        max-width: 750px;
+        margin: 0 auto;
+        padding: 50px 0 0 0;
+    }
+
+    @media only screen and (max-width: @mobile) {
+        .hero-copy{
+            padding: 60px 0 0;
+        }
+        .hero-ui{
+            padding: 20px 0 0 0;
+        }
+    }

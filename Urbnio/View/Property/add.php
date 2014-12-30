@@ -11,7 +11,7 @@
         <div class="site-wrap">
             <header class="row">
                 <div class="columns">
-                    <h1><?= $content['page-title']; ?></h1>
+                    <h1 class="heading-page"><?= $content['page-title']; ?></h1>
                 </div>
             </header>
 
@@ -48,7 +48,7 @@
                 <fieldset>
                     <div class="row">
                         <div class="columns">
-                            <h3>Details</h3>
+                            <h3 class="heading-form-section">Details</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -92,7 +92,7 @@
                     </div>
                     <div class="row">
                         <div class="columns">
-                            <h3>Location</h3>
+                            <h3 class="heading-form-section">Location</h3>
                         </div>
                     </div>
                     <div class="row">

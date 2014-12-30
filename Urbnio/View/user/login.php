@@ -7,15 +7,12 @@
  *
  *  @todo create front-end validation.
  */
-
-    // Get view section.
-    $content = $data['content'];
 ?>
 <section class="content-container">
     <div class="site-wrap-small">
         <header class="row">
             <div class="small-12 medium-12 large-12 columns">
-                <h1><?= $content['page-title']; ?></h1>
+                <h1 class="heading-page"><?= $content['page-title']; ?></h1>
             </div>
         </header>
         <form action="<?= URL; ?>user/login/" method="POST">

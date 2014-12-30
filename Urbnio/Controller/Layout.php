@@ -1,6 +1,7 @@
 <?php
 namespace Urbnio\Controller;
 use Urbnio\Lib\Controller;
+use Urbnio\Helper\i18n;
 
 /**
  *  Layout Controller
@@ -36,13 +37,12 @@ use Urbnio\Lib\Controller;
                 switch ($page) {
                     case 'pages/index':
                         $data['hero'] = $this->fetch_hero();
-                        // Fetch cities.
                     break;
                 }
 
                 $data['footer'] = $this->fetch_footer();
-
                 $this->_path = $page;
+
                 return $data;
             }
 
@@ -70,7 +70,6 @@ use Urbnio\Lib\Controller;
                     }
 
                     else{
-
                         $data['profile_photo']['set']          = false;
                     }
                 }
@@ -82,8 +81,8 @@ use Urbnio\Lib\Controller;
             }
 
             public function fetch_hero() {
-                return $this->view('Components/hero');
+                $data['content']['button'] = i18n::lang('button.search-listings');
+                return $this->view('Components/hero', $data);
             }
-
     }
 ?>
