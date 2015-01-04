@@ -1,38 +1,29 @@
 <?php
 namespace Urbnio\Helper;
 
+class Input{
 /**
- *  Input Class
- *
- *  @author nathancharrois@gmail.com
- *  @todo validate a token to prevent cross site form submission.
+ *  Check if post data exists.
+ *  @param $method   string
  */
+    public static function exists($method = 'post') {
 
-    class Input{
+        switch ($method) {
+            case 'post':
+                return (!empty($_POST)) ? true : false;
+                break;
 
-        /**
-         *  Check if post data exists.
-         *  @param $method   string
-         */
-            public static function exists($method = 'post') {
+            case 'file':
+                return (!empty($_FILES)) ? true : false;
+                break;
 
-                switch ($method) {
-                    case 'post':
-                        return (!empty($_POST)) ? true : false;
-                        break;
+            case 'get':
+                return (!empty($_GET)) ? true : false;
+                break;
 
-                    case 'file':
-                        return (!empty($_FILES)) ? true : false;
-                        break;
-
-                    case 'get':
-                        return (!empty($_GET)) ? true : false;
-                        break;
-
-                    default:
-                        return false;
-                        break;
-                }
-            }
-
+            default:
+                return false;
+                break;
+        }
     }
+}

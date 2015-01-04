@@ -1,7 +1,6 @@
 <?php
 /**
  *  register.php
- *
  *  @author nathancharrois@gmail.com
  */
 ?>

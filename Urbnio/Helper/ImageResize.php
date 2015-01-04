@@ -3,7 +3,6 @@ namespace Urbnio\Helper;
 
 /**
  *  Resize and scale images.
- *
  *  @author  Aditya Patadia https://github.com/eventviva
  */
     class ImageResize {

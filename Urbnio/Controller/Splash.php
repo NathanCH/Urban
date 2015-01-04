@@ -2,21 +2,10 @@
 namespace Urbnio\Controller;
 use Urbnio\Lib\Controller;
 
+class Splash extends Controller {
 
-/**
- *  Users Controller
- *
- *  @author nathan <nathancharrois@gmail.com>
- */
-    class Splash extends Controller {
-
-        /**
-         *  Splash page.
-         */
-            public function index() {
-
-                // Render layout and view files.
-                $this->render('splash_layout', 'splash/index');
-            }
-
+    public function index() {
+        $this->render('splash_layout', 'splash/index');
     }
+
+}

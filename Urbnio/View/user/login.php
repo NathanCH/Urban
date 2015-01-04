@@ -1,10 +1,6 @@
 <?php
 /**
- *  login.php
- *
- *  @author nathancharrois@gmail.com
  *  @param array  $data['errors']    result of validation.
- *
  *  @todo create front-end validation.
  */
 ?>

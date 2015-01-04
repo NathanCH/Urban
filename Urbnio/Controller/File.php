@@ -8,11 +8,6 @@ use Urbnio\Helper\ImageResize;
 use Urbnio\Lib\Controller;
 use \Exception as Exception;
 
-/**
- *  Upload Controller
- *
- *  @author nathan <nathancharrois@gmail.com>
- */
 class File extends Controller {
 
     public function add_profile_photo() {
@@ -46,9 +41,7 @@ class File extends Controller {
 
                 // Prepare file for upload.
                 $upload->set_file($_FILES['files']);
-
                 $profile_photo = $upload->upload();
-
                 $validation = $validate->check_file($upload, $file_data);
 
                 // Check if validation has passed.
@@ -65,9 +58,7 @@ class File extends Controller {
                             'file_name' => $this->create_image($image, 'square_90'),
                         ));
 
-                        // Get profile data.
                         $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
-
                         echo URL . $user_profile_photo->file_name;
 
                     } catch (Exception $e) {

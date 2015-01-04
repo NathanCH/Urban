@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -18,7 +17,6 @@
             <div class="map-overlay">
                 <div class="row">
                     <div class="small-12 medium-12 large-12 columns">
-
                         <div class="row">
                             <div class="small-offset-1 small-10 medium-offset-2 medium-8 large-offset-2 large-4 columns">
                                 <div class="splash-content">
@@ -30,13 +28,11 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
             <div id="map" data-map-type="subtle" data-map-event="pan"></div>
         </section>
-
         <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

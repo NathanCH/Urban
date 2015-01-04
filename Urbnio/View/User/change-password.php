@@ -1,8 +1,5 @@
 <?php
 /**
- *  change-password.php
- *
- *  @author nathancharrois@gmail.com
  *  @param  array   $data['errors']     result of validation.
  *  @param  array   $data['input']      the user's profile information.
  */
@@ -14,7 +11,6 @@
                 <h1 class="heading-page"><?= $content['page-title']; ?></h1>
             </div>
         </header>
-
         <form action="<?= URL; ?>user/change-password" method="POST">
             <?php
             // Display errors.
@@ -39,7 +35,6 @@
             <?php
             }
             ?>
-
             <fieldset>
                 <div class="row">
                     <div class="input-container">

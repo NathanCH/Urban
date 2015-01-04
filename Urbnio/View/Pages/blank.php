@@ -1,10 +1,3 @@
-<?php
-/**
- *  blank.php
- *
- *  @author nathancharrois@gmail.com
- */
-?>
     <section class="content-container">
         <div class="site-wrap">
             <div class="row">

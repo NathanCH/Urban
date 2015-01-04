@@ -1,12 +1,8 @@
 <?php
 /**
- *  add.php
- *
- *  @author nathancharrois@gmail.com
  *  @param  array   $data['errors']     result of validation.
-  */
+ */
 ?>
-
     <section class="content-container">
         <div class="site-wrap">
             <header class="row">
