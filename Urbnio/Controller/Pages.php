@@ -10,18 +10,29 @@ class Pages extends Controller {
 
     public function index() {
         $data = array();
+        $rating = array();
+        $region_block = array();
+
         $regions_model = $this->loadModel('RegionsModel');
         $regions_list = $regions_model->data();
 
         $ratings_model = $this->loadModel('RatingsModel');
         $ratings_model->set_category('region');
-        $rating = $ratings_model->get_rating('1');
 
-        if($rating) {
-            echo $rating;
+        // Get Region data.
+        // todo: move to its own controller.
+        foreach ($regions_list as $regions => $region) {
+            $region_block[$region->id] = array(
+                'name' => $region->name,
+                'short_name' => $region->short_name,
+                'level' => $region->level,
+                'rating' => $ratings_model->get_rating($region->id),
+                'article_count' => null,
+                'region_picture' => null
+            );
         }
 
-        $data['regions_list'] = $regions_list;
+        $data['regions_list'] = $region_block;
         $this->render('pages_layout', 'pages/index', $data);
     }
 }

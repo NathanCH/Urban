@@ -23,3 +23,62 @@
         .input-append-icon span{
             font-size: 18px;
         }
+
+/*  Append icon inside input.
+    ---
+
+    <div>
+        <input type="text" />
+        <span class="fa fa-search input-append-inside" />
+    </div>
+*/
+    .input-append-inside{
+        position: absolute;
+        margin: 12px -28px;
+        color: #ccc;
+    }
+
+/*  Ratings
+    ===
+
+    Stars
+    <span class="fa fa-star" />
+*/
+    .star-rating{
+        font-size: 1.1em;
+        line-height: 28px;
+
+        .fa{
+            color: #e8e8e8;
+            padding: 4px 2px;
+            cursor: pointer;
+        }
+        .fa.rating-active{
+            color: @primary;
+        }
+        /* When hovering, all icons are grey. */
+        .rating-hover ~ .fa {
+            color: #e8e8e8;
+        }
+        .fa.rating-hover{
+            color: @primary-hover;
+        }
+        .fa.rating-success{
+            color: @success;
+            font-size: 18px;
+        }
+        .fa.rating-success {
+          -webkit-animation: pop-in 650ms linear both;
+          animation: pop-in 650ms linear both;
+        }
+        @-webkit-keyframes pop-in {
+            .pop-in;
+        }
+        @keyframes pop-in {
+            .pop-in;
+        }
+        .fa.rating-loading {
+            -webkit-animation: appear 1500ms linear infinite both;
+            animation: appear 1500ms linear infinite both;
+        }
+    }

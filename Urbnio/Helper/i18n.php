@@ -56,7 +56,8 @@ class i18n {
             'current-password' => 'current password',
             'address' => 'address',
             'file' => 'file',
-            'name' => 'name'
+            'name' => 'name',
+            'rating' => 'rating'
         );
 
         // Assign them as items.
@@ -72,7 +73,8 @@ class i18n {
             'check_password' => 'Password is incorrect.',
             'login_failed' => 'Email password combination doesn\'t exist.',
             'max_file_size' => $field . ' must be less than ' . $value . ' KB.',
-            'file_type' => $field . ' must be an image.'
+            'file_type' => $field . ' must be an image.',
+            'positive_integer' => $field . ' must be a positive integer.'
         );
 
         return ucfirst($validation_response[$error_type]);

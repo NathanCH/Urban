@@ -67,6 +67,7 @@
                                 <span class="dropdown">
                                     <a class="button button-text button-text-grey" data-event="toggle-dropdown"><?= $data['user_data']['name'] ?></a>
                                     <ul class="dropdown-menu hide">
+                                        <li><a href="<?= URL; ?>pages/index">Index Page</a></li>
                                         <li><a href="<?= URL; ?>property/add">Add Property</a></li>
                                         <li><a href="<?= URL; ?>user/edit">Edit Profile</a></li>
                                         <li><a href="<?= URL; ?>user/change-password">Change Password</a></li>

@@ -14,6 +14,7 @@
                     <div class="input-container input-white input-stack">
                         <div class="small-12 medium-6 large-6 columns">
                             <input type="text" name="search" id="search" placeholder="Water fountains in London"/>
+                            <i class="fa fa-search input-append-inside"></i>
                         </div>
                         <div class="small-12 medium-3 large-3 columns">
                             <div class="select-container">

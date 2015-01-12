@@ -1,6 +1,6 @@
 <?php
 namespace Urbnio\Lib;
-use Urbnio\Controller\Splash;
+use Urbnio\Controller\Pages;
 use Urbnio\Helper\Cookie;
 use Urbnio\Helper\Input;
 use Urbnio\Helper\Session;
@@ -58,7 +58,7 @@ class Application {
             }
         } else {
             // check if class exists, if not see why autoloader isnt loading it.
-            $splash = new Splash();
+            $splash = new Pages();
             $splash->index();
         }
     }

@@ -35,12 +35,14 @@ class RatingsModel{
 
     private function get_data($item_id) {
         if($this->match_category($this->_category)) {
+            $params = array(
+                $this->_category,
+                $item_id
+            );
             $data = $this->_db->query("
                 SELECT FORMAT(AVG(rating), 2) 'rating'
                 FROM ratings
-                WHERE `category` = ?", array(
-                    $this->_category
-            ));
+                WHERE `category` = ? AND `item_id` = ?", $params);
 
             if($data->count()) {
                 $this->_data = $data->first();
@@ -55,5 +57,11 @@ class RatingsModel{
 
     public function set_category($category) {
         return $this->_category = $category;
+    }
+
+    public function add_rating($fields = array()) {
+        if(!$this->_db->insert('ratings', $fields)) {
+            throw new Exception('There was a problem creating this user.');
+        }
     }
 }

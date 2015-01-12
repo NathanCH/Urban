@@ -17,7 +17,7 @@ class RegionsModel{
         }
 
         else{
-            $this->get_last_updated(2);
+            $this->get_last_updated();
         }
     }
 

@@ -65,6 +65,12 @@ class Validate {
                                 $this->_addError($item, $rule, $answer);
                             }
                         break;
+                        // Number is greater than zero and not a decimal.
+                        case 'positive_integer':
+                            if(!preg_match('/^\d+$/', $value)) {
+                                $this->_addError($item, $rule, $answer);
+                            }
+                        break;
                     }
                 }
             }

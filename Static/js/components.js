@@ -162,6 +162,142 @@
     })(jQuery);
 
 /**
+ *  Star Ratings Component
+ *
+ *  <div class="star-rating">
+ *      <span class="fa fa-star" data-rating="1"></span>
+ *      <span class="fa fa-star" data-rating="2"></span>
+ *      <span class="fa fa-star" data-rating="3"></span>
+ *      <span class="fa fa-star" data-rating="4"></span>
+ *      <span class="fa fa-star" data-rating="5"></span>
+ *      <input type="hidden" name="rating-value" value="3">
+ *  </div>
+ */
+
+    (function($){
+
+        var StarRating = {
+
+            data: {
+                enabled: true,
+                element: null,
+                rating: null,
+                category: null,
+                maxRating: 5
+            },
+
+            init: function(element) {
+                this.data.element = element;
+                this.data.rating = $(element).attr('data-rating');
+                this.data.category = $(element).attr('data-category');
+                this.data.item = $(element).attr('data-item');
+                this.setup();
+            },
+
+            setup: function() {
+                this.bindEvents();
+                this.createStars();
+                this.setRating();
+            },
+
+            bindEvents: function() {
+                var self = this;
+
+                $(this.data.element).on('click', function(event) {
+                    self.submitRating(event);
+                });
+
+                $(this.data.element).on('mouseover', function(event) {
+                    self.highlightStars(event);
+                });
+
+                $(this.data.element).on('mouseout', function(event) {
+                    self.unHighlightStars(event);
+                });
+            },
+
+            createStars: function() {
+                for (var i = 0; i < this.data.maxRating; i++) {
+                    var template = jQuery('<span />', {
+                        'class': 'fa fa-star rating',
+                        'data-rating': (i + 1)
+                    });
+
+                    $(this.data.element).append(template);
+                };
+            },
+
+            setRating: function(rating) {
+                var number = rating || this.data.rating;
+                $(this.data.element).children("span:lt("+number+")").addClass('rating-active');
+            },
+
+            highlightStars: function(event) {
+                if(this.data.enabled) {
+                    var rating = $(event.target).attr('data-rating');
+
+                    if(rating) {
+                        //$(event.target).nextAll().andSelf().removeClass('rating-active')
+                        $(event.target).prevAll().andSelf().addClass('rating-hover')
+                    }
+                }
+            },
+
+            unHighlightStars: function(event) {
+                var rating = $(event.target).attr('data-rating');
+
+                if(rating) {
+                    //$(this.data.element).children("span:lt("+number+")").addClass('rating-active');
+                    $(event.target).prevAll().andSelf().removeClass('rating-hover');
+                }
+            },
+
+            submitRating: function(event) {
+                if(this.data.enabled) {
+                    var rating = $(event.target).attr('data-rating');
+                    var self = this;
+
+                    if(rating !== "undefined") {
+                        $.ajax({
+                            type: 'POST',
+                            contentType: 'JSON',
+                            url: window.Urbn.config.rootPath + 'rating/submit/' + rating,
+                            success: function(response) {
+                                if(response.success) {
+                                    self.complete(event);
+                                    self.disable();
+                                }
+                            }
+                        });
+                    }
+                }
+            },
+
+            complete: function(event) {
+                var template = jQuery('<span />', {
+                    'class': 'fa fa-check-circle rating-success'
+                });
+                $(event.target).siblings().removeClass('rating-active');
+                $(event.target).prevAll().andSelf().addClass('rating-active');
+                $(event.target).parent().append(template);
+            },
+
+            disable: function(event) {
+                this.data.enabled = false;
+            }
+        };
+
+        $.fn.starrating = function() {
+            return this.each(function() {
+                window.StarRating = StarRating.init(this);
+            });
+        }
+
+        window.Urbn = window.Urbn || {};
+
+    })(jQuery);
+
+/**
  *  Google Maps Component
  *
  *  <div id="map"></div>

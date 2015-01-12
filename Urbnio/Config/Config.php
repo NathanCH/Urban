@@ -14,7 +14,7 @@ define('COOKIE_NAME', 'hash');
 define('COOKIE_EXPIRY', 604800);
 
 define('APP_NAME', 'Urbn');
-define('APP_VER' , '0.2.1');
+define('APP_VER' , '0.3');
 define('APP_TAG' , 'for architecture and urban enthusiasts.');
 define('APP_LOCALE', 'en_us');
 
