@@ -4,8 +4,7 @@
 
 $(function(){
 
-    /**
-     *  Toggle Checkbox
+    /*  Toggle Checkbox
      *
      *  <input type="hidden" name="my-checkbox" data-input="unique_name" value="0" />
      *  <label class="input-checkbox-label">
@@ -31,8 +30,7 @@ $(function(){
         });
 
 
-    /**
-     *  Toggle Select (Combo Box)
+    /*  Toggle Select (Combo Box)
      *
      *  <div class="select-container">
      *      <select name="location" id="location">
@@ -59,8 +57,7 @@ $(function(){
             $('.select-container select').change(toggleSelect).trigger('change');
         });
 
-    /**
-     *  Close Dialogue.
+    /*  Close Dialogue.
      *
      *  <div data-event="close">Close Me!</div>
      */
@@ -79,8 +76,7 @@ $(function(){
 
         });
 
-    /**
-     *  Toggle Container visibility.
+    /*  Toggle Container visibility.
      *
      *  <div class="hide" data-event="toggle">Toggle A</div>
      *  <div class="show" data-event="toggle">Toggle B</div>
@@ -92,8 +88,7 @@ $(function(){
             });
         });
 
-    /**
-     *  Dropdown
+    /*  Dropdown
      *
      *  <span class="dropdown" data-event="toggle-dropdown">
      *      <a class="button button-text button-text-grey" href="#">Nathan Charrois</a>

@@ -29,8 +29,7 @@
 
 })(jQuery);
 
-/**
- *  Tiny jQuery pub/sub.
+/*  Tiny jQuery pub/sub.
  *  https://github.com/cowboy/jquery-tiny-pubsub
  *
  *  Copyright (c) 2013 "Cowboy" Ben Alman

@@ -161,8 +161,7 @@
 
     })(jQuery);
 
-/**
- *  Star Ratings Component
+/*  Star Ratings Component
  *
  *  <div class="star-rating">
  *      <span class="fa fa-star" data-rating="1"></span>
@@ -297,8 +296,7 @@
 
     })(jQuery);
 
-/**
- *  Google Maps Component
+/*  Google Maps Component
  *
  *  <div id="map"></div>
  */
@@ -331,8 +329,7 @@
                 }
             }
 
-        /**
-         *  Get map event.
+        /*  Get map event.
          *
          *  <div id="map" data-map-event="pan"></div>
          */
@@ -360,8 +357,7 @@
                 }
             }
 
-        /**
-         *  Set map components
+        /*  Set map components
          *
          *  <div data-map-component="search-location"></div>
          */
@@ -408,8 +404,7 @@
                 }
             }
 
-        /**
-         *  Get map options.
+        /*  Get map options.
          *
          *  <div id="map" data-map-type="basic"></div>
          */
@@ -461,8 +456,7 @@
                 return options;
             }
 
-        /**
-         *  Get (random) city coordinates.
+        /*  Get (random) city coordinates.
          */
             function getCityCoordinates() {
 
@@ -512,8 +506,7 @@
                 return cityCoordinates;
             }
 
-        /**
-         *  Create marker at center location.
+        /*  Create marker at center location.
          */
             function createMarker(mapElement) {
 
@@ -548,8 +541,7 @@
                 });
             }
 
-        /**
-         *  Get address.
+        /*  Get address.
          */
             function getAddress(latlng) {
 
