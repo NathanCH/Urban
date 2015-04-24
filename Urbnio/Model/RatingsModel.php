@@ -16,7 +16,7 @@ class RatingsModel{
                 'event'
             );
 
-    function __construct($building = null) {
+    public function __construct($building = null) {
         $this->_db = DB::getInstance();
     }
 
@@ -40,9 +40,10 @@ class RatingsModel{
                 $item_id
             );
             $data = $this->_db->query("
-                SELECT FORMAT(AVG(rating), 2) 'rating'
+                SELECT FORMAT(AVG(rating), 1) 'rating'
                 FROM ratings
-                WHERE `category` = ? AND `item_id` = ?", $params);
+                WHERE `category` = ? AND `item_id` = ?", $params
+            );
 
             if($data->count()) {
                 $this->_data = $data->first();

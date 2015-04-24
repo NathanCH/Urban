@@ -15,12 +15,12 @@ class Application {
             $url_parameter_2 = null,
             $url_parameter_3 = null;
 
-/**
- *  "Start" the application:
- *  Analyze the URL elements and calls the according controller/method or the fallback
- *
- *  @author panique@web.de
- */
+    /**
+     * "Start" the application:
+     * Analyze the URL elements and calls the according controller/method or the fallback
+     *
+     * @author panique@web.de
+     */
     public function __construct() {
         session_start();
         $this->set_session_language();
@@ -63,10 +63,10 @@ class Application {
         }
     }
 
-/**
- *  Get and split the URL
- *  @author panique@web.de
- */
+    /**
+     * Get and split the URL
+     * @author panique@web.de
+     */
     private function splitUrl() {
         if (isset($_GET['url'])) {
 
@@ -87,11 +87,10 @@ class Application {
         }
     }
 
-/**
- *  Set language.
- *  @author     nathancharrois@gmail.com
- *  @todo       set users location based on input.
- */
+    /**
+     * @author     nathancharrois@gmail.com
+     * @todo       set users location based on input.
+     */
     public function set_session_language() {
         if(APP_LOCALE == 'en_us') {
             $path = LANG_PATH . '/' . APP_LOCALE . LANG_FILE_EXT;

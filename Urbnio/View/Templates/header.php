@@ -13,6 +13,7 @@
         <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
         <script src="<?= JS_PATH; ?>/urbn.js"></script>
         <script src="<?= JS_PATH; ?>/extensions.js"></script>
+        <link rel="icon" type="image/png" href="<?= IMG_PATH; ?>/favicon-32x32.png" sizes="32x32">
     </head>
     <body>
         <?php

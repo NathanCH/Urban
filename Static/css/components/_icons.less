@@ -34,7 +34,8 @@
 */
     .input-append-inside{
         position: absolute;
-        margin: 12px -28px;
+        top: 12px;
+        right: 28px;
         color: #ccc;
     }
 
@@ -46,10 +47,10 @@
 */
     .star-rating{
         font-size: 1.1em;
-        line-height: 28px;
+        line-height: 32px;
 
         .fa{
-            color: #e8e8e8;
+            color: #e6e6e6;
             padding: 4px 2px;
             cursor: pointer;
         }
@@ -58,7 +59,7 @@
         }
         /* When hovering, all icons are grey. */
         .rating-hover ~ .fa {
-            color: #e8e8e8;
+            color: #e6e6e6;
         }
         .fa.rating-hover{
             color: @primary-hover;
@@ -66,6 +67,7 @@
         .fa.rating-success{
             color: @success;
             font-size: 18px;
+            cursor: default;
         }
         .fa.rating-success {
           -webkit-animation: pop-in 650ms linear both;
@@ -80,5 +82,27 @@
         .fa.rating-loading {
             -webkit-animation: appear 1500ms linear infinite both;
             animation: appear 1500ms linear infinite both;
+        }
+    }
+
+/*  Circle (Number)
+    ---
+
+    <div class="circle-rating">
+        <div class="rating-value">3.4</div>
+    </div>
+*/
+    .circle-rating{
+        background-color: @primary;
+        border-radius: 32px;
+        width: 32px;
+        height: 32px;
+        cursor: default;
+        .rating-value{
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 30px;
+            text-align: center;
         }
     }

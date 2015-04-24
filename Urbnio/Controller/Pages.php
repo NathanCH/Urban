@@ -23,12 +23,14 @@ class Pages extends Controller {
         // todo: move to its own controller.
         foreach ($regions_list as $regions => $region) {
             $region_block[$region->id] = array(
+                'id' => $region->id,
                 'name' => $region->name,
                 'short_name' => $region->short_name,
                 'level' => $region->level,
                 'rating' => $ratings_model->get_rating($region->id),
                 'article_count' => null,
-                'region_picture' => null
+                'region_picture' => null,
+                'link' => 'map'
             );
         }
 

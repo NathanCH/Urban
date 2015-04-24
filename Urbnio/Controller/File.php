@@ -14,20 +14,15 @@ class File extends Controller {
 
         $users_model = $this->loadModel('UsersModel');
 
-        // If the current user is already logged in.
         if (!$users_model->is_logged_in()) {
-
-            // Redirect to edit page.
             Route::redirect('user/edit');
         }
 
-        // If user is logged in.
         else {
 
             if (Input::exists('file')) {
 
                 $validate = new Validate;
-
                 $file_data = array(
                     'profile_photo' => array(
                         'required' => true,
@@ -44,24 +39,23 @@ class File extends Controller {
                 $profile_photo = $upload->upload();
                 $validation = $validate->check_file($upload, $file_data);
 
-                // Check if validation has passed.
                 if ($validate->passed()) {
 
-                    // Try to edit profile.
                     try {
-
                         $image = USER_UPLOAD_PATH . '/' . $profile_photo['filename'];
-
-                        // Update user file record.
                         $users_model->upload_user_file(array(
                             'user_id' => $users_model->data()->id,
                             'file_name' => $this->create_image($image, 'square_90'),
                         ));
 
                         $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
+
+                        // Fix this echo.
                         echo URL . $user_profile_photo->file_name;
 
-                    } catch (Exception $e) {
+                    }
+
+                    catch (Exception $e) {
                         die($e->getMessage());
                     }
                 }

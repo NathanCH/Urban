@@ -11,6 +11,7 @@ class Rating extends Controller {
             $validate_data = array(
                 'rating' => $rating
             );
+
             $items = array(
                 'rating' => array(
                     'required' => true,
@@ -18,8 +19,10 @@ class Rating extends Controller {
                     'positive_integer' => true
                 ),
             );
+
             $validate = new Validate;
             $validation = $validate->check($validate_data, $items);
+
             if($validation->passed()) {
                 try {
                     $ratings_model = $this->loadModel('RatingsModel');

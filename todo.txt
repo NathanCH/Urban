@@ -1,2 +1,2 @@
 - Refactor maps component.
-- Create authentication helper.
+- Abstract authentication from controller actions.

@@ -1,57 +1,44 @@
 <?php
 namespace Urbnio\Helper;
+use \PDOException as PDOException;
 
 class DB {
-/**
- *  Get instance of the database when initiated so we don't
- *  have to keep reconnecting.
- */
+    /**
+     * Get instance of the database when initiated so we don't
+     * have to keep reconnecting.
+     */
     private static $_instance = null;
 
-/**
- *  Reset private variables when database is initiated.
- */
     private $_pdo,
             $_query,
             $_errors = false,
             $_results,
             $_count = 0;
 
-/**
- *  Connect to database via PDO.
- */
+
     public function __construct() {
-        // Assign database connection to _pdo.
         try{
             $this->_pdo = new \PDO('mysql:host='.DB_HOST.';dbname='. DB_NAME, DB_USER, DB_PASS);
         }
 
-        // Show error.
-        catch(\PDOException $e) {
+        catch(PDOException $e) {
             die($e->getMessage());
         }
     }
 
-/**
- *  Get instance of database.
- */
     public static function getInstance() {
-
-        // Connect to the Database if we haven't already.
+        // Singleton
         if(!isset(self::$_instance)) {
             self::$_instance = new DB();
         }
 
-        // Return instance of DB so we can access functionality.
         return self::$_instance;
     }
 
-/**
- *  Query Database
- *
- *  @param string   $sql        the query to be executed.
- *  @param array    $params     ...
- */
+    /**
+     * @param string   $sql        the query to be executed.
+     * @param array    $params     ...
+     */
     public function query($sql, array $params = array()) {
 
         // Reset erros when query is run.
@@ -78,7 +65,6 @@ class DB {
                 $this->_count = $this->_query->rowCount();
             }
 
-            // If execution fails, set $_error to true.
             else{
                 $this->_error = true;
             }
@@ -87,17 +73,15 @@ class DB {
         return $this;
     }
 
-/**
- *  Insert Method.
- *
- *  @param string   $table      the table we want to insert data into.
- *  @param array    $fields     the fields to update.
- *
- *  $user = DB::getInstance()->insert('users', array(
- *      'username' => 'Nathan',
- *      'password' => 'password'
- *  ));
- */
+    /**
+     * @param string   $table      the table we want to insert data into.
+     * @param array    $fields     the fields to update.
+     *
+     * $user = DB::getInstance()->insert('users', array(
+     *     'username' => 'Nathan',
+     *     'password' => 'password'
+     * ));
+     */
     public function insert($table, $fields = array()) {
         // If there is data in $fields.
         if(count($fields)) {
@@ -135,17 +119,15 @@ class DB {
         return false;
     }
 
-/**
- *  Update method.
- *
- *  @param string   $table      the table we want to update data in.
- *  @param integer  $id         the id to update.
- *  @param array    $fields     the fields to update.
- *
- *  $user = DB::getInstance()->update('users', 6, array(
- *      'name' => 'Richard'
- *  ));
- */
+    /**
+     * @param string   $table      the table we want to update data in.
+     * @param integer  $id         the id to update.
+     * @param array    $fields     the fields to update.
+     *
+     * $user = DB::getInstance()->update('users', 6, array(
+     *     'name' => 'Richard'
+     * ));
+     */
     public function update($table, $id, $fields = array()) {
 
         $set = '';

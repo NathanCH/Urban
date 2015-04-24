@@ -2,28 +2,27 @@
 namespace Urbnio\Helper;
 
 class Input{
-/**
- *  Check if post data exists.
- *  @param $method   string
- */
+    /**
+     * @param $method   string
+     */
     public static function exists($method = 'post') {
 
         switch ($method) {
             case 'post':
                 return (!empty($_POST)) ? true : false;
-                break;
+            break;
 
             case 'file':
                 return (!empty($_FILES)) ? true : false;
-                break;
+            break;
 
             case 'get':
                 return (!empty($_GET)) ? true : false;
-                break;
+            break;
 
             default:
                 return false;
-                break;
+            break;
         }
     }
 }

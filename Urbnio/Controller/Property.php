@@ -8,6 +8,10 @@ use Urbnio\Helper\Route;
 
 class Property extends Controller {
 
+    public function index() {
+        $this->render('static_layout', 'pages/blank');
+    }
+
     public function add() {
 
         $data = array();
@@ -17,7 +21,6 @@ class Property extends Controller {
             Route::redirect('user/login');
         }
 
-        // If the user is logged in.
         else{
 
             if(Input::exists()) {
@@ -42,17 +45,12 @@ class Property extends Controller {
                 }
             }
 
-            // Logged in.
             $data['logged_in'] = true;
-
-            // Set locale data.
             $data['content']['page-title'] = i18n::lang('page-title.add-property');
             $data['content']['button'] = i18n::lang('button.next-step');
             $data['content']['error.list'] = i18n::lang('error.list');
-
         }
 
-        // Render layout and view files.
         $this->render('static_layout', 'property/add', $data);
     }
 }

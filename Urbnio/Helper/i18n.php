@@ -7,45 +7,38 @@ class i18n {
 
     private $_location = null;
 
-/**
- *  Set current location.
- *
- *  @todo get user to set locale.
- */
+    /**
+     * @todo get user to set locale.
+     */
     public function __construct() {
         $this->_location = APP_LOCALE;
     }
 
-/**
- *  Set language data.
- *
- *  @param  $data   array   the language keys and translations.
- */
+    /**
+     * @param  $data   array   the language keys and translations.
+     */
     public static function set_language_data($data = array()) {
         self::$_data = $data;
     }
 
-/**
- *  Get language string.
- *
- *  @param  $phrase     the string identifier.
- */
+    /**
+     * @param  $phrase     the string identifier.
+     */
     public static function lang($phrase) {
         $string = self::$_data;
 
         return $string[$phrase];
     }
 
-/**
- *  Process validation language.
- *
- *  @param  $error_type    type of validation error.
- *  @param  $field         validation field name.
- *  @param  $value         value of validation.
- *  @return processed validation response.
- *
- *  @todo should be able to remove this later and replace with front-end validation.
- */
+    /**
+     * Process validation language.
+     *
+     * @param  $error_type    type of validation error.
+     * @param  $field         validation field name.
+     * @param  $value         value of validation.
+     * @return processed validation response.
+     * @todo should be able to remove this later and replace with front-end validation.
+     */
     public static function validation_lang($error_type, $field = null, $value = null) {
 
         // Format field names.

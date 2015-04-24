@@ -10,15 +10,13 @@ class Validate {
         $this->_db = DB::getInstance();
     }
 
-/**
- *  Method to check input against validation rules.
- *
- *  @param $data    array   $_POST or $_GET to validate.
- *  @param $items   array   The form element(s).
- *  @param $rules   array   All the rules associated with an element.
- *  @param $value   $_POST  the user's form input.
- *  @todo  create regex for email and phone numbers.
- */
+    /**
+     * @param $data    array   $_POST or $_GET to validate.
+     * @param $items   array   The form element(s).
+     * @param $rules   array   All the rules associated with an element.
+     * @param $value   $_POST  the user's form input.
+     * @todo  create regex for email and phone numbers.
+     */
     public function check($data, $items = array()) {
 
         // Seperate each item and its rules.
@@ -80,12 +78,11 @@ class Validate {
         return $this;
     }
 
-/**
- *  Check file against validation rules.
- *
- *  @param $object  array   File upload object gives access to data.
- *  @param $items   array   The form element(s).
- */
+    /**
+     * Check file against validation rules.
+     * @param $object  array   File upload object gives access to data.
+     * @param $items   array   The form element(s).
+     */
     public function check_file($object, $items = array()) {
 
         // Seperate each item and its rules.
@@ -124,12 +121,11 @@ class Validate {
         return $this;
     }
 
-/**
- *  Check file type.
- *
- *  @param $file_type  string  The file's mime type.
- *  @param $category   string  Category of file types to check against.
- */
+    /**
+     * Check file type.
+     * @param $file_type  string  The file's mime type.
+     * @param $category   string  Category of file types to check against.
+     */
     private function check_file_type($file_type, $category) {
         switch ($category) {
             case 'image':
@@ -144,12 +140,11 @@ class Validate {
         return in_array($file_type, $allowed_files);
     }
 
-/**
- * Method to add errors to an associative array.
- *
- * @param $field         the field/input name.
- * @param $error_type   the type of error (ie. required).
- */
+    /**
+     * Method to add errors to an associative array.
+     * @param $field         the field/input name.
+     * @param $error_type   the type of error (ie. required).
+     */
     private function _addError($field, $error_type, $value) {
         return $this->_errors[$field] = i18n::validation_lang($error_type, $field, $value);
     }

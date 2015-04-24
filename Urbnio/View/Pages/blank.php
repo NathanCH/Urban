@@ -2,8 +2,10 @@
         <div class="site-wrap">
             <div class="row">
                 <div class="columns">
-                    <h1 class="heading-page">404 Page Not Found</h1>
-                    <p>Hmm... this page doesn't exist yet.</p>
+                    <h1 class="heading-page">Page Not Found</h1>
+                    <p>Hmm, the page you’re looking for can’t be found.</p>
+                    <br />
+                    <a href="<?= URL; ?>" class="button button-primary">Home Page</a>
                 </div>
             </div>
         </div>

@@ -3,14 +3,13 @@ namespace Urbnio\Lib;
 use Urbnio\Controller\Layout;
 
 class Controller {
-/**
- *  Load the model with the given name.
- *
- *  @param   string $model_name      The name of the model
- *  @param   string $dependency      Pass the model dependencies.
- *  @return  object model
- *  @author  panique@web.de
- */
+    /**
+     * Load the model with the given name.
+     * @param   string $model_name      The name of the model
+     * @param   string $dependency      Pass the model dependencies.
+     * @return  object model
+     * @author  panique@web.de
+     */
     public function loadModel($model_name, $dependency = null) {
         $controller_action = $model_name;
         $class_location = '\\Urbnio\\Model\\' . $controller_action;
@@ -18,14 +17,13 @@ class Controller {
         return new $class_location($dependency);
     }
 
-/**
- *  Render layout and view files.
- *
- *  @param  $layout the layout to render.
- *  @param  $view the view to render.
- *  @param  $data_array data to be passed to view() and layout().
- *  @author nathancharrois@gmail.com
- */
+    /**
+     * Render layout and view files.
+     * @param  $layout the layout to render.
+     * @param  $view the view to render.
+     * @param  $data_array data to be passed to view() and layout().
+     * @author nathancharrois@gmail.com
+     */
     public function render($layout, $view, $data = array()) {
 
         // Returns view HTML.
@@ -40,13 +38,11 @@ class Controller {
         echo $prepare_layout;
     }
 
-/**
- *  Prepare view files.
- *
- *  @param  $view the view to render.
- *  @param  $data_array data to be passed to the view.
- *  @author nathancharrois@gmail.com
- */
+    /**
+     * @param  $view the view to render.
+     * @param  $data_array data to be passed to the view.
+     * @author nathancharrois@gmail.com
+     */
     public function view($view, $data = array()) {
         extract($data);
         ob_start();
@@ -58,14 +54,12 @@ class Controller {
         return $html;
     }
 
-/**
- *  Render Layout.
- *
- *  @param  $layout  the layout to render.
- *  @param  $data    array data to be passed to the layout.
- *  @param  $view
- *  @author nathancharrois@gmail.com
- */
+    /**
+     * @param  $layout  the layout to render.
+     * @param  $data    array data to be passed to the layout.
+     * @param  $view
+     * @author nathancharrois@gmail.com
+     */
     public function layout($layout, $view, $data = array()) {
         $set_layout = new Layout();
         $data['layout'] = $set_layout->$layout($view);
@@ -81,13 +75,11 @@ class Controller {
         return $html;
     }
 
-/**
- *  Render Element.
- *
- *  @param  string   $name  the name of the element file.
- *  @param  array    $data  element options and/or data.
- *  @author nathancharrois@gmail.com
- */
+    /**
+     * @param  string   $name  the name of the element file.
+     * @param  array    $data  element options and/or data.
+     * @author nathancharrois@gmail.com
+     */
     public function element($name, $data = array()) {
         extract($data);
         ob_start();

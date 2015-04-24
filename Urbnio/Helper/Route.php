@@ -2,12 +2,11 @@
 namespace Urbnio\Helper;
 
 class Route {
-/**
- *  Method to handle redirection.
- *  @param  $location    string
- *  @param  $action      string  (optional)
- *  @todo   set up HTTP response controller to handle views and layout.
- */
+    /**
+     * @param  $location    string
+     * @param  $action      string  (optional)
+     * @todo   set up HTTP response controller to handle views and layout.
+     */
     public static function redirect($location, $action = null) {
 
         $path = URL . $location;
@@ -17,7 +16,6 @@ class Route {
 
             switch ($location) {
                 case 404:
-                    // Set header.
                     header('HTTP/1.0 404 Not Found!');
                     echo 'HTTP 404!';
                     exit();

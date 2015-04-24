@@ -9,7 +9,7 @@ class RegionsModel{
     private $_db = null,
             $_data;
 
-    function __construct($building = null) {
+    public function __construct($building = null) {
         $this->_db = DB::getInstance();
 
         if($building){

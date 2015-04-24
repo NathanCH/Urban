@@ -41,6 +41,13 @@ class Layout extends Controller {
             return $data;
         }
 
+        public function map_layout() {
+            $data['header'] = $this->fetch_header();
+            $this->_path = 'map/index';
+
+            return $data;
+        }
+
         public function fetch_header() {
 
             $data = array();
@@ -57,7 +64,6 @@ class Layout extends Controller {
                 $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
 
                 if($user_profile_photo){
-                    // Additional profile data.
                     $data['profile_photo']['set']          = true;
                     $data['profile_photo']['file_name']    = $user_profile_photo->file_name;
                 }

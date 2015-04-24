@@ -1,6 +1,5 @@
 <?php
 namespace Urbnio\Helper;
-
 use \Exception as Exception;
 
 class Upload {
@@ -17,19 +16,12 @@ class Upload {
     public  $data = array();
 
     public static function start($directory) {
-
         return new Upload($directory);
     }
 
-/**
- *  Set and create directory path.
- */
     public function __construct($directory) {
 
-        // Set local route.
         $this->_root = ROOT;
-
-        // Set server route.
         // $this->_root = URL;
 
         if(!$this->set_directory($directory)) {
@@ -40,23 +32,18 @@ class Upload {
     public function set_directory($directory) {
         $this->_directory = $directory;
 
-        // Check that the directory exist.
         return is_writable($this->_directory);
     }
 
-/**
- *  Set file for upload.
- *  @todo change $_file to array to allow for multiple file uploads.
- */
+    /**
+     * @todo change $_file to array to allow for multiple file uploads.
+     */
     public function set_file($file) {
         if(!$this->is_valid_file($file)) {
             $this->add_error('Select a valid file.');
         }
 
-        // Set file.
         $this->_file = $file;
-
-        // Set temp file name.
         $this->_tmp_name = $file['tmp_name'];
     }
 
@@ -67,20 +54,17 @@ class Upload {
             && !empty($file['size']);
     }
 
-/**
- *  Upload and return saved file.
- */
     public function upload() {
         if($this->check()){
             return $this->save();
         }
-        // Return state of upload.
+
         return $this->data;
     }
 
-/**
- *  Check file status.
- */
+    /**
+     * Check file status.
+     */
     private function check() {
         $this->set_file_data();
         $this->callback($this->_callback_method, $this->_callback_object);
@@ -92,18 +76,15 @@ class Upload {
         return $this->data['status'];
     }
 
-/**
- *  Callback to validation class.
- */
+    /**
+     * Callback to allow uploaded file data to be validated.
+     */
     private function callback($callbacks, $object) {
         foreach ($callbacks as $method => $rules) {
             $object->$method($this, $rules);
         }
     }
 
-/**
- *  Save file to server.
- */
     public function save() {
         if(empty($this->_filename)) {
             $this->set_file_name();
@@ -118,10 +99,10 @@ class Upload {
         return $this->data;
     }
 
-/**
- *  Set file data.
- *  Add additional data to post.
- */
+    /**
+     * Set file data.
+     * Add additional data to post.
+     */
     private function set_file_data() {
         $file_size = filesize($this->_tmp_name);
         $this->data = array(
@@ -135,20 +116,15 @@ class Upload {
         );
     }
 
-/**
- *  Set filename.
- *  Generated a unique filename.
- */
     private function set_file_name() {
         $filename = sha1(mt_rand(1, 9999) . $this->_directory . uniqid()) . time();
         $this->_filename = $filename;
     }
 
-/**
- *  Set callback.
- *  @param object $object pass the object and its data.
- *  @param array  $method access object with a method name and any data to that methd.
- */
+    /**
+     * @param object $object pass the object and its data.
+     * @param array  $method access object with a method name and any data to that methd.
+     */
     public function set_callback($object, $method) {
         if(empty($object)) {
             throw new Exception('Object can\'t be empty.');

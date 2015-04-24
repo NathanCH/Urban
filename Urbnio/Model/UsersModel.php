@@ -15,13 +15,13 @@ class UsersModel{
             $_cookieName,
             $_isLoggedIn = false;
 
-/**
- *  Create instance of database and check if the logged in user exists.
- *
- *  @param string   $user   retreive a specific user's data.
- *  @todo  create logic to delete expired sessions.
- */
-    function __construct($user = null) {
+    /**
+     * Create instance of database and check if the logged in user exists.
+     *
+     * @param string   $user   retreive a specific user's data.
+     * @todo  create logic to delete expired sessions.
+     */
+    public function __construct($user = null) {
         $this->_db = DB::getInstance();
         $this->_sessionName = SESSION_NAME;
         $this->_cookieName = COOKIE_NAME;
@@ -49,22 +49,22 @@ class UsersModel{
         }
     }
 
-/**
- *  Register user to database.
- *  @param array  $fields   the fields to add.
- */
+    /**
+     * Register user to database.
+     * @param array  $fields   the fields to add.
+     */
     public function register_user($fields = array()) {
         if(!$this->_db->insert('users', $fields)) {
             throw new Exception('There was a problem creating this user.');
         }
     }
 
-/**
- *  Update user data.
- *
- *  @param array   $fields  the fields to updated.
- *  @param int     $id      to specify a user.
- */
+    /**
+     * Update user data.
+     *
+     * @param array   $fields  the fields to updated.
+     * @param int     $id      to specify a user.
+     */
     public function update_user($fields = array(), $id = null) {
 
         // If no user id is specified, get this user's id.
@@ -78,12 +78,12 @@ class UsersModel{
         }
     }
 
-/**
- *  Upload user file.
- *
- *  @param array   $file   file data to be saved.
- *  @param int     $id     to specify a user.
- */
+    /**
+     * Upload user file.
+     *
+     * @param array   $file   file data to be saved.
+     * @param int     $id     to specify a user.
+     */
     public function upload_user_file($file) {
 
         // Add user file.
@@ -92,11 +92,11 @@ class UsersModel{
         }
     }
 
-/**
- *  Get file data.
- *
- *  @todo  move this to database helper.
- */
+    /**
+     * Get file data.
+     *
+     * @todo  move this to database helper.
+     */
     public function get($table, $data = null) {
         if($data) {
 
@@ -115,12 +115,12 @@ class UsersModel{
     }
 
 
-/**
- *  Change user password.
- *
- *  @param string   $password   password to update.
- *  @param int      $id         to specify a user.
- */
+    /**
+     * Change user password.
+     *
+     * @param string   $password   password to update.
+     * @param int      $id         to specify a user.
+     */
     public function change_password($password, $id = null) {
 
         // If no user id is specified, get this user's id.
@@ -134,15 +134,15 @@ class UsersModel{
         }
     }
 
-/**
- *  Find a user.
- *
- *  @param  string/int   find by email or id.
- *
- *  @todo  since find() searches by ID or email, users can login with their user ID.
- *         create new validation rule to ensure email field is a proper email.
- *         howover, keep this functionality because it's user to search via user ID.
- */
+    /**
+     * Find a user.
+     *
+     * @param  string/int   find by email or id.
+     *
+     * @todo  since find() searches by ID or email, users can login with their user ID.
+     *         create new validation rule to ensure email field is a proper email.
+     *         howover, keep this functionality because it's user to search via user ID.
+     */
     public function find($user = null){
         if($user) {
 
@@ -163,13 +163,13 @@ class UsersModel{
         }
     }
 
-/**
- *  Login User.
- *
- *  @param string  $username
- *  @param string  $password
- *  @todo  abstract the session name 'user' into a global config file.
- */
+    /**
+     *  Login User.
+     *
+     * @param string  $username
+     * @param string  $password
+     * @todo  abstract the session name 'user' into a global config file.
+     */
     public function login($username = null, $password = null, $remember = false) {
 
         // When username or password haven't been defined, but the current user exists.
@@ -225,29 +225,9 @@ class UsersModel{
         return false;
     }
 
-/**
- *  Logout user.
- */
-    public function logout(){
-        if($this->_isLoggedIn){
-            $this->_db->query("DELETE FROM users_session WHERE user_id = ?", array($this->data()->id));
-            Session::delete($this->_sessionName);
-            Cookie::delete($this->_cookieName);
-        }
-    }
-
-/**
- *  Check if the current user is logged in.
- */
-    public function is_logged_in() {
-        return $this->_isLoggedIn;
-    }
-
-/**
- *  Check if user has the correct permission levels.
- *
- *  @param  $level  permission level.
- */
+    /**
+     * @param  $level  permission level.
+     */
     public function has_permission($level) {
 
         // Get the user's current group.
@@ -266,6 +246,18 @@ class UsersModel{
         }
 
         return false;
+    }
+
+    public function logout(){
+        if($this->_isLoggedIn){
+            $this->_db->query("DELETE FROM users_session WHERE user_id = ?", array($this->data()->id));
+            Session::delete($this->_sessionName);
+            Cookie::delete($this->_cookieName);
+        }
+    }
+
+    public function is_logged_in() {
+        return $this->_isLoggedIn;
     }
 
     public function exists() {
