@@ -34,9 +34,3 @@
         </div>
     </div>
 </div>
-
-<script>
-$(document).ready(function(){
-    $('#file-upload').fileupload();
-});
-</script>

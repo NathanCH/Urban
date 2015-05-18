@@ -30,8 +30,8 @@ define('ELEMENT_FILE_EXT' , '.php');
 define('LANG_PATH', 'Urbnio/i18n/');
 define('LANG_FILE_EXT' , '.php');
 
-define('CSS_PATH', URL . 'Static/css');
-define('JS_PATH', URL . 'Static/js');
-define('IMG_PATH', URL . 'Static/img');
+define('CSS_PATH', URL . 'Public/static/css');
+define('JS_PATH', URL . 'Public/src');
+define('IMG_PATH', URL . 'Public/static/img');
 
-define('USER_UPLOAD_PATH', 'uploads/users');
+define('USER_UPLOAD_PATH', 'Output/user_uploads/');

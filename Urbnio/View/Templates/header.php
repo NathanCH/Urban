@@ -9,10 +9,8 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.4/less.min.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700|Open+Sans:600|Montserrat:400' rel='stylesheet' type='text/css' />
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false&libraries=places"></script>
-        <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
-        <script src="<?= JS_PATH; ?>/urbn.js"></script>
-        <script src="<?= JS_PATH; ?>/extensions.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.js" data-main="<?php echo URL; ?>Public/src/config"></script>
         <link rel="icon" type="image/png" href="<?= IMG_PATH; ?>/favicon-32x32.png" sizes="32x32">
     </head>
     <body>

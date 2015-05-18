@@ -21,35 +21,32 @@ class Property extends Controller {
             Route::redirect('user/login');
         }
 
-        else{
+        if(Input::exists()) {
 
-            if(Input::exists()) {
+            $items = array(
+                'name' => array(
+                    'required' => true
+                ),
+                'address' => array(
+                    'required' => true
+                )
+            );
 
-                $items = array(
-                    'name' => array(
-                        'required' => true
-                    ),
-                    'address' => array(
-                        'required' => true
-                    )
-                );
+            $validate = new Validate;
+            $validation = $validate->check($_POST, $items);
 
-                $validate = new Validate;
-                $validation = $validate->check($_POST, $items);
-
-                if($validation->passed()) {
-                    echo 'passed';
-                }
-                else {
-                    $data['errors'] = $validation->errors();
-                }
+            if($validation->passed()) {
+                echo 'passed';
             }
-
-            $data['logged_in'] = true;
-            $data['content']['page-title'] = i18n::lang('page-title.add-property');
-            $data['content']['button'] = i18n::lang('button.next-step');
-            $data['content']['error.list'] = i18n::lang('error.list');
+            else {
+                $data['errors'] = $validation->errors();
+            }
         }
+
+        $data['logged_in'] = true;
+        $data['content']['page-title'] = i18n::lang('page-title.add-property');
+        $data['content']['button'] = i18n::lang('button.next-step');
+        $data['content']['error.list'] = i18n::lang('error.list');
 
         $this->render('static_layout', 'property/add', $data);
     }

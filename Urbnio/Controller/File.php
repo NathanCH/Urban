@@ -18,46 +18,43 @@ class File extends Controller {
             Route::redirect('user/edit');
         }
 
-        else {
+        if (Input::exists('file')) {
 
-            if (Input::exists('file')) {
+            $validate = new Validate;
+            $file_data = array(
+                'profile_photo' => array(
+                    'required' => true,
+                    'max_file_size' => 8000,
+                    'file_type' => 'image',
+                ),
+            );
 
-                $validate = new Validate;
-                $file_data = array(
-                    'profile_photo' => array(
-                        'required' => true,
-                        'max_file_size' => 8000,
-                        'file_type' => 'image',
-                    ),
-                );
+            // Setup upload class and set directory.
+            $upload = new Upload(USER_UPLOAD_PATH);
 
-                // Setup upload class and set directory.
-                $upload = new Upload('uploads/users/');
+            // Prepare file for upload.
+            $upload->set_file($_FILES['files']);
+            $profile_photo = $upload->upload();
+            $validation = $validate->check_file($upload, $file_data);
 
-                // Prepare file for upload.
-                $upload->set_file($_FILES['files']);
-                $profile_photo = $upload->upload();
-                $validation = $validate->check_file($upload, $file_data);
+            if ($validate->passed()) {
 
-                if ($validate->passed()) {
+                try {
+                    $image = USER_UPLOAD_PATH . $profile_photo['filename'];
+                    $users_model->upload_user_file(array(
+                        'user_id' => $users_model->data()->id,
+                        'file_name' => $this->create_image($image, 'square_90'),
+                    ));
 
-                    try {
-                        $image = USER_UPLOAD_PATH . '/' . $profile_photo['filename'];
-                        $users_model->upload_user_file(array(
-                            'user_id' => $users_model->data()->id,
-                            'file_name' => $this->create_image($image, 'square_90'),
-                        ));
+                    $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
 
-                        $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
+                    // Fix this echo.
+                    echo URL . $user_profile_photo->file_name;
 
-                        // Fix this echo.
-                        echo URL . $user_profile_photo->file_name;
+                }
 
-                    }
-
-                    catch (Exception $e) {
-                        die($e->getMessage());
-                    }
+                catch (Exception $e) {
+                    die($e->getMessage());
                 }
             }
         }

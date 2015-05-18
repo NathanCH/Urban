@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="small-offset-1 small-10 medium-offset-2 medium-8 large-offset-2 large-4 columns">
                                 <div class="splash-content">
-                                    <h1>urbn.io</h1>
+                                    <h1>urbn</h1>
                                     <p>
                                         a website for architecture and urban enthusiasts - track your neighbourhood's growth, discuss local politics, and get involved.
                                     </p>

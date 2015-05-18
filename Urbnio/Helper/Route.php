@@ -30,4 +30,14 @@ class Route {
 
         header("Location: $path");
     }
+
+    /**
+     * Create sluggable URL from string.
+     */
+    public static function sluggable($string) {
+        $string = trim($string);
+        $string = strtolower($string);
+        $string = preg_replace('~[^\\pL\d]+~u', '-', $string);
+        return rawurlencode($string);
+    }
 }

@@ -18,8 +18,8 @@ class User extends Controller {
     }
 
     /**
-     * @todo process 'if already logged in'. Give option to login as another user.
-     * @todo integrate Google Sign in.
+     * @todo give option to login as another user.
+     * @todo oauth
      */
     public function login() {
 
@@ -30,51 +30,48 @@ class User extends Controller {
             Route::redirect('user/edit');
         }
 
-        else {
+        if(Input::exists()) {
 
-            if(Input::exists()) {
+            $items = array(
+                'email' => array(
+                    'required' => true
+                ),
+                'password' => array(
+                    'required' => true
+                )
+            );
 
-                $items = array(
-                    'email' => array(
-                        'required' => true
-                    ),
-                    'password' => array(
-                        'required' => true
-                    )
-                );
+            $validate = new Validate;
+            $validation = $validate->check($_POST, $items);
 
-                $validate = new Validate;
-                $validation = $validate->check($_POST, $items);
+            if($validation->passed()){
 
-                if($validation->passed()){
+                $users_model = $this->loadModel('UsersModel');
 
-                    $users_model = $this->loadModel('UsersModel');
+                // Check if they want to be remembered.
+                $remember = ($_POST['remember_login'] === '1') ? true : false;
 
-                    // Check if they want to be remembered.
-                    $remember = ($_POST['remember_login'] === '1') ? true : false;
-
-                    if($users_model->login($_POST['email'], $_POST['password'], $remember)) {
-                        Session::flash('success', i18n::lang('flash.login'));
-                        Route::redirect('user', 'edit');
-                    }
-
-                    else{
-                        $data = array('errors' => array('login_failed' => "This email and password combination do not exist."));
-                    }
+                if($users_model->login($_POST['email'], $_POST['password'], $remember)) {
+                    Session::flash('success', i18n::lang('flash.login'));
+                    Route::redirect('user', 'edit');
                 }
 
                 else{
-                    $data = array('errors' => $validation->errors());
+                    $data = array('errors' => array('login_failed' => "This email and password combination do not exist."));
                 }
             }
 
-            $data['content']['page-title'] = i18n::lang('page-title.login');
-            $data['content']['button'] = i18n::lang('button.login');
-            $data['content']['form.remember-me'] = i18n::lang('form.remember-me');
-            $data['content']['error.list'] = i18n::lang('error.list');
-
-            $this->render('static_layout', 'user/login', $data);
+            else{
+                $data = array('errors' => $validation->errors());
+            }
         }
+
+        $data['content']['page-title'] = i18n::lang('page-title.login');
+        $data['content']['button'] = i18n::lang('button.login');
+        $data['content']['form.remember-me'] = i18n::lang('form.remember-me');
+        $data['content']['error.list'] = i18n::lang('error.list');
+
+        $this->render('static_layout', 'user/login', $data);
     }
 
     public function logout() {
@@ -93,65 +90,62 @@ class User extends Controller {
             Route::redirect('user/edit');
         }
 
-        else {
+        if(Input::exists()) {
 
-            if(Input::exists()) {
+            $items = array(
+                'email' => array(
+                    'required' => true,
+                    'min' => 7,
+                    'max' => 64,
+                    'unique' => 'users'
+                ),
+                'password' => array(
+                    'required' => true,
+                    'min' => 6
+                ),
+                'confirm-password' => array(
+                    'required' => true,
+                    'matches' => 'password'
+                )
+            );
 
-                $items = array(
-                    'email' => array(
-                        'required' => true,
-                        'min' => 7,
-                        'max' => 64,
-                        'unique' => 'users'
-                    ),
-                    'password' => array(
-                        'required' => true,
-                        'min' => 6
-                    ),
-                    'confirm-password' => array(
-                        'required' => true,
-                        'matches' => 'password'
-                    )
-                );
+            $validate = new Validate;
+            $validation = $validate->check($_POST, $items);
 
-                $validate = new Validate;
-                $validation = $validate->check($_POST, $items);
+            if($validation->passed()) {
 
-                if($validation->passed()) {
+                $users_model = $this->loadModel('UsersModel');
 
-                    $users_model = $this->loadModel('UsersModel');
+                try {
 
-                    try {
+                    $password = Hash::encrypt_password($_POST['password']);
+                    $created = date('Y-m-d H:i:s');
 
-                        $password = Hash::encrypt_password($_POST['password']);
-                        $created = date('Y-m-d H:i:s');
+                    $users_model->register_user(array(
+                        'email'     => $_POST['email'],
+                        'password'  => $password,
+                        'group'     => 'user',
+                        'created'   => $created
+                    ));
 
-                        $users_model->register_user(array(
-                            'email'     => $_POST['email'],
-                            'password'  => $password,
-                            'group'     => 'user',
-                            'created'   => $created
-                        ));
-
-                        Session::flash('success', i18n::lang('flash.registered'));
-                    }
-
-                    catch(Exception $e) {
-                        die($e->getMessage());
-                    }
+                    Session::flash('success', i18n::lang('flash.registered'));
                 }
 
-                else{
-                    $data['errors'] = $validation->errors();
+                catch(Exception $e) {
+                    die($e->getMessage());
                 }
             }
 
-            $data['content']['page-title'] = i18n::lang('page-title.register');
-            $data['content']['button'] = i18n::lang('button.create-account');
-            $data['content']['error.list'] = i18n::lang('error.list');
-
-            $this->render('static_layout', 'user/register', $data);
+            else{
+                $data['errors'] = $validation->errors();
+            }
         }
+
+        $data['content']['page-title'] = i18n::lang('page-title.register');
+        $data['content']['button'] = i18n::lang('button.create-account');
+        $data['content']['error.list'] = i18n::lang('error.list');
+
+        $this->render('static_layout', 'user/register', $data);
     }
 
     public function edit() {
@@ -163,77 +157,74 @@ class User extends Controller {
             Route::redirect('user/login');
         }
 
-        else{
+        if(Input::exists()) {
 
-            if(Input::exists()) {
+            $validate = new Validate;
+            $post_data = array(
+                'name' => array(
+                    'required' => false,
+                    'min' => 2,
+                    'max' => 64
+                ),
+                'email' => array(
+                    'required' => true,
+                    'min' => 7,
+                    'max' => 64
+                ),
+                'about' => array(
+                    'required' => false,
+                    'max' => 10000
+                )
+            );
 
-                $validate = new Validate;
-                $post_data = array(
-                    'name' => array(
-                        'required' => false,
-                        'min' => 2,
-                        'max' => 64
-                    ),
-                    'email' => array(
-                        'required' => true,
-                        'min' => 7,
-                        'max' => 64
-                    ),
-                    'about' => array(
-                        'required' => false,
-                        'max' => 10000
-                    )
-                );
+            $validation = $validate->check($_POST, $post_data);
 
-                $validation = $validate->check($_POST, $post_data);
+            if($validation->passed()) {
 
-                if($validation->passed()) {
+                try {
+                    $users_model->update_user(array(
+                        'location' => $_POST['location'],
+                        'name' => $_POST['name'],
+                        'email' => $_POST['email'],
+                        'about' => $_POST['about']
+                    ));
 
-                    try {
-                        $users_model->update_user(array(
-                            'location' => $_POST['location'],
-                            'name' => $_POST['name'],
-                            'email' => $_POST['email'],
-                            'about' => $_POST['about']
-                        ));
+                    // Get updated data.
+                    $users_model = $this->loadModel('UsersModel');
 
-                        // Get updated data.
-                        $users_model = $this->loadModel('UsersModel');
-
-                        Session::flash('success', i18n::lang('flash.update-profile'));
-                    }
-
-                    catch(Exception $e) {
-                        die($e->getMessage());
-                    }
+                    Session::flash('success', i18n::lang('flash.update-profile'));
                 }
 
-                else{
-                    $data['errors'] = $validation->errors();
+                catch(Exception $e) {
+                    die($e->getMessage());
                 }
-            }
-
-            $user_data = $users_model->data();
-            $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
-
-            $data['content']['page-title'] = i18n::lang('page-title.edit');
-            $data['content']['form.email-public'] = i18n::lang('form.email-public');
-            $data['content']['button'] = i18n::lang('button.save');
-            $data['content']['error.list'] = i18n::lang('error.list');
-
-            $data['input']['email']     = Response::escape($user_data->email);
-            $data['input']['name']      = Response::escape($user_data->name);
-            $data['input']['about']     = Response::escape($user_data->about);
-            $data['input']['location']  = Response::escape($user_data->location);
-
-            if($user_profile_photo){
-                $data['profile_photo']['set']          = true;
-                $data['profile_photo']['file_name']    = $user_profile_photo->file_name;
             }
 
             else{
-                $data['profile_photo']['set']          = false;
+                $data['errors'] = $validation->errors();
             }
+        }
+
+        $user_data = $users_model->data();
+        $user_profile_photo = $users_model->get('users_file', $users_model->data()->id);
+
+        $data['content']['page-title'] = i18n::lang('page-title.edit');
+        $data['content']['form.email-public'] = i18n::lang('form.email-public');
+        $data['content']['button'] = i18n::lang('button.save');
+        $data['content']['error.list'] = i18n::lang('error.list');
+
+        $data['input']['email']     = Response::escape($user_data->email);
+        $data['input']['name']      = Response::escape($user_data->name);
+        $data['input']['about']     = Response::escape($user_data->about);
+        $data['input']['location']  = Response::escape($user_data->location);
+
+        if($user_profile_photo){
+            $data['profile_photo']['set']          = true;
+            $data['profile_photo']['file_name']    = $user_profile_photo->file_name;
+        }
+
+        else{
+            $data['profile_photo']['set']          = false;
         }
 
         $this->render('static_layout', 'user/edit', $data);
@@ -248,48 +239,45 @@ class User extends Controller {
             Route::redirect('User/login');
         }
 
-        else{
+        $user_data = $users_model->data();
 
-            $user_data = $users_model->data();
+        if(Input::exists()) {
+            $items = array(
+                'current-password' => array(
+                    'required' => true,
+                    'check_password' => $users_model->data()->password
+                ),
+                'password' => array(
+                    'required' => true,
+                    'min' => 6
+                ),
+                'confirm-password' => array(
+                    'required' => true,
+                    'matches' => 'password'
+                )
+            );
 
-            if(Input::exists()) {
-                $items = array(
-                    'current-password' => array(
-                        'required' => true,
-                        'check_password' => $users_model->data()->password
-                    ),
-                    'password' => array(
-                        'required' => true,
-                        'min' => 6
-                    ),
-                    'confirm-password' => array(
-                        'required' => true,
-                        'matches' => 'password'
-                    )
-                );
+            $validate = new Validate;
+            $validation = $validate->check($_POST, $items);
 
-                $validate = new Validate;
-                $validation = $validate->check($_POST, $items);
+            if($validation->passed()) {
 
-                if($validation->passed()) {
+                try {
+                    $password = Hash::encrypt_password($_POST['password']);
+                    $users_model->change_password(array(
+                        'password' => $password
+                    ));
 
-                    try {
-                        $password = Hash::encrypt_password($_POST['password']);
-                        $users_model->change_password(array(
-                            'password' => $password
-                        ));
-
-                        Session::flash('success', i18n::lang('flash.update-password'));
-                    }
-
-                    catch(Exception $e) {
-                        die($e->getMessage());
-                    }
+                    Session::flash('success', i18n::lang('flash.update-password'));
                 }
 
-                else{
-                    $data['errors'] = $validation->errors();
+                catch(Exception $e) {
+                    die($e->getMessage());
                 }
+            }
+
+            else{
+                $data['errors'] = $validation->errors();
             }
         }
 

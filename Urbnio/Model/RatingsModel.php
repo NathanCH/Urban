@@ -16,14 +16,8 @@ class RatingsModel{
                 'event'
             );
 
-    public function __construct($building = null) {
+    public function __construct() {
         $this->_db = DB::getInstance();
-    }
-
-    private function match_category($category) {
-        if(in_array($category, $this->_allowed_categories)) {
-            return true;
-        }
     }
 
     public function get_rating($item_id) {
@@ -60,9 +54,15 @@ class RatingsModel{
         return $this->_category = $category;
     }
 
+    private function match_category($category) {
+        if(in_array($category, $this->_allowed_categories)) {
+            return true;
+        }
+    }
+
     public function add_rating($fields = array()) {
         if(!$this->_db->insert('ratings', $fields)) {
-            throw new Exception('There was a problem creating this user.');
+            throw new Exception('There was a problem rating this item.');
         }
     }
 }

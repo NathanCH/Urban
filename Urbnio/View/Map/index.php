@@ -10,7 +10,3 @@
         </button>
     </div>
 </div>
-
-
-<script src="<?= JS_PATH; ?>/functions.js"></script>
-<script src="<?= JS_PATH; ?>/components.js"></script>

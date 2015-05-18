@@ -22,7 +22,9 @@ class Application {
      * @author panique@web.de
      */
     public function __construct() {
+
         session_start();
+
         $this->set_session_language();
         $this->splitUrl();
 
@@ -68,6 +70,7 @@ class Application {
      * @author panique@web.de
      */
     private function splitUrl() {
+
         if (isset($_GET['url'])) {
 
             // Split URL.
@@ -92,6 +95,7 @@ class Application {
      * @todo       set users location based on input.
      */
     public function set_session_language() {
+
         if(APP_LOCALE == 'en_us') {
             $path = LANG_PATH . '/' . APP_LOCALE . LANG_FILE_EXT;
         }

@@ -4,38 +4,17 @@ module.exports = function (grunt) {
         less: {
             development: {
                 options: {
-                    paths: 'Static/css',
+                    paths: 'Public/static/css',
                     compress: true
                 },
                 files: {
-                    'Build/Static/css/static.css' : 'Static/css/static.less',
-                     'Build/Static/css/splash.css' : 'Static/css/splash.less',
+                    'Build/Public/static/css/static.css' : 'Public/static/css/static.less',
+                     'Build/Public/static/css/splash.css' : 'Public/static/css/splash.less',
                 }
             }
         },
-        concat: {
-            js: {
-                files: {
-                    'Build/Static/js/app.js' : [
-                        'Static/js/urbn.js',
-                        'Static/js/components.js',
-                        'Static/js/extensions.js',
-                        'Static/js/functions.js'
-                    ]
-                }
-            }
-        },
-        uglify: {
-            min: {
-                files: {
-                    'Build/Static/js/app.min.js' : ['Build/Static/js/app.js']
-                }
-            }
-        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.registerTask('default' , ['less', 'concat', 'uglify']);
+    grunt.registerTask('default' , ['less']);
 }

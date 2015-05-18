@@ -1,2 +1,0 @@
-- Refactor maps component.
-- Abstract authentication from controller actions.

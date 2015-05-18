@@ -1,9 +1,6 @@
 <?php
 namespace Urbnio\Controller;
 use Urbnio\Lib\Controller;
-use Urbnio\Helper\Input;
-use Urbnio\Helper\i18n;
-use Urbnio\Helper\Validate;
 use Urbnio\Helper\Route;
 
 class Pages extends Controller {
@@ -30,7 +27,7 @@ class Pages extends Controller {
                 'rating' => $ratings_model->get_rating($region->id),
                 'article_count' => null,
                 'region_picture' => null,
-                'link' => 'map'
+                'link' => Route::sluggable($region->name)
             );
         }
 
