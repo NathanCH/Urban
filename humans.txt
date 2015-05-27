@@ -17,6 +17,9 @@
     Aditya Patadia (ImageResize PHP Class)
     https://github.com/eventviva/php-image-resize
 
+    Bill Karwin on Models for Hierarchical Data
+    https://www.youtube.com/watch?v=wuH5OoPC3hA
+
     Dion Moult
     Site: http://thinkmoult.com/
 

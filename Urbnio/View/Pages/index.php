@@ -5,6 +5,12 @@
                 <h2 class="heading-page-section">Featured Regions</h2>
             </div>
         </div>
+        <?php
+        // Display file upload element for profile photo.
+        echo $this->element('breadcrumbs', array(
+            'breadcrumbs' => $data['breadcrumbs']
+        ));
+        ?>
         <div class="row">
             <?php
             foreach ($data['regions_list'] as $region) {

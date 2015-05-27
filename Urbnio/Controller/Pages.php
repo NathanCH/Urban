@@ -1,6 +1,7 @@
 <?php
 namespace Urbnio\Controller;
 use Urbnio\Lib\Controller;
+use Urbnio\Behaviour\TreeBehaviour;
 use Urbnio\Helper\Route;
 
 class Pages extends Controller {
@@ -31,7 +32,11 @@ class Pages extends Controller {
             );
         }
 
+        $tree = new TreeBehaviour;
+        $breadcrumbs = $tree->breadcrumbs('11');
+
         $data['regions_list'] = $region_block;
+        $data['breadcrumbs'] = $breadcrumbs;
         $this->render('pages_layout', 'pages/index', $data);
     }
 }
