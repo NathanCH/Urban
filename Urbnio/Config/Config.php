@@ -35,3 +35,12 @@ define('JS_PATH', URL . 'Public/src');
 define('IMG_PATH', URL . 'Public/static/img');
 
 define('USER_UPLOAD_PATH', 'Output/user_uploads/');
+
+define('PLANET', 0);
+define('CONTINENT', 1);
+define('SUBCONTINENT', 2);
+define('COUNTRY', 3);
+define('REGION', 4);
+define('SUBREGION', 5);
+define('CITY', 6);
+define('DISTRICT', 7);

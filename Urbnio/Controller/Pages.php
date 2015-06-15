@@ -32,11 +32,7 @@ class Pages extends Controller {
             );
         }
 
-        $tree = new TreeBehaviour;
-        $breadcrumbs = $tree->breadcrumbs('11');
-
         $data['regions_list'] = $region_block;
-        $data['breadcrumbs'] = $breadcrumbs;
         $this->render('pages_layout', 'pages/index', $data);
     }
 }

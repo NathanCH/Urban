@@ -10,7 +10,7 @@ return $en_us = array(
     'page-title.register'           => 'Create Account',
     'page-title.edit'               => 'Edit Account',
     'page-title.change-password'    => 'Change Password',
-    'page-title.add-property'       => 'Add Property',
+    'page-title.browse'           => 'Browse',
 
     'button.create-account'         => 'Create Account',
     'button.login'                  => 'Login',
