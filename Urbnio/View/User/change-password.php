@@ -7,7 +7,7 @@
 <section class="content-container">
     <div class="site-wrap">
         <header class="row">
-            <div class="columns">
+            <div class="column">
                 <h1 class="heading-page"><?= $content['page-title']; ?></h1>
             </div>
         </header>
@@ -17,7 +17,7 @@
             if(isset($data['errors'])) {
             ?>
             <div class="row">
-                <div class="small-12 medium-12 large-12 columns">
+                <div class="column">
                     <div class="message error">
                         <p>
                             <?= $content['error.list']; ?>

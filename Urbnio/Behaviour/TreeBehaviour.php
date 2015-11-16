@@ -30,10 +30,9 @@ class TreeBehaviour extends HierarchyModel {
      * Build path.
      */
     public function build_path($item_id) {
-        // Append each parent to current path.
-        $parents = array_reverse($this->get_parents($item_id));
 
         $path = null;
+        $parents = array_reverse($this->get_parents($item_id));
 
         foreach ($parents as $id => $parent) {
             $path .= Route::sluggable($parent->value) . '/';

@@ -7,7 +7,7 @@
 <section class="content-container">
     <div class="site-wrap">
         <header class="row">
-            <div class="columns">
+            <div class="column">
                 <h1 class="heading-page"><?= $content['page-title']; ?></h1>
             </div>
         </header>
@@ -37,8 +37,8 @@
             ?>
             <fieldset>
                 <div class="row">
-                    <div class="columns">
-                        <h3 class="heading-form-section">Location</h3>
+                    <div class="column">
+                        <h3 class="heading-section">Location</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -64,8 +64,8 @@
             </fieldset>
             <fieldset>
                 <div class="row">
-                    <div class="columns">
-                        <h3 class="heading-form-section">Details</h3>
+                    <div class="column">
+                        <h3 class="heading-section">Details</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -119,13 +119,13 @@
             </fieldset>
             <fieldset>
                 <div class="row">
-                    <div class="columns">
-                        <h3 class="heading-form-section">About Me</h3>
+                    <div class="column">
+                        <h3 class="heading-section">About Me</h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-container">
-                        <div class="small-12 medium-12 large-12 columns">
+                        <div class="column">
                             <div class="textarea-editor">
                                 <textarea class="textarea-editor-body" name="about" rows="5"><?php echo $data['input']['about']; ?></textarea>
                                 <div class="textarea-editor-tools">

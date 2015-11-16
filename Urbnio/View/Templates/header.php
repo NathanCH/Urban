@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/less" href="<?= CSS_PATH; ?>/static.less" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.4/less.min.js"></script>
-        <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700|Open+Sans:600|Montserrat:400' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700|Open+Sans:400,600|Montserrat:400' rel='stylesheet' type='text/css' />
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.js" data-main="<?php echo URL; ?>Public/src/config"></script>
         <link rel="icon" type="image/png" href="<?= IMG_PATH; ?>/favicon-32x32.png" sizes="32x32">
@@ -67,7 +67,7 @@
                                     <a class="button button-text button-text-grey" data-event="toggle-dropdown"><?= $data['user_data']['name'] ?></a>
                                     <ul class="dropdown-menu hide">
                                         <li><a href="<?= URL; ?>pages/index">Index Page</a></li>
-                                        <li><a href="<?= URL; ?>property/add">Add Property</a></li>
+                                        <li><a href="<?= URL; ?>browse">Browse</a></li>
                                         <li><a href="<?= URL; ?>user/edit">Edit Profile</a></li>
                                         <li><a href="<?= URL; ?>user/change-password">Change Password</a></li>
                                         <li><a href="<?= URL; ?>user/logout">Logout</a></li>

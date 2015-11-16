@@ -7,18 +7,17 @@
 <section class="content-container">
     <div class="site-wrap-small">
         <header class="row">
-            <div class="small-12 medium-12 large-12 columns">
+            <div class="column">
                 <h1 class="heading-page"><?= $content['page-title']; ?></h1>
             </div>
         </header>
         <form action="<?= URL; ?>user/register/" method="POST">
             <fieldset>
                 <?php
-                // Display errors.
                 if(isset($data['errors'])) {
                 ?>
                 <div class="row">
-                    <div class="small-12 medium-12 large-12 columns">
+                    <div class="column">
                         <div class="message error">
                             <p>
                                 <?= $content['error.list']; ?>
@@ -36,27 +35,24 @@
                 <?php
                 }
                 ?>
-                <!-- Email Input -->
                 <div class="row">
-                    <div class="small-12 medium-12 large-12 columns">
+                    <div class="column">
                         <div class="input-container">
                             <label for="email">Email</label>
                             <input type="text" name="email" id="email" />
                         </div>
                     </div>
                 </div>
-                <!-- Password Input -->
                 <div class="row">
-                    <div class="small-12 medium-12 large-12 columns">
+                    <div class="column">
                         <div class="input-container">
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password" />
                         </div>
                     </div>
                 </div>
-                <!-- Confirm Password Input -->
                 <div class="row">
-                    <div class="small-12 medium-12 large-12 columns">
+                    <div class="column">
                         <div class="input-container">
                             <label for="confirm-password">Confirm Password</label>
                             <input type="password" name="confirm-password" id="confirm-password" />
